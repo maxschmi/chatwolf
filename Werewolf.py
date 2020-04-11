@@ -16,6 +16,7 @@ import random as rd
 import re
 import logging
 import datetime
+import shelve
 
 #Game Class definition = Gamemaster
 #---------------------
@@ -330,6 +331,28 @@ class Game:
 					return open("messages/en/"+file+".txt", "r").readlines()[line].replace("\n", "")
 			except FileNotFoundError:
 				print("no such file defined in any language")
+
+	def bkp(self):
+		bkp = shelve.open("temp/backup_" + self.starttime + ".slv")
+
+		bkp["game"] = {"lang": self.lang,
+					"chatid" : self.chatid,
+					"wait_mult" : self.wait_mult,
+					"numwerewolfs" : self.numwerewolfs,
+					"starttime": self.starttime,
+					"amor": self.amor,
+					"witch" : self.witch,
+					"prostitute" : self .prostitute,
+					"visionary" : self.visionary, 
+					"log_dir": self.log_dir,
+					"nn": self.nn,
+					"nd": self.nd}
+
+		for i in range(len(self.players)):
+			bkp["Player_"+i] = self.players[i].get_bkp()
+
+		for i in range(len(self.roles)):
+			bkp["Role"+i] = self.roles[i].get_bkp()
 
 class Nightactions:
 	def __init__(self, alive, game, noone = True):
