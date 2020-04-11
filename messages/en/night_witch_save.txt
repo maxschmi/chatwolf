@@ -1,0 +1,3 @@
+This night %(killed)s got killed, 
+do you want to save him or her?
+but you can't save him/her anymore.

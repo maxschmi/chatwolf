@@ -1,0 +1,5 @@
+The Game begins!
+You are %(numplayers)i people in your village, but some of you seem to be werewolfs.
+To be precise I realised that you have %(numwerwolfs)i werewolf(s) in your village. You might want to do something about that problem!
+During the day you can have a video call to discuss who you want to kill and tell me afterwards.
+I will give now everyone of you his or her role and tell you more about it.

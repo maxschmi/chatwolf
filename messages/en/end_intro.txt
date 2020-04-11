@@ -1,0 +1,2 @@
+The Game is over. 
+Here is a list of who had which role and my logging file(to find out what happend):

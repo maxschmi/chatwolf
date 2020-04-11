@@ -1,0 +1,4 @@
+Hello werewolfs, 
+you can now discuss in the chat and decide who you want to kill this night.
+After you decided, just send me here a message with "kill: number", where number corresponds to the person in the list.
+Here is the list of available persons:

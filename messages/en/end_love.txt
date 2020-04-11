@@ -1,0 +1,2 @@
+The love won. 
+'{0}' and '{1}' were in love.

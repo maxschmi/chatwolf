@@ -1,0 +1,8 @@
+Send me: 
+ number
+Thanks, message "%(command)s no one" received!
+Thanks, message "%(command)s %(name)s" received!
+Number is not in the list, try again.
+Number %(id)i is not in the list, try again.
+Thanks, I received your message 
+There was an error, please try again!

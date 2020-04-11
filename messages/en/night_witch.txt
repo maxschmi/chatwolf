@@ -1,0 +1,2 @@
+Hello Witch,
+You have %(elixier)i elixier and %(poison)i poison left.
