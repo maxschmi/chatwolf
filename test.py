@@ -40,3 +40,5 @@ class Test:
 	def reinit(self, val):
 		self.__init__(val)
 # this worked
+
+class 

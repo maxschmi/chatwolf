@@ -330,11 +330,14 @@ class Game:
 					"nn": self.nn,
 					"nd": self.nd}
 
-		for i in range(len(self.players)):
-			bkp["Player_"+i] = self.players[i].get_bkp()
+		for player in self.players:
+			bkp["Player_"+player.id] = player.get_bkp()
 
 		for i in range(len(self.roles)):
-			bkp["Role"+i] = self.roles[i].get_bkp()
+			bkp["Role_"+i] = self.roles[i].get_bkp()
+
+	def load_bkp(self):
+		pass
 
 class Nightactions:
 	def __init__(self, alive, game, noone = True):
@@ -544,6 +547,10 @@ class Player:
 	def get_name_role(self):
 		return self.name + "("+self.role.role+")"
 
+	def get_bkp(self):
+		return {"id":self.id, "name":self.name, "alive":self.alive, "love":self.love, "lover_id":self.lover.id}
+		pass
+
 
 #------------------------------------------------------------------------------------------------
 # Role definitions
@@ -587,6 +594,9 @@ class Role:
 		for i in range(len(self.player)):
 			names.append(self.player[i].name)
 		return names
+
+	def get_bkp(self):
+		return {"role":self.role, "chatid": self.chatid, "numplayer": len(self.player)}
 
 
 class Werewolf(Role):
@@ -650,7 +660,7 @@ class Prostitute(Role):
 		self.chat.sendMsg(self.game.msg("night_sleep"))
 
 class Witch(Role):
-	role = "Witch"
+	role = "witch"
 	group = "Villager"
 	
 	def greeting(self, game = None):
@@ -691,6 +701,11 @@ class Witch(Role):
 					self.game.log.info("The witch uses her poison to kill " + nightactions.alive[id-1].name)
 		time.sleep(2*self.game.wait_mult)
 		self.chat.sendMsg(self.game.msg("night_sleep"))
+
+	def get_bkp():
+		bkp = super.get_bkp()
+		bkp.update({"elixier":self.elixier, "poison":self.poison})
+		return bkp
 		
 class Visionary(Role):
 	role = "Visionary"
