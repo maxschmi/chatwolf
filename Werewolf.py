@@ -320,17 +320,16 @@ class Game:
 
 	def bkp(self):
 		bkp = shelve.open("temp/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
-
 		bkp["game"] = self
-		bkp["players"] = self.players
-
-		if hasattr(self, 'roles'):
-			bkp["roles"] = self.roles
-
 		bkp.close()
 
-	def load_bkp(self):
-		selfpass
+	def load_bkp(self, file):
+		bkp = shelve.open(file)
+		self = bkp["game"]
+		bkp.close()
+
+	def restart_bkp(self, file):
+		load_bkp(file)
 
 class Nightactions:
 	def __init__(self, alive, game, noone = True):
@@ -540,12 +539,6 @@ class Player:
 	def get_name_role(self):
 		return self.name + "("+self.role.role+")"
 
-	def get_bkp(self):
-		bkp = {"id":self.id, "name":self.name, "alive":self.alive, "love":self.love}
-		if self.love:
-			bkp.update({"lover_id":self.lover.id})
-		return bkp
-
 
 #------------------------------------------------------------------------------------------------
 # Role definitions
@@ -589,9 +582,6 @@ class Role:
 		for i in range(len(self.player)):
 			names.append(self.player[i].name)
 		return names
-
-	def get_bkp(self):
-		return {"role":self.role, "chatid": self.chatid, "numplayer": len(self.player)}
 
 
 class Werewolf(Role):
@@ -696,11 +686,6 @@ class Witch(Role):
 					self.game.log.info("The witch uses her poison to kill " + nightactions.alive[id-1].name)
 		time.sleep(2*self.game.wait_mult)
 		self.chat.sendMsg(self.game.msg("night_sleep"))
-
-	def get_bkp():
-		bkp = super.get_bkp()
-		bkp.update({"elixier":self.elixier, "poison":self.poison})
-		return bkp
 		
 class Visionary(Role):
 	role = "Visionary"
