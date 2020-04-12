@@ -16,6 +16,7 @@ import random as rd
 import re
 import logging
 import datetime
+import shelve
 
 #Game Class definition = Gamemaster
 #---------------------
@@ -36,6 +37,7 @@ class Game:
 
 		#logging
 		self.starttime = datetime.datetime.now()
+		self.log_dir = log_dir
 		self.logfilename = log_dir + "/Game_"+self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
 		self.log = logging.getLogger("Werewolf")
 		self.log.setLevel(logging.DEBUG)
@@ -96,6 +98,23 @@ class Game:
 		self.chat.sendMsg(self.msg("greeting_all") % {"numplayers": self.numplayers, "numwerwolfs": self.numwerewolfs})
 		time.sleep(20*self.wait_mult)
 
+		self.dist_roles()
+
+		self.chat.sendMsg(self.msg("greeting_all_roles") + (" & ".join(self.get_roles())))
+		
+		self.log.info("Rolls got distributed: \n"+ " "*30 + ("\n" + " "*30).join(self.get_players_role()))
+		# greet Roles
+		for r in self.roles:
+			r.greeting(self)
+		self.bkp()
+
+		time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
+		self.chat.sendMsg(self.msg("greeting_start10s"))
+		time.sleep(10*self.wait_mult)
+
+		self.day()
+
+	def dist_roles(self):
 		# distribute rols in order of appearence in the night
 		rd.shuffle(self.players)
 		
@@ -124,43 +143,12 @@ class Game:
 		
 		for j in range(i, self.numplayers):
 			self.roles.append(Villager(self.players[j], self))
-
-		self.chat.sendMsg(self.msg("greeting_all_roles") + (" & ".join(self.get_roles())))
-		
-		self.log.info("Rolls got distributed: \n"+ " "*30 + ("\n" + " "*30).join(self.get_players_role()))
-		# greet Roles
-		for r in self.roles:
-			r.greeting(self)
-
-		time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
-		self.chat.sendMsg(self.msg("greeting_start10s"))
-		time.sleep(10*self.wait_mult)
-
-		self.day()
 	
 	def restart(self):
+		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, self.lang, self.wait_mult, self.log_dir)
+
 		self.log.info("Game got restarted")
 
-		#logging
-		self.starttime = datetime.datetime.now()
-		self.log = logging.getLogger("Werewolf")
-		self.log.setLevel(logging.DEBUG)
-		fhl = logging.FileHandler(log_dir + "/Game_"+self.starttime.strftime("%Y-%m-%d_%H-%M-%S")+".txt")
-		fhl.setLevel(logging.INFO)
-		fhd = logging.FileHandler(log_dir + "/debuglog.txt")
-		forml = logging.Formatter('%(asctime)s - %(message)s')
-		fhl.setFormatter(forml)
-		formd = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-		fhd.setFormatter(formd)
-		self.log.addHandler(fhl)
-		self.log.addHandler(fhd)
-		self.log.info("This game started on " + self.starttime.strftime("%Y-%m-%d at %H:%M:%S"))
-
-		#reset Players
-		for player in self.players:
-			player.alive = True
-			player.love = False
-			player.lover = None
 		self.start()
 
 	def night(self):
@@ -185,6 +173,7 @@ class Game:
 
 		time.sleep(5*self.wait_mult)
 		if not self.is_end():
+			self.bkp()
 			self.day()
 
 	def day(self):
@@ -206,6 +195,7 @@ class Game:
 		
 		time.sleep(4*self.wait_mult)
 		if not self.is_end():
+			self.bkp()
 			self.chat.sendMsg(self.msg("day_end"))
 			while not self.skc.ask("bool"): pass
 			time.sleep(3*self.wait_mult)
@@ -330,6 +320,34 @@ class Game:
 					return open("messages/en/"+file+".txt", "r").readlines()[line].replace("\n", "")
 			except FileNotFoundError:
 				print("no such file defined in any language")
+
+	def bkp(self):
+		bkp = shelve.open("temp/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
+		bkp["game"] = self
+		bkp.close()
+
+	def load_bkp(file):
+		#class methode to load a game from a backup
+		bkp = shelve.open("temp/"+file)
+		game = bkp["game"]
+		bkp.close()
+		return game
+
+	def continue_bkp(self):
+		# methode to continue the game that was loaded from a backup file because the game is not finished yet
+		self.log.info("The game continues from a backupfile")
+
+		if self.is_end():
+			self.log.debug("The game was already finished")
+			print("The game is already over")
+		else:
+			if self.nd == 0:
+				self.day()
+			elif self.nd > self.nn:
+				self.night()
+			elif self.nd == self.nn:
+				self.day()
+
 
 class Nightactions:
 	def __init__(self, alive, game, noone = True):
@@ -645,7 +663,7 @@ class Prostitute(Role):
 		self.chat.sendMsg(self.game.msg("night_sleep"))
 
 class Witch(Role):
-	role = "Witch"
+	role = "witch"
 	group = "Villager"
 	
 	def greeting(self, game = None):

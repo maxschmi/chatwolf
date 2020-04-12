@@ -21,21 +21,24 @@ except SkypeAuthException:
 
 # get properties and start the game
 	# for testing
-#chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
-#chatid = '19:1bbbf7d5f9464a588eb0b25bf9bea93c@thread.skype' # Werewolf-Spiel
-chatid = '19:41d3c2b327b14538b01e647dd9b8288b@thread.skype' # Werewolf-Spiel-9-4-2020
-game = Game(sk, chatid, numwerewolfs = 2, amor = True, witch = True, prostitute = True, visionary = True, lang = "en", wait_mult = 1)
+chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
+
+game = Game(sk, chatid, numwerewolfs = 1, amor = True, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0)
+game.dist_roles()
+game.bkp()
 game.start()
+
+# restart from bkp
+game = Game.load_bkp("backup_2020-04-12_16-26-14")
 
 # ideas to add:
 ## window programm
 ## start_console fixing
-## tell activated roles in greeting all
 ## intro text with tips: no sound for messages
 
 # print role in night
 
-# delete villager from th elist or add a number of them
+# delete villager from the list or add a number of them
 
 # more waiting time ass takes long
 
