@@ -24,12 +24,12 @@ except SkypeAuthException:
 chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
 
 game = Game(sk, chatid, numwerewolfs = 1, amor = True, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0)
-game.dist_roles()
-game.bkp()
+#game.dist_roles()
 game.start()
 
 # restart from bkp
 game = Game.load_bkp("backup_2020-04-12_16-26-14")
+game.continue_bkp()
 
 # ideas to add:
 ## window programm
