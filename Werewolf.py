@@ -140,28 +140,10 @@ class Game:
 		self.day()
 	
 	def restart(self):
+		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, self.lang, self.wait_mult, self.log_dir)
+
 		self.log.info("Game got restarted")
 
-		#logging
-		self.starttime = datetime.datetime.now()
-		self.log = logging.getLogger("Werewolf")
-		self.log.setLevel(logging.DEBUG)
-		fhl = logging.FileHandler(log_dir + "/Game_"+self.starttime.strftime("%Y-%m-%d_%H-%M-%S")+".txt")
-		fhl.setLevel(logging.INFO)
-		fhd = logging.FileHandler(log_dir + "/debuglog.txt")
-		forml = logging.Formatter('%(asctime)s - %(message)s')
-		fhl.setFormatter(forml)
-		formd = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-		fhd.setFormatter(formd)
-		self.log.addHandler(fhl)
-		self.log.addHandler(fhd)
-		self.log.info("This game started on " + self.starttime.strftime("%Y-%m-%d at %H:%M:%S"))
-
-		#reset Players
-		for player in self.players:
-			player.alive = True
-			player.love = False
-			player.lover = None
 		self.start()
 
 	def night(self):
