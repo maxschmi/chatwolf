@@ -37,6 +37,7 @@ class Game:
 
 		#logging
 		self.starttime = datetime.datetime.now()
+		self.log_dir = log_dir
 		self.logfilename = log_dir + "/Game_"+self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
 		self.log = logging.getLogger("Werewolf")
 		self.log.setLevel(logging.DEBUG)
@@ -97,6 +98,22 @@ class Game:
 		self.chat.sendMsg(self.msg("greeting_all") % {"numplayers": self.numplayers, "numwerwolfs": self.numwerewolfs})
 		time.sleep(20*self.wait_mult)
 
+		self.dist_roles()
+
+		self.chat.sendMsg(self.msg("greeting_all_roles") + (" & ".join(self.get_roles())))
+		
+		self.log.info("Rolls got distributed: \n"+ " "*30 + ("\n" + " "*30).join(self.get_players_role()))
+		# greet Roles
+		for r in self.roles:
+			r.greeting(self)
+
+		time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
+		self.chat.sendMsg(self.msg("greeting_start10s"))
+		time.sleep(10*self.wait_mult)
+
+		self.day()
+
+	def dist_roles(self):
 		# distribute rols in order of appearence in the night
 		rd.shuffle(self.players)
 		
@@ -125,19 +142,6 @@ class Game:
 		
 		for j in range(i, self.numplayers):
 			self.roles.append(Villager(self.players[j], self))
-
-		self.chat.sendMsg(self.msg("greeting_all_roles") + (" & ".join(self.get_roles())))
-		
-		self.log.info("Rolls got distributed: \n"+ " "*30 + ("\n" + " "*30).join(self.get_players_role()))
-		# greet Roles
-		for r in self.roles:
-			r.greeting(self)
-
-		time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
-		self.chat.sendMsg(self.msg("greeting_start10s"))
-		time.sleep(10*self.wait_mult)
-
-		self.day()
 	
 	def restart(self):
 		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, self.lang, self.wait_mult, self.log_dir)
@@ -315,29 +319,18 @@ class Game:
 				print("no such file defined in any language")
 
 	def bkp(self):
-		bkp = shelve.open("temp/backup_" + self.starttime + ".slv")
+		bkp = shelve.open("temp/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
 
-		bkp["game"] = {"lang": self.lang,
-					"chatid" : self.chatid,
-					"wait_mult" : self.wait_mult,
-					"numwerewolfs" : self.numwerewolfs,
-					"starttime": self.starttime,
-					"amor": self.amor,
-					"witch" : self.witch,
-					"prostitute" : self .prostitute,
-					"visionary" : self.visionary, 
-					"log_dir": self.log_dir,
-					"nn": self.nn,
-					"nd": self.nd}
+		bkp["game"] = self
+		bkp["players"] = self.players
 
-		for player in self.players:
-			bkp["Player_"+player.id] = player.get_bkp()
+		if hasattr(self, 'roles'):
+			bkp["roles"] = self.roles
 
-		for i in range(len(self.roles)):
-			bkp["Role_"+i] = self.roles[i].get_bkp()
+		bkp.close()
 
 	def load_bkp(self):
-		pass
+		selfpass
 
 class Nightactions:
 	def __init__(self, alive, game, noone = True):
@@ -548,8 +541,10 @@ class Player:
 		return self.name + "("+self.role.role+")"
 
 	def get_bkp(self):
-		return {"id":self.id, "name":self.name, "alive":self.alive, "love":self.love, "lover_id":self.lover.id}
-		pass
+		bkp = {"id":self.id, "name":self.name, "alive":self.alive, "love":self.love}
+		if self.love:
+			bkp.update({"lover_id":self.lover.id})
+		return bkp
 
 
 #------------------------------------------------------------------------------------------------

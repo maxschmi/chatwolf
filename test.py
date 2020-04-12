@@ -41,4 +41,3 @@ class Test:
 		self.__init__(val)
 # this worked
 
-class 
