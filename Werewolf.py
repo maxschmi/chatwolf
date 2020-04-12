@@ -106,6 +106,7 @@ class Game:
 		# greet Roles
 		for r in self.roles:
 			r.greeting(self)
+		self.bkp()
 
 		time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
 		self.chat.sendMsg(self.msg("greeting_start10s"))
@@ -172,6 +173,7 @@ class Game:
 
 		time.sleep(5*self.wait_mult)
 		if not self.is_end():
+			self.bkp()
 			self.day()
 
 	def day(self):
@@ -193,6 +195,7 @@ class Game:
 		
 		time.sleep(4*self.wait_mult)
 		if not self.is_end():
+			self.bkp()
 			self.chat.sendMsg(self.msg("day_end"))
 			while not self.skc.ask("bool"): pass
 			time.sleep(3*self.wait_mult)
@@ -323,13 +326,28 @@ class Game:
 		bkp["game"] = self
 		bkp.close()
 
-	def load_bkp(self, file):
-		bkp = shelve.open(file)
-		self = bkp["game"]
+	def load_bkp(file):
+		#class methode to load a game from a backup
+		bkp = shelve.open("temp/"+file)
+		game = bkp["game"]
 		bkp.close()
+		return game
 
-	def restart_bkp(self, file):
-		load_bkp(file)
+	def continue_bkp(self):
+		# methode to continue the game that was loaded from a backup file because the game is not finished yet
+		self.log.info("The game continues from a backupfile")
+
+		if self.is_end():
+			self.log.debug("The game was already finished")
+			print("The game is already over")
+		else:
+			if self.nd == 0:
+				self.day()
+			elif self.nd > self.nn:
+				self.night()
+			elif self.nd == self.nn:
+				self.day()
+
 
 class Nightactions:
 	def __init__(self, alive, game, noone = True):
