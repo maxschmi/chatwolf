@@ -21,8 +21,6 @@ def loginSkype():
 	except SkypeAuthException:
 		werror("please try again, your login credentials weren't right!")
 
-
-
 def startGame():
 	global game = Game(sk, chatid, numwerewolfs = 1, amor = True, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 1))
 # Fenster
