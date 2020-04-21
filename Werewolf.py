@@ -24,7 +24,7 @@ import shelve
 	# chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype'
 
 class Game:
-	def __init__(self, sk, chatid, numwerewolfs, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 1, log_dir = "logs"):
+	def __init__(self, sk, chatid, numwerewolfs, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 1, log_dir = "logs", bkp_dir = "bkp"):
 		# Chat
 		self.lang = lang
 		self.sk = sk
@@ -71,6 +71,9 @@ class Game:
 		# counters for days and night
 		self.nd = 0 # number of days played
 		self.nn = 0 # number of nights played
+
+		#other
+		self.bkp_dir = bkp_dir
 
 	def start(self):
 		self.log.info("Game starts")
@@ -322,13 +325,13 @@ class Game:
 				print("no such file defined in any language")
 
 	def bkp(self):
-		bkp = shelve.open("temp/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
+		bkp = shelve.open(self.bkp_dir+"/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
 		bkp["game"] = self
 		bkp.close()
 
 	def load_bkp(file):
 		#class methode to load a game from a backup
-		bkp = shelve.open("temp/"+file)
+		bkp = shelve.open(file)
 		game = bkp["game"]
 		bkp.close()
 		return game

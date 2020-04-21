@@ -39,9 +39,10 @@ def start_game():
 		global game 
 		#get variables
 
-		game = Game(sk, chatid = get_chatid(), numwerewolfs = int(enumwerwolfs.get()), 
-			  amor = bamor.get(), witch = bwitch.get(), prostitute = bprostitute.get(), visionary = bvisionary.get(), 
-			  lang = lang_dict[sblang.get()], wait_mult = 1)
+		game = Game(sk, chatid = get_chatid(), numwerewolfs = int(enumwerewolfs.get()), 
+			  amor = amor.get(), witch = witch.get(), prostitute = prostitute.get(), visionary = visionary.get(), 
+			  lang = lang_dic[sblang.get()], wait_mult = int(ewait_mult.get()))
+		game.start()
 
 # check functions
 def check_enumwerewolfs():
@@ -78,6 +79,14 @@ def check_elog_dir():
 		elog_dir.config(bg = "#FFFFFF")
 		return False
 
+def check_ebkp_dir():
+	if os.path.isdir(ebkp_dir.get()):
+		ebkp_dir.config(bg = "#F78181")
+		return True
+	else:
+		ebkp_dir.config(bg = "#FFFFFF")
+		return False
+
 def check_ewait_mult():
 	try:
 		int(ewait_mult.get())
@@ -92,8 +101,8 @@ def check_start():
 	if not (check_enumwerewolfs() or check_sk() or check_ewait_mult() or check_lbchats() or check_elog_dir()):
 		return False
 	
-	get_chatid()
-	numroles = bamor.get() + bvisionary.get() + bwitch.get() + bprostitute.get() + int(enumwerewolfs.get())
+	chatid = get_chatid()
+	numroles = amor.get() + visionary.get() + witch.get() + prostitute.get() + int(enumwerewolfs.get())
 
 	if numroles > (len(sk.chats[chatid].userIds)-1):
 		w_error("You have choosen too many roles for the amount of players")
@@ -104,7 +113,7 @@ def check_start():
 
 # other functions
 def get_chatid():
-	chat_sel = int(lbchats.curselection())
+	chat_sel = int(lbchats.curselection()[0])
 	chat_key = lbchats.get(chat_sel)
 	return dchats[chat_key]
 
@@ -219,30 +228,33 @@ def root():
 
 
 	#roles
-	global enumwerewolfs, bamor, bwitch, bprostitute, bvisionary
+	global enumwerewolfs, bamor, bwitch, bprostitute, bvisionary, amor, witch, prostitute, visionary
 	Label(tabgame, text="number of werewolfs").grid(row=2)
-	enumwerewolfs = Entry(tabgame, validate= "key", validatecommand= check_enumwerewolfs)
+	enumwerewolfs = Entry(tabgame, validate= "focusout", validatecommand= check_enumwerewolfs)
 	enumwerewolfs.grid(row=2, column=1, sticky = "w")
 
 	Label(tabgame, text = "select your roles:").grid(row = 3, column = 0, columnspan = 2, sticky = "w")
-	Label(tabgame, text="amor").grid(row=4, column = 1, sticky = "w")
-	bamor = Checkbutton(tabgame)
+	amor = BooleanVar()
+	bamor = Checkbutton(tabgame, text="amor", variable = amor)
 	bamor.grid(row=4, column = 0, sticky = "e")
 
-	Label(tabgame, text="witch").grid(row=5, column = 1, sticky = "w")
-	bwitch = Checkbutton(tabgame)
+	witch = BooleanVar()
+	bwitch = Checkbutton(tabgame, text = "witch", variable = witch)
 	bwitch.grid(row=5, column = 0, sticky = "e")
 
-	Label(tabgame, text="visionary").grid(row=6, column = 1, sticky = "w")
-	bvisionary = Checkbutton(tabgame)
+	visionary = BooleanVar()
+	bvisionary = Checkbutton(tabgame, text="visionary", variable = visionary)
 	bvisionary.grid(row=6, column = 0, sticky = "e")
 
-	Label(tabgame, text="prostitute").grid(row=7, column = 1, sticky = "w")
-	bprostitute = Checkbutton(tabgame)
+	prostitute = BooleanVar()
+	bprostitute = Checkbutton(tabgame, text="prostitute", variable = prostitute)
 	bprostitute.grid(row=7, column = 0, sticky = "e")
+	
+	#start button
+	Button(tabgame, text = "start the game", command = start_game).grid(row = 8, column = 1)
 
-	#other settings
-	global sblang, ewait_mult, elog_dir, lang_dic
+	#other settings tab
+	global sblang, ewait_mult, elog_dir, lang_dic, ebkp_dir
 	tabother = Frame(tab_parent)
 	tabother.pack()
 	Label(tabother, text = "other settings:").grid(row = 0, columnspan = 2)
@@ -253,20 +265,30 @@ def root():
 	sblang.grid(row=1, column = 1, sticky = "w")
 
 	Label(tabother, text="waiting multiplier: ").grid(row=2, column = 0, sticky = "w")
-	ewait_mult = Entry(tabother, validate= "key", validatecommand= check_ewait_mult)
+	ewait_mult = Entry(tabother, validate= "focusout", validatecommand= check_ewait_mult)
 	ewait_mult.insert(0, "1")
 	ewait_mult.grid(row=2, column = 1, sticky = "e")
 
 	Label(tabother, text="directory for logging file: ").grid(row=3, column = 0)
 	log_dir = os.getcwd() + "\\logs"
-	elog_dir = Entry(tabother, textvariable = log_dir, validate= "focusout", validatecommand= check_elog_dir)
+	elog_dir = Entry(tabother, validate= "focusout", validatecommand= check_elog_dir)
 	elog_dir.insert(0, log_dir)
 	elog_dir.grid(row = 3, column = 1, columnspan = 4)
 
+	Label(tabother, text="directory for backup file: ").grid(row=4, column = 0)
+	bkp_dir = os.getcwd() + "\\bkp"
+	ebkp_dir = Entry(tabother, validate= "focusout", validatecommand= check_ebkp_dir)
+	ebkp_dir.insert(0, bkp_dir)
+	ebkp_dir.grid(row = 4, column = 1, columnspan = 4)
+
+
 	#initialise window
 	tab_parent.add(tabgame, text = "main")
-	tab_parent.add(tabother, text ="other")
+	tab_parent.add(tabother, text ="expert")
 	tab_parent.pack(expand=1, fill='both')
 	root.mainloop()
 
 root()
+
+# popup if the game is running
+# possibility to load a backup file
