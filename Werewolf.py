@@ -24,7 +24,8 @@ import shelve
 	# chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype'
 
 class Game:
-	def __init__(self, sk, chatid, numwerewolfs, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 1, log_dir = "logs", bkp_dir = "bkp"):
+	def __init__(self, sk, chatid, numwerewolfs, amor = False, witch = False, prostitute = False, visionary = False, 
+			  lang = "en", wait_mult = 1, log_dir = "logs", bkp_dir = "bkp", do_debug = True):
 		# Chat
 		self.lang = lang
 		self.sk = sk
@@ -36,19 +37,29 @@ class Game:
 		self.wait_mult = wait_mult
 
 		#logging
+		self.do_debug = do_debug
+
 		self.starttime = datetime.datetime.now()
 		self.log_dir = log_dir
-		self.logfilename = log_dir + "/Game_"+self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
+		self.logfilename = log_dir + "/Game_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
 		self.log = logging.getLogger("Werewolf")
-		self.log.setLevel(logging.DEBUG)
+		self.log.setLevel(logging.INFO)
 		fhl = logging.FileHandler(self.logfilename+".txt")
 		fhl.setLevel(logging.INFO)
-		fhd = logging.FileHandler(self.logfilename+"_debug.txt")
-		fhd.setLevel(logging.DEBUG)
 		fhl.setFormatter(logging.Formatter('%(asctime)s - %(message)s'))
-		fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 		self.log.addHandler(fhl)
-		self.log.addHandler(fhd)
+
+		if self.do_debug:
+			self.log.setLevel(logging.DEBUG)
+			fhd = logging.FileHandler(self.logfilename+"_debug.txt")
+			fhd.setLevel(logging.DEBUG)
+			fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+			self.log.addHandler(fhd)
+			#get all the errors to log in the file
+			logging.basicConfig(filename = self.logfilename+"_debug.txt",
+                            filemode = 'a',
+                            format='%(asctime)s - %(levelname)s - %(message)s',
+                            level=logging.DEBUG)
 
 		#Players
 		self.player_ids = self.sk.chats.chat(chatid).userIds
@@ -148,7 +159,8 @@ class Game:
 			self.roles.append(Villager(self.players[j], self))
 	
 	def restart(self):
-		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, self.lang, self.wait_mult, self.log_dir)
+		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, 
+				self.lang, self.wait_mult, self.log_dir, self.bkp_dir, du_debug = self.do_debug)
 
 		self.log.info("Game got restarted")
 

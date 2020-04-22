@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /logs
 /temp
+/bkp
+/env
