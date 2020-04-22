@@ -180,8 +180,12 @@ class Game:
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
 		for r in self.roles:
-			self.chat.sendMsg("I call the {0}".format({r.role}))
-			r.night(na)
+			test_alive = False
+			for p in r.player:
+				test_alive = test_alive or r.player.alive
+			if test_alive:
+				self.chat.sendMsg("I call the {0}".format({r.role}))
+				r.night(na)
 		killed = na.finish_night()
 
 		time.sleep(5*self.wait_mult)
