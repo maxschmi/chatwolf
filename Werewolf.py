@@ -175,7 +175,7 @@ class Game:
 
 	def night(self):
 		self.nn +=1
-		self.log.info("="*30+" Night number {0} starts:".format(self.nn)) ############################### logging
+		self.log.info("="*30+" Night number {0} starts:".format(self.nn))
 
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
