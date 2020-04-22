@@ -10,13 +10,14 @@
 
 
 # librarys
-from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent, SkypeUser
+from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent, SkypeUser, SkypeContacts
 import time
 import random as rd
 import re
 import logging
 import datetime
 import shelve
+import sys
 
 #Game Class definition = Gamemaster
 #---------------------
@@ -24,7 +25,8 @@ import shelve
 	# chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype'
 
 class Game:
-	def __init__(self, sk, chatid, numwerewolfs, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 1, log_dir = "logs"):
+	def __init__(self, sk, chatid, numwerewolfs, amor = False, witch = False, prostitute = False, visionary = False, 
+			  lang = "en", wait_mult = 1, log_dir = "logs", bkp_dir = "bkp", do_debug = True):
 		# Chat
 		self.lang = lang
 		self.sk = sk
@@ -36,22 +38,38 @@ class Game:
 		self.wait_mult = wait_mult
 
 		#logging
+		self.do_debug = do_debug
 		self.starttime = datetime.datetime.now()
 		self.log_dir = log_dir
-		self.logfilename = log_dir + "/Game_"+self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
+
+		self.logfilename = log_dir + "/Game_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
 		self.log = logging.getLogger("Werewolf")
-		self.log.setLevel(logging.DEBUG)
+		self.log.setLevel(logging.INFO)
 		fhl = logging.FileHandler(self.logfilename+".txt")
 		fhl.setLevel(logging.INFO)
-		fhd = logging.FileHandler(self.logfilename+"_debug.txt")
-		fhd.setLevel(logging.DEBUG)
 		fhl.setFormatter(logging.Formatter('%(asctime)s - %(message)s'))
-		fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 		self.log.addHandler(fhl)
-		self.log.addHandler(fhd)
+
+		if self.do_debug:
+			# class for logger to get also traceback
+			def exception_hook(exc_type, exc_value, exc_traceback):
+				logging.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+			sys.excepthook = exception_hook #####################################dont know if this changes anything####################
+
+			self.log.setLevel(logging.DEBUG)
+			fhd = logging.FileHandler(self.logfilename+"_debug.txt")
+			fhd.setLevel(logging.DEBUG)
+			fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+			self.log.addHandler(fhd)
+
+			#get all the errors to log in the file
+			logging.basicConfig(filename = self.logfilename+"_debug.txt",
+							filemode = 'a',
+							format='%(asctime)s - %(levelname)s - root - %(message)s',
+							level=logging.DEBUG)
 
 		#Players
-		self.player_ids = self.sk.chats.chat(chatid).userIds
+		self.player_ids = self.chat.userIds
 		self.player_ids.remove(self.sk.userId)
 		self.numplayers = len(self.player_ids)
 		self.players = list()
@@ -72,27 +90,30 @@ class Game:
 		self.nd = 0 # number of days played
 		self.nn = 0 # number of nights played
 
+		#other
+		self.bkp_dir = bkp_dir
+
 	def start(self):
 		self.log.info("Game starts")
 
 		# test if players did all accept the Game-master
 		i = 0
 		while True:
-
+			self.sk.contacts = SkypeContacts(sk) #to reload the contacts-list, to prevent using the cached data
 			pl_error = []
 			for player in self.players:
 				if type(self.sk.contacts[player.id]) == SkypeUser:
 					pl_error.append(player.name)
-
+			
 			if len(pl_error)>0:
 				self.chat.sendMsg(self.msg(error))
-				if (i%10 == 0) or (i == 0):
+				if (i%6 == 0) or (i == 0):
 					self.chat.sendMsg(self.msg("error_request").format(" & ".join(pl_error)))
 			else:
 				break
 
 			i +=1
-			time.sleep(2)
+			time.sleep(4)
 		
 		#Greet players
 		self.chat.sendMsg(self.msg("greeting_all") % {"numplayers": self.numplayers, "numwerwolfs": self.numwerewolfs})
@@ -145,7 +166,8 @@ class Game:
 			self.roles.append(Villager(self.players[j], self))
 	
 	def restart(self):
-		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, self.lang, self.wait_mult, self.log_dir)
+		self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, 
+				self.lang, self.wait_mult, self.log_dir, self.bkp_dir, du_debug = self.do_debug)
 
 		self.log.info("Game got restarted")
 
@@ -153,12 +175,17 @@ class Game:
 
 	def night(self):
 		self.nn +=1
-		self.log.info("="*30+" Night number {0} starts:".format(self.nn)) ############################### logging
+		self.log.info("="*30+" Night number {0} starts:".format(self.nn))
 
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
 		for r in self.roles:
-			r.night(na)
+			test_alive = False
+			for p in r.player:
+				test_alive = test_alive or r.player.alive
+			if test_alive:
+				self.chat.sendMsg("I call the {0}".format({r.role}))
+				r.night(na)
 		killed = na.finish_night()
 
 		time.sleep(5*self.wait_mult)
@@ -322,13 +349,13 @@ class Game:
 				print("no such file defined in any language")
 
 	def bkp(self):
-		bkp = shelve.open("temp/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
+		bkp = shelve.open(self.bkp_dir+"/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
 		bkp["game"] = self
 		bkp.close()
 
 	def load_bkp(file):
 		#class methode to load a game from a backup
-		bkp = shelve.open("temp/"+file)
+		bkp = shelve.open(file)
 		game = bkp["game"]
 		bkp.close()
 		return game
@@ -514,11 +541,11 @@ class Player:
 		# Skype arguments
 		self.id = id
 		self.chatid = self.game.sk.contacts[self.id].chat.id
-		self.chat = self.game.sk.chats[self.chatid]
 
 		if type(self.game.sk.contacts[self.id]) == SkypeUser:
 			self.game.sk.contacts[self.id].invite(self.game.msg("welcome_player"))
-
+		
+		self.chat = self.game.sk.chats[self.chatid]
 		self.skc = SkypeCommands(self.chatid, self.game)
 
 		# get the name
@@ -607,7 +634,6 @@ class Werewolf(Role):
 	group = "Werewolf"
 	
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I call the werewolf(s)")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("kill", nightactions.alive)
@@ -651,7 +677,6 @@ class Prostitute(Role):
 	group = "Villager"
 
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I call the prostitute")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("visit", nightactions.alive)
@@ -672,7 +697,6 @@ class Witch(Role):
 		self.elixier = True
 
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I call the witch")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % {"elixier": int(self.elixier), "poison": int(self.poison)})
 		
 		killed_id = nightactions.get_killed_id()
@@ -710,7 +734,6 @@ class Visionary(Role):
 	group = "Villager"
 
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I calle the visionary")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("see", nightactions.alive)
