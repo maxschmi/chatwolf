@@ -42,7 +42,7 @@ def start_game():
 		game = Game(sk, chatid = get_chatid(), numwerewolfs = int(enumwerewolfs.get()), 
 			  amor = amor.get(), witch = witch.get(), prostitute = prostitute.get(), visionary = visionary.get(), 
 			  lang = lang_dic[sblang.get()], wait_mult = int(ewait_mult.get()),
-			  log_dir = elog_dir.get(), bkp_dir = ebkp_dir.get())
+			  log_dir = elog_dir.get(), bkp_dir = ebkp_dir.get(), do_debug = do_debug.get())
 
 		w_run()
 		wbkp.withdraw() if wbkp in globals()
@@ -317,7 +317,7 @@ def root():
 
 	#other settings tab
 	#------------------
-	global sblang, ewait_mult, elog_dir, lang_dic, ebkp_dir
+	global sblang, ewait_mult, elog_dir, lang_dic, ebkp_dir, do_debug
 	tabexpert = Frame(tab_parent)
 	tabexpert.pack()
 	Label(tabexpert, text = "other settings:").grid(row = 0, columnspan = 2)
@@ -351,7 +351,10 @@ def root():
 	Button(tabexpert, text = "get directory", command = lambda: get_dir(ebkp_dir)).grid(row=4, column = 5)
 
 	#Debug logging file yes/no
-	############################################################################
+	do_debug = BooleanVar()
+	do_debug.set(True)
+	Checkbutton(tabexpert, text = "write a debug logging file", variable = do_debug).grid(row = 5, column = 0, columnspan = 2)
+
 	#restart from Backup
 	Button(tabexpert, text = "restart from Backup", command = w_bkp).grid(row = 7, column = 1)
 
@@ -361,7 +364,7 @@ def root():
 	tab_parent.pack(expand=1, fill='both')
 	root.mainloop()
 
-root()
+#root()
 
 # popup if the game is running
 # possibility to load a backup file

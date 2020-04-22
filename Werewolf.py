@@ -173,6 +173,7 @@ class Game:
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
 		for r in self.roles:
+			self.chat.sendMsg("I call the {0}".format({r.role}))
 			r.night(na)
 		killed = na.finish_night()
 
@@ -622,7 +623,6 @@ class Werewolf(Role):
 	group = "Werewolf"
 	
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I call the werewolf(s)")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("kill", nightactions.alive)
@@ -666,7 +666,6 @@ class Prostitute(Role):
 	group = "Villager"
 
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I call the prostitute")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("visit", nightactions.alive)
@@ -687,7 +686,6 @@ class Witch(Role):
 		self.elixier = True
 
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I call the witch")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % {"elixier": int(self.elixier), "poison": int(self.poison)})
 		
 		killed_id = nightactions.get_killed_id()
@@ -725,7 +723,6 @@ class Visionary(Role):
 	group = "Villager"
 
 	def night(self, nightactions):
-		self.game.chat.sendMsg("I calle the visionary")
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("see", nightactions.alive)
