@@ -29,7 +29,7 @@ game = Game(sk,
 game.start()
 
 # restart from bkp
-game = Game.load_bkp("backup_2020-04-12_16-26-14") # enter the correct file
+#game = Game.load_bkp("backup_2020-04-12_16-26-14") # enter the correct file
 
 # ideas to add:
 ## window programm

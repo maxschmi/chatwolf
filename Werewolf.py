@@ -10,13 +10,14 @@
 
 
 # librarys
-from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent, SkypeUser
+from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent, SkypeUser, SkypeContacts
 import time
 import random as rd
 import re
 import logging
 import datetime
 import shelve
+import sys
 
 #Game Class definition = Gamemaster
 #---------------------
@@ -38,9 +39,9 @@ class Game:
 
 		#logging
 		self.do_debug = do_debug
-
 		self.starttime = datetime.datetime.now()
 		self.log_dir = log_dir
+
 		self.logfilename = log_dir + "/Game_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
 		self.log = logging.getLogger("Werewolf")
 		self.log.setLevel(logging.INFO)
@@ -50,19 +51,25 @@ class Game:
 		self.log.addHandler(fhl)
 
 		if self.do_debug:
+			# class for logger to get also traceback
+			def exception_hook(exc_type, exc_value, exc_traceback):
+				logging.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+			sys.excepthook = exception_hook #####################################dont know if this changes anything####################
+
 			self.log.setLevel(logging.DEBUG)
 			fhd = logging.FileHandler(self.logfilename+"_debug.txt")
 			fhd.setLevel(logging.DEBUG)
 			fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
 			self.log.addHandler(fhd)
+
 			#get all the errors to log in the file
 			logging.basicConfig(filename = self.logfilename+"_debug.txt",
-                            filemode = 'a',
-                            format='%(asctime)s - %(levelname)s - %(message)s',
-                            level=logging.DEBUG)
+							filemode = 'a',
+							format='%(asctime)s - %(levelname)s - root - %(message)s',
+							level=logging.DEBUG)
 
 		#Players
-		self.player_ids = self.sk.chats.chat(chatid).userIds
+		self.player_ids = self.chat.userIds
 		self.player_ids.remove(self.sk.userId)
 		self.numplayers = len(self.player_ids)
 		self.players = list()
@@ -92,21 +99,21 @@ class Game:
 		# test if players did all accept the Game-master
 		i = 0
 		while True:
-
+			self.sk.contacts = SkypeContacts(sk) #to reload the contacts-list, to prevent using the cached data
 			pl_error = []
 			for player in self.players:
 				if type(self.sk.contacts[player.id]) == SkypeUser:
 					pl_error.append(player.name)
-
+			
 			if len(pl_error)>0:
 				self.chat.sendMsg(self.msg(error))
-				if (i%10 == 0) or (i == 0):
+				if (i%6 == 0) or (i == 0):
 					self.chat.sendMsg(self.msg("error_request").format(" & ".join(pl_error)))
 			else:
 				break
 
 			i +=1
-			time.sleep(2)
+			time.sleep(4)
 		
 		#Greet players
 		self.chat.sendMsg(self.msg("greeting_all") % {"numplayers": self.numplayers, "numwerwolfs": self.numwerewolfs})
@@ -530,11 +537,11 @@ class Player:
 		# Skype arguments
 		self.id = id
 		self.chatid = self.game.sk.contacts[self.id].chat.id
-		self.chat = self.game.sk.chats[self.chatid]
 
 		if type(self.game.sk.contacts[self.id]) == SkypeUser:
 			self.game.sk.contacts[self.id].invite(self.game.msg("welcome_player"))
-
+		
+		self.chat = self.game.sk.chats[self.chatid]
 		self.skc = SkypeCommands(self.chatid, self.game)
 
 		# get the name

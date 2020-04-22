@@ -45,7 +45,7 @@ def start_game():
 			  log_dir = elog_dir.get(), bkp_dir = ebkp_dir.get(), do_debug = do_debug.get())
 
 		w_run()
-		wbkp.withdraw() if wbkp in globals()
+		if wbkp in globals(): wbkp.withdraw()
 		root.withdraw()
 
 		game.start()
