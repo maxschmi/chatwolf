@@ -99,7 +99,7 @@ class Game:
 		# test if players did all accept the Game-master
 		i = 0
 		while True:
-			self.sk.contacts = SkypeContacts(sk) #to reload the contacts-list, to prevent using the cached data
+			self.sk.contacts = SkypeContacts(self.sk) #to reload the contacts-list, to prevent using the cached data
 			pl_error = []
 			for player in self.players:
 				if type(self.sk.contacts[player.id]) == SkypeUser:

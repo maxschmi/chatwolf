@@ -40,8 +40,6 @@ game.start()
 
 # more waiting time ass takes long
 
-# dont call dead rolls
-
 # rolls number of times
 
 

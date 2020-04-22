@@ -45,13 +45,13 @@ def start_game():
 			  log_dir = elog_dir.get(), bkp_dir = ebkp_dir.get(), do_debug = do_debug.get())
 
 		w_run()
-		if wbkp in globals(): wbkp.withdraw()
-		root.withdraw()
+		if "wbkp" in globals(): wbkp.withdraw()
+		#root.withdraw()
 
 		game.start()
 
 		wrun.withdraw()
-		root.deiconify()
+		#root.deiconify()
 
 def get_dir(entry_widget):
 	dir = filedialog.askdirectory()
@@ -83,6 +83,8 @@ def check_enumwerewolfs():
 		if num >0:
 			enumwerewolfs.config(bg = "#FFFFFF")
 			return True
+		else:
+			raise ValueError
 	except ValueError:
 		enumwerewolfs.config(bg = "#F78181")
 		return False
@@ -371,3 +373,6 @@ def root():
 # get a window to select a path for log and bkp
 # delete older bkp files and logging files
 # disabling root window while runing is not working
+# option don't save a token
+# check if numwerewolfs is equal to players, no villagers else error
+# if root window disapears during game, also the w_run is not shown
