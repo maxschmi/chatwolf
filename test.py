@@ -25,16 +25,16 @@ game = Game(sk,
 			numwerewolfs = 1, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0)
 
 # add only me to the game
-for i in range(2):
+for i in range(5):
 	game.players.append(Player('live:maxschm_1', game))
 game.players.remove(game.players[1])
 
 #set the roles again
 game.numwerewolfs = 1
 game.amor = True
-game.witch = False
-game.prostitute = False
-game.visionary = False
+game.witch = True
+game.prostitute = True
+game.visionary = True
 game.numplayers = len(game.players)
 
 #game.dist_roles() manualy distribute roles, is also done in strat methode

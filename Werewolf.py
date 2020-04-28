@@ -173,16 +173,8 @@ class Game:
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
 		for r in self.roles:
-			if not type(r) == Villager: # exclude Villagers
-				# test if a player of the role is still alive
-				test_alive = False
-				for p in r.players:
-					if p.alive:
-						test_alive = True
-				# do nightaction
-				if test_alive:
-					self.chat.sendMsg("I call the {0}".format(r.role))
-					r.night(na)
+			r.night(na)
+
 		killed = na.finish_night()
 
 		time.sleep(5*self.wait_mult)
@@ -476,11 +468,9 @@ class SkypeCommands(SkypeEventLoop):
 							answer = self.get_id(msg, command, alive, num_ids, min_id)
 						if not answer == None:
 							return answer
-						if "exit" in msg.lower():
-							return None
 				if self.autoAck:
 					event.ack()
-			time.sleep(2)
+			time.sleep(3)
 
 	def get_id(self, msg, command, alive, num_ids, min_id = 0):
 		if command in msg.lower():						#check for command
@@ -628,12 +618,27 @@ class Role:
 			names.append(self.players[i].name)
 		return names
 
+	def msg_group_night(self):
+		self.game.chat.sendMsg("I call the {0}".format(self.role))
+		# test if a player of the role is still alive
+		test_alive = False
+		for p in self.players:
+			if p.alive:
+				test_alive = True
+		# wait a random time, so it is not possible to know if a role is already dead
+		if not test_alive:
+			sleeptime = rd.gauss(15, 5)
+			while st <7:
+				sleeptime = rd.gauss(15, 5)
+			time.sleep(sleeptime * self.wait_mult)
+
 
 class Werewolf(Role):
 	role = "Werewolf"
 	group = "Werewolf"
 	
 	def night(self, nightactions):
+		self.msg_group_night()
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("kill", nightactions.alive)
@@ -650,12 +655,8 @@ class Villager(Role):
 	role = "Villager"
 	group = "Villager"
 
-	def night(self, nightactions):
-		pass
-
-class Amor(Role):
+class Amor(Villager):
 	role = "Amor"
-	group = "Villager"
 
 	def greeting(self, game):
 		super().greeting()
@@ -669,14 +670,11 @@ class Amor(Role):
 		#log
 		self.game.log.info("Amor trows his arrow to "+ " & ".join([alive[ids[0]-1].name, alive[ids[1]-1].name]))
 
-	def night(self, nightactions):
-		pass
-
-class Prostitute(Role):
-	role = "prostitute"
-	group = "Villager"
+class Prostitute(Villager):
+	role = "Prostitute"
 
 	def night(self, nightactions):
+		self.msg_group_night()
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("visit", nightactions.alive)
@@ -687,9 +685,8 @@ class Prostitute(Role):
 				self.game.log.info("The prostitute goes to " + nightactions.alive[id-1].name)
 		self.chat.sendMsg(self.game.msg("night_sleep"))
 
-class Witch(Role):
-	role = "witch"
-	group = "Villager"
+class Witch(Villager):
+	role = "Witch"
 	
 	def greeting(self, game = None):
 		super().greeting()
@@ -697,6 +694,7 @@ class Witch(Role):
 		self.elixier = True
 
 	def night(self, nightactions):
+		self.msg_group_night()
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % {"elixier": int(self.elixier), "poison": int(self.poison)})
 		
 		killed_id = nightactions.get_killed_id()
@@ -729,11 +727,11 @@ class Witch(Role):
 		time.sleep(2*self.game.wait_mult)
 		self.chat.sendMsg(self.game.msg("night_sleep"))
 		
-class Visionary(Role):
+class Visionary(Villager):
 	role = "Visionary"
-	group = "Villager"
 
 	def night(self, nightactions):
+		self.msg_group_night()
 		self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("see", nightactions.alive)
