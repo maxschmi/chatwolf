@@ -51,26 +51,23 @@ class Game:
 		self.log.addHandler(fhl)
 
 		if self.do_debug:
-			# class for logger to get also traceback
-			def exception_hook(exc_type, exc_value, exc_traceback):
-				logging.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
-			sys.excepthook = exception_hook #####################################dont know if this changes anything####################
-
 			self.log.setLevel(logging.DEBUG)
-			fhd = logging.FileHandler(self.logfilename+"_debug.txt")
-			fhd.setLevel(logging.DEBUG)
-			fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-			self.log.addHandler(fhd)
+			#fhd = logging.FileHandler(self.logfilename+"_debug.txt")
+			#fhd.setLevel(logging.DEBUG)
+			#fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+			#self.log.addHandler(fhd)
 
 			#get all the errors to log in the file
+			open(self.logfilename + "_debug.txt", "w+").close() # create the file
 			logging.basicConfig(filename = self.logfilename+"_debug.txt",
 							filemode = 'a',
-							format='%(asctime)s - %(levelname)s - root - %(message)s',
+							#format='%(asctime)s - %(levelname)s - %(message)s',
 							level=logging.DEBUG)
 
 		#Players
 		self.player_ids = self.chat.userIds
-		self.player_ids.remove(self.sk.userId)
+		if self.sk.userId in self.player_ids:
+			self.player_ids.remove(self.sk.userId)
 		self.numplayers = len(self.player_ids)
 		self.players = list()
 		for i in range(self.numplayers):
@@ -180,12 +177,15 @@ class Game:
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
 		for r in self.roles:
-			test_alive = False
-			for p in r.player:
-				test_alive = test_alive or r.player.alive
-			if test_alive:
-				self.chat.sendMsg("I call the {0}".format({r.role}))
-				r.night(na)
+			#test_alive = False
+			#for p in r.player:
+			#	if test_alive or p.alive:
+			#		test_alive = True
+			#	else:
+			#		test_alive = False
+			#if test_alive:
+			self.chat.sendMsg("I call the {0}".format({r.role}))
+			r.night(na)
 		killed = na.finish_night()
 
 		time.sleep(5*self.wait_mult)
@@ -607,7 +607,7 @@ class Role:
 			for pl in self.player:
 				self.player_ids.append(pl.id)
 			self.chatid = self.game.sk.chats.create(self.player_ids).id
-			self.game.sk.chats[self.chatid].setTopic(self.role)
+			self.game.sk.chats[self.chatid].setTopic(self.role + "_group")
 		else:
 			self.chatid = self.player[0].chatid
 		self.chat = self.game.sk.chats[self.chatid]

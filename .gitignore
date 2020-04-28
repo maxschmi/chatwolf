@@ -342,3 +342,4 @@ healthchecksdb
 /temp
 /bkp
 /env
+/error_messages-to-solve
