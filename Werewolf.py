@@ -52,13 +52,9 @@ class Game:
 
 		if self.do_debug:
 			self.log.setLevel(logging.DEBUG)
-			#fhd = logging.FileHandler(self.logfilename+"_debug.txt")
-			#fhd.setLevel(logging.DEBUG)
-			#fhd.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-			#self.log.addHandler(fhd)
 
 			#get all the errors to log in the file
-			open(self.logfilename + "_debug.txt", "w+").close() # create the file
+			open(self.logfilename + "_debug.txt", "w+") # create the file
 			logging.basicConfig(filename = self.logfilename+"_debug.txt",
 							filemode = 'a',
 							#format='%(asctime)s - %(levelname)s - %(message)s',
@@ -74,8 +70,8 @@ class Game:
 			self.players.append(Player(self.player_ids[i], self))
 
 		#Roles
-		numroles = numwerewolfs + amor + witch + prostitute + visionary
-		if numroles > self.numplayers:
+		self.numroles = numwerewolfs + amor + witch + prostitute + visionary
+		if self.numroles > self.numplayers:
 			raise ValueError('You entered to many roles for the amount of players')
 		self.numwerewolfs = numwerewolfs
 		self.amor = amor
@@ -87,7 +83,7 @@ class Game:
 		self.nd = 0 # number of days played
 		self.nn = 0 # number of nights played
 
-		#other
+		#other arguments
 		self.bkp_dir = bkp_dir
 
 	def start(self):
@@ -177,15 +173,16 @@ class Game:
 		# ask every role for night action
 		na = Nightactions(alive = self.get_alive(), game = self)
 		for r in self.roles:
-			#test_alive = False
-			#for p in r.player:
-			#	if test_alive or p.alive:
-			#		test_alive = True
-			#	else:
-			#		test_alive = False
-			#if test_alive:
-			self.chat.sendMsg("I call the {0}".format({r.role}))
-			r.night(na)
+			if not type(r) == Villager: # exclude Villagers
+				# test if a player of the role is still alive
+				test_alive = False
+				for p in r.players:
+					if p.alive:
+						test_alive = True
+				# do nightaction
+				if test_alive:
+					self.chat.sendMsg("I call the {0}".format(r.role))
+					r.night(na)
 		killed = na.finish_night()
 
 		time.sleep(5*self.wait_mult)
@@ -251,7 +248,7 @@ class Game:
 
 		# Test werewolf win
 		werwolf_count = 0
-		for player in self.werewolfs.player:
+		for player in self.werewolfs.players:
 			if player.alive:
 				werwolf_count += 1
 		if (werwolf_count == len(alive)) and (werwolf_count >= 1):
@@ -328,9 +325,12 @@ class Game:
 		for role in self.roles:
 			ls.append(role.role)
 		st = set(ls)
-		st.remove("Werewolf")
+		if "Werewolf" in st:st.remove("Werewolf")
+		if "Villager" in st: st.remove("Villager")
 		ls = list(st)
+		ls.append(str(len(self.players)-len(ls)-self.numwerewolfs) + " Villager(s)")
 		ls.append(str(self.numwerewolfs) + " Werewolf(s)")
+
 		return ls
 
 	def msg(self, file, line = "all"):
@@ -597,23 +597,23 @@ class Role:
 		self.game = game
 		# add Player(s)
 		if type(player)==list:
-			self.player = player
+			self.players = player
 		else:
-			self.player = [player]
+			self.players = [player]
 
 		#add Skype Chat variables
-		if len(self.player) > 1:
+		if len(self.players) > 1:
 			self.player_ids = []
-			for pl in self.player:
+			for pl in self.players:
 				self.player_ids.append(pl.id)
 			self.chatid = self.game.sk.chats.create(self.player_ids).id
 			self.game.sk.chats[self.chatid].setTopic(self.role + "_group")
 		else:
-			self.chatid = self.player[0].chatid
+			self.chatid = self.players[0].chatid
 		self.chat = self.game.sk.chats[self.chatid]
 		self.skc = SkypeCommands(self.chatid, self.game)
 
-		for player in self.player:
+		for player in self.players:
 			player.role = self
 		
 	def greeting(self, game = None):
@@ -624,8 +624,8 @@ class Role:
 
 	def getNames(self):
 		names = []
-		for i in range(len(self.player)):
-			names.append(self.player[i].name)
+		for i in range(len(self.players)):
+			names.append(self.players[i].name)
 		return names
 
 
@@ -681,7 +681,7 @@ class Prostitute(Role):
 		self.chat.sendMsg(nightactions.alive_string)
 		id = self.skc.ask("visit", nightactions.alive)
 		if not id == 0:
-			self_id = nightactions.alive.index(self.player[0])+1
+			self_id = nightactions.alive.index(self.players[0])+1
 			if not self_id == id:
 				nightactions.together(id, self_id)
 				self.game.log.info("The prostitute goes to " + nightactions.alive[id-1].name)
