@@ -46,12 +46,15 @@ def start_game():
 
 		w_run()
 		if "wbkp" in globals(): wbkp.withdraw()
-		#root.withdraw()
+		root.grab_set()
 
-		game.start()
+		try:
+			game.start()
+		except:
+			w_error("There was an error, please load the backup and restart.\nTo get more information about the error, please read the")
 
 		wrun.withdraw()
-		#root.deiconify()
+		root.grab_release()
 
 def get_dir(entry_widget):
 	dir = filedialog.askdirectory()

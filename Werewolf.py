@@ -178,14 +178,15 @@ class Game:
 		killed = na.finish_night()
 
 		time.sleep(5*self.wait_mult)
-		self.chat.sendMsg(self.msg("night_resume", line = 0))
+		msg = self.msg("night_resume", line = 0)
 		time.sleep(2*self.wait_mult)
 		if len(killed) == 0:
-			self.chat.sendMsg(self.msg("night_resume", line = 1))
+			msg = msg + "\n" + self.msg("night_resume", line = 1)
 			self.log.info("Resume night: No one got killed during the night")
 		else:
-			self.chat.sendMsg(self.msg("night_resume", line = 2) % {"names": " & ".join(killed)})
+			msg = msg + "\n" + self.msg("night_resume", line = 2) % {"names": " & ".join(killed)}
 			self.log.info("Resume night: "+" & ".join(killed) + " got killed during the night")
+		self.chat.sendMsg(msg)
 
 		time.sleep(5*self.wait_mult)
 		if not self.is_end():
@@ -363,9 +364,11 @@ class Game:
 			if self.nd == 0:
 				self.day()
 			elif self.nd > self.nn:
-				self.night()
-			elif self.nd == self.nn:
+				self.nd -= 1
 				self.day()
+			elif self.nd == self.nn:
+				self.nn -= 1
+				self.night()
 
 
 class Nightactions:
@@ -437,6 +440,7 @@ class SkypeCommands(SkypeEventLoop):
 		self.chat = self.game.sk.chats[self.chatid]
 
 	def ask(self, command, alive = [None], num_ids = 1, min_id = 0):
+		self.game.log.debug("SkypeCommand.ask("+ command + ") got called")
 		# command can be "kill: 1" or "save: 1" 
 		# or "bool" for boolean answer		
 		if command == "bool":
@@ -456,10 +460,8 @@ class SkypeCommands(SkypeEventLoop):
 				if type(event) == SkypeNewMessageEvent:
 					if (event.msg.chat.id == self.chatid) and (not event.msg.user.id == self.game.sk.user.id):
 						msg = event.msg.content
-						self.game.log.debug("the message the SkypeCommands class received was :" + msg)
+						self.game.log.debug("the message the SkypeCommands methode ask() received was :" + msg)
 						self.game.log.debug("from event: " + repr(event))
-						#print(repr(event))  #for searching of problems
-						#print(msg)   
 						if command == "bool":
 							answer = self.get_bool(msg)
 						elif command == "name":
@@ -472,9 +474,12 @@ class SkypeCommands(SkypeEventLoop):
 					event.ack()
 			time.sleep(3)
 
-	def get_id(self, msg, command, alive, num_ids, min_id = 0):
-		if command in msg.lower():						#check for command
-			ids = re.findall("\d+", msg)
+	def get_id(self, msg, command, alive = [None], num_ids=1, min_id = 0):
+		#check for command and number with regular expression
+		pat = (r"^" + command + r"[: ]+[\d]+" + "(" + (r"[, ]+[\d]+"*(num_ids-1)) + r"[ ]*)$")
+		mat = re.match(pat, msg)
+		if mat:
+			ids = re.findall("\d+", mat[0])
 
 			if (len(ids)==1) and (num_ids==1):			#if list is not allowed?-> only one
 				id = int(ids[0])
