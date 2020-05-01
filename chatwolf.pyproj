@@ -10,7 +10,7 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Werewolf</Name>
+    <Name>chatwolf</Name>
     <RootNamespace>Werwolf</RootNamespace>
     <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
@@ -37,7 +37,7 @@
     <Compile Include="test.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Werewolf.py">
+    <Compile Include="game.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="__init__.py" />

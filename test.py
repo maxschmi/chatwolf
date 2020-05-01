@@ -1,32 +1,31 @@
-#-------------------#
-#                   #
-#    werewolf game  #
-#     per skype     #
-#     Max Schmit    #
-#     to test       #
-#-------------------#
+#-------------------------------------------------#
+#                                                 #
+#             werewolf game per skype             #
+#              author:  Max Schmit                #
+#     to do a test-run with only one account      #
+#-------------------------------------------------#
 
 # librarys
 from skpy import Skype, SkypeAuthException
-from Werewolf import *
+from Game import *
 from getpass import getpass
 
 # open Skype connection
 try:
-	sk = Skype(tokenFile = "temp/token.txt")
+    sk = Skype(tokenFile = "temp/token.txt")
 except SkypeAuthException:
-	sk = Skype(input("username"), getpass())
+    sk = Skype(input("username"), getpass())
 
 # get properties and start the game
 chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
 
 game = Game(sk, 
-			chatid, 
-			numwerewolfs = 1, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0)
+            chatid, 
+            numwerewolfs = 1, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0)
 
 # add only me to the game
 for i in range(5):
-	game.players.append(Player('live:maxschm_1', game))
+    game.players.append(Player('live:maxschm_1', game))
 game.players.remove(game.players[1])
 
 #set the roles again
