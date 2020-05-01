@@ -1,10 +1,30 @@
-#-------------------------------------------------#
-#                                                 #
-#             werewolf game per skype             #
-#              author:  Max Schmit                #
-#        to start the game from the console       #
-#                                                 #
-#-------------------------------------------------#
+#-----------------------------------------------------------------------#
+#                         Chatwolf                                      #
+#                     author:  Max Schmit                               #
+#                                                                       #
+#-----------------------------------------------------------------------#
+# license information:                                                  #
+# "Chatwolf" unofficial game to play the popular werewolf game on Skype #
+#  Copyright (C) 2020 Max Schmit                                        #
+#                                                                       #
+#This program is free software: you can redistribute it and/or modify   #
+#it under the terms of the GNU General Public License as published by   #
+#the Free Software Foundation, either version 3 of the License, or      #
+#(at your option) any later version.                                    #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program.  If not, see <https://www.gnu.org/licenses/>. #
+#
+#-----------------------------------------------------------------------#
+#                                                                       #
+#                               GUI                                     #
+#                                                                       #
+#-----------------------------------------------------------------------#
 
 # librarys
 from skpy import Skype, SkypeAuthException, SkypeGroupChat
@@ -33,7 +53,8 @@ def login_skype_token():
         sk = Skype(tokenFile = "temp/token.txt")
         login_succes()
     except SkypeAuthException:
-        w_error("It didn\'t work to connect with your token! \nplease enter your login credentials!")
+        w_error("It didn\'t work to connect with your token!" + 
+                "\nplease enter your login credentials!")
 
 def start_game():
     if check_start():
@@ -41,7 +62,8 @@ def start_game():
         #get variables
 
         game = Game(sk, chatid = get_chatid(), numwerewolfs = int(enumwerewolfs.get()), 
-              amor = amor.get(), witch = witch.get(), prostitute = prostitute.get(), visionary = visionary.get(), 
+              amor = amor.get(), witch = witch.get(), 
+              prostitute = prostitute.get(), visionary = visionary.get(), 
               lang = lang_dic[sblang.get()], wait_mult = int(ewait_mult.get()),
               log_dir = elog_dir.get(), bkp_dir = ebkp_dir.get(), do_debug = do_debug.get())
 
@@ -51,7 +73,8 @@ def start_game():
         try:
             game.start()
         except:
-            w_error("There was an error, please load the backup and restart.\nTo get more information about the error, please read the")
+            w_error("There was an error, please load the backup and restart." +
+                    "\nTo get more information about the error, please read the")
 
         wrun.withdraw()
 
@@ -141,12 +164,14 @@ def check_ewait_mult():
 
 
 def check_start():
-    if (check_enumwerewolfs() + check_sk() + check_ewait_mult() + check_lbchats() + check_elog_dir() + check_ebkp_dir()) < 6:
+    if (check_enumwerewolfs() + check_sk() + check_ewait_mult() + 
+        check_lbchats() + check_elog_dir() + check_ebkp_dir()) < 6:
         return False
     
     #check if there are not to many roles selected for the selected chat
     chatid = get_chatid()
-    numroles = amor.get() + visionary.get() + witch.get() + prostitute.get() + int(enumwerewolfs.get())
+    numroles = (amor.get() + visionary.get() + witch.get() + 
+                prostitute.get() + int(enumwerewolfs.get()))
 
     if numroles > (len(sk.chats[chatid].userIds)-1):
         w_error("You have choosen too many roles for the amount of players")
@@ -177,7 +202,8 @@ def dict_chats():
         rec = sk.chats.recent()
         for id in rec:
             if type(rec[id]) == SkypeGroupChat:
-                dict.update({"chat = " + rec[id].topic + ", Users: " + " & ".join(rec[id].userIds): id})
+                dict.update({"chat = " + rec[id].topic + 
+                             ", Users: " + " & ".join(rec[id].userIds): id})
         return dict
     else:
         return "you are not yet loged in to Skype!"
@@ -230,7 +256,6 @@ def w_log():
 
     Button(wlog, text = "login", command = login_skype).grid(row=3, column=0)
     Button(wlog, text = "try token", command = login_skype_token).grid(row=3, column=1)
-    #Button(wlog, text='Quit', command=wlog.quit).grid(row=3, column=1)
 
     wlog.mainloop()
 
@@ -247,11 +272,14 @@ def w_bkp():
 
     Label(wbkp, text = "").grid(row = 0)
     Label(wbkp, text = "select the Backup file to reload from").grid(row = 1)
-    ebkp_file = Entry(wbkp, validate = "focusout", validatecommand = check_ebkp_dir, width = 60)
+    ebkp_file = Entry(wbkp, validate = "focusout", 
+                      validatecommand = check_ebkp_dir, width = 60)
     ebkp_file.grid(row = 1, column = 1, columnspan = 4)
-    Button(wbkp, text = "get file", command = get_bkp_file).grid(row = 1, column = 6)
+    Button(wbkp, text = "get file", 
+           command = get_bkp_file).grid(row = 1, column = 6)
 
-    Button(wbkp, text = "restart from Backup", command = restart_bkp).grid(row = 3, column = 1)
+    Button(wbkp, text = "restart from Backup", 
+           command = restart_bkp).grid(row = 3, column = 1)
 
 # window while running
 def w_run():
@@ -259,7 +287,8 @@ def w_run():
     wrun = Toplevel()
     wrun.title("Skype-Werewolf - the game is on")
     wrun.grab_set()
-    Label(wrun, text = "the game is now running, so go to skype and play. \n!!!!Leave this window open!!!!").pack()
+    Label(wrun, text = "the game is now running, so go to skype and play." +
+          "\n!!!!Leave this window open!!!!").pack()
 
 
 # game window
@@ -375,9 +404,6 @@ def root():
 
 # ideas to add:
 
-# popup if the game is running
-# get a window to select a path for log and bkp
 # delete older bkp files and logging files
-# disabling root window while runing is not working
-# option don't save a token
-# if root window disapears during game, also the w_run is not shown
+# add an about page with license information
+# programm in proper class declarations

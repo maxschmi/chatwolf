@@ -1,10 +1,30 @@
-#-------------------------------------------------#
-#                                                 #
-#             werewolf game per skype             #
-#              author:  Max Schmit                #
-#               main Game classes                 #
-#                                                 #
-#-------------------------------------------------#
+#-----------------------------------------------------------------------#
+#                         Chatwolf                                      #
+#                     author:  Max Schmit                               #
+#                                                                       #
+#-----------------------------------------------------------------------#
+# license information:                                                  #
+# "Chatwolf" unofficial game to play the popular werewolf game on Skype #
+#  Copyright (C) 2020 Max Schmit                                        #
+#                                                                       #
+#This program is free software: you can redistribute it and/or modify   #
+#it under the terms of the GNU General Public License as published by   #
+#the Free Software Foundation, either version 3 of the License, or      #
+#(at your option) any later version.                                    #
+#                                                                       #
+#This program is distributed in the hope that it will be useful,        #
+#but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#GNU General Public License for more details.                           #
+#                                                                       #
+#You should have received a copy of the GNU General Public License      #
+#along with this program.  If not, see <https://www.gnu.org/licenses/>. #
+#
+#-----------------------------------------------------------------------#
+#                                                                       #
+#                         main Game classes                             #
+#                                                                       #
+#-----------------------------------------------------------------------#
 
 
 # librarys
@@ -95,7 +115,8 @@ class Game(object):
         self.starttime = datetime.datetime.now()
         self.log_dir = log_dir
 
-        self.logfilename = log_dir + "/Game_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S")
+        self.logfilename = (log_dir + "/Game_" + 
+                            self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
         self.log = logging.getLogger("Werewolf")
         self.log.setLevel(logging.INFO)
         fhl = logging.FileHandler(self.logfilename+".txt")
@@ -110,7 +131,6 @@ class Game(object):
             open(self.logfilename + "_debug.txt", "w+") # create the file
             logging.basicConfig(filename = self.logfilename+"_debug.txt",
                             filemode = 'a',
-                            #format='%(asctime)s - %(levelname)s - %(message)s',
                             level=logging.DEBUG)
 
         #Players
@@ -171,14 +191,18 @@ class Game(object):
             time.sleep(4)
         
         #Greet players
-        self.chat.sendMsg(self.msg("greeting_all") % {"numplayers": len(self.players), "numwerwolfs": self.numwerewolfs})
+        self.chat.sendMsg(self.msg("greeting_all") % 
+                          {"numplayers": len(self.players),
+                           "numwerwolfs": self.numwerewolfs})
         time.sleep(20*self.wait_mult)
 
         self.dist_roles()
 
-        self.chat.sendMsg(self.msg("greeting_all_roles") + (" & ".join(self.get_roles())))
+        self.chat.sendMsg(self.msg("greeting_all_roles") + 
+                          (" & ".join(self.get_roles())))
         
-        self.log.info("Rolls got distributed: \n"+ " "*30 + ("\n" + " "*30).join(self.get_players_role()))
+        self.log.info("Rolls got distributed: \n"+ " "*30 + 
+                      ("\n" + " "*30).join(self.get_players_role()))
         # greet Roles
         for r in self.roles:
             r.greeting(self)
@@ -192,7 +216,7 @@ class Game(object):
 
     def dist_roles(self):
         """distribute the roles to the players"""
-        # distribute rols in order of appearence in the night
+        # in order of appearence in the night
         rd.shuffle(self.players)
         
         self.roles = list()
@@ -205,10 +229,6 @@ class Game(object):
         self.werewolfs = Werewolf(self.players[i:(self.numwerewolfs+i)], self)
         self.roles.append(self.werewolfs)
         i += self.numwerewolfs
-        
-        if self.amor: 
-            self.roles.append(Amor(self.players[i], self))
-            i += 1
 
         if self.witch: 
             self.roles.append(Witch(self.players[i], self))
@@ -218,13 +238,19 @@ class Game(object):
             self.roles.append(Visionary(self.players[i], self))
             i += 1
         
-        for j in range(i, len(self.players)):
+        for j in range(i, len(self.players) - self.amor):
             self.roles.append(Villager(self.players[j], self))
+
+        if self.amor:  #last because this greeting methode takes longer
+            self.roles.append(Amor(self.players[i], self))
+            i += 1
     
     def restart(self):
         """start a new game with the same settings"""
-        self.__init__(self.sk, self.chatid, self.numwerewolfs, self.amor, self.witch, self.prostitute, self.visionary, 
-                self.lang, self.wait_mult, self.log_dir, self.bkp_dir, do_debug = self.do_debug)
+        self.__init__(self.sk, self.chatid, self.numwerewolfs, 
+                      self.amor, self.witch, self.prostitute, self.visionary, 
+                      self.lang, self.wait_mult, self.log_dir, self.bkp_dir, 
+                      do_debug = self.do_debug)
 
         self.log.info("Game got restarted")
 
@@ -257,8 +283,10 @@ class Game(object):
             msg = msg + "\n" + self.msg("night_resume", line = 1)
             self.log.info("Resume night: No one got killed during the night")
         else:
-            msg = msg + "\n" + self.msg("night_resume", line = 2) % {"names": " & ".join(killed)}
-            self.log.info("Resume night: "+" & ".join(killed) + " got killed during the night")
+            msg = (msg + "\n" + self.msg("night_resume", line = 2) %
+                  {"names": " & ".join(killed)})
+            self.log.info("Resume night: "+" & ".join(killed) + 
+                          " got killed during the night")
         self.chat.sendMsg(msg)
 
         time.sleep(5*self.wait_mult)
@@ -287,7 +315,8 @@ class Game(object):
             id -= 1
             killed = alive_players[id].die()
             time.sleep(2*self.wait_mult)
-            self.chat.sendMsg(self.msg("day_killed", 0) + " " + self.msg("day_killed", 1).join(killed))
+            self.chat.sendMsg(self.msg("day_killed", 0) + " " + 
+                              self.msg("day_killed", 1).join(killed))
             self.log.info(" & ".join(killed)+"got killed.")
         
         time.sleep(4*self.wait_mult)
@@ -312,7 +341,8 @@ class Game(object):
         # test if all are dead -> noone wins
         if len(alive) == 0:
             self.chat.sendMsg(self.msg("end_noone"))
-            self.log.info("The Game ends, because all players are dead!\nNo one won!")
+            self.log.info("The Game ends, because all players are dead!" +
+                          "\nNo one won!")
             time.sleep(2*self.wait_mult)
             self.end()
             return True
@@ -320,8 +350,10 @@ class Game(object):
         #Test love Win
         if len(alive)==2:
             if (alive[0].love == True) and (alive[1].love == True):
-                self.chat.sendMsg(self.msg("end_love").format(alive[0].name, alive[1].name))
-                self.log.info("The Game ends, because only the loving players are alive!\nThe love won!")
+                self.chat.sendMsg(self.msg("end_love").format(alive[0].name, 
+                                                              alive[1].name))
+                self.log.info("The Game ends, because only the loving players " +
+                              "are alive!\nThe love won!")
                 time.sleep(2*self.wait_mult)
                 self.end()
                 return True
@@ -333,7 +365,8 @@ class Game(object):
                 werwolf_count += 1
         if (werwolf_count == len(alive)) and (werwolf_count >= 1):
             self.chat.sendMsg(self.msg("end_werewolfs"))
-            self.log.info("The Game ends, because only werewolfs are alive!\nThe werewolfs won!")
+            self.log.info("The Game ends, because only werewolfs are alive!" +
+                          "\nThe werewolfs won!")
             time.sleep(2*self.wait_mult)
             self.end()
             return True
@@ -341,7 +374,8 @@ class Game(object):
         # Test villager win?
         if werwolf_count == 0:
             self.chat.sendMsg(self.msg("end_villager"))
-            self.log.info("The Game ends, because only villagers are alive!\nThe villagers won!")
+            self.log.info("The Game ends, because only villagers are alive!" +
+                          "\nThe villagers won!")
             time.sleep(2*self.wait_mult)
             self.end()
             return True
@@ -353,10 +387,12 @@ class Game(object):
         self.chat.sendMsg(self.msg("end_intro"))
         time.sleep(5*self.wait_mult)
         self.chat.sendMsg("\n".join(self.get_players_role()))
-        self.chat.sendFile(open(self.logfilename+".txt", "r"), name = "log_file.txt")
+        self.chat.sendFile(open(self.logfilename+".txt", "r"), 
+                           name = "log_file.txt")
         
         #log the players that are still alive
-        self.log.info("still alive were: " + " & ".join(self.get_players_role(all = False)))
+        self.log.info("still alive were: " + 
+                      " & ".join(self.get_players_role(all = False)))
 
     def get_players_role(self, all = True):
         """get a list of all players with their roles!
@@ -429,16 +465,17 @@ class Game(object):
         if "Werewolf" in st:st.remove("Werewolf")
         if "Villager" in st: st.remove("Villager")
         ls = list(st)
-        ls.append(str(len(self.players)-len(ls)-self.numwerewolfs) + " Villager(s)")
+        numvillagers = len(self.players)-len(ls)-self.numwerewolfs
+        ls.append(str(numvillagers) + " Villager(s)")
         ls.append(str(self.numwerewolfs) + " Werewolf(s)")
 
         return ls
 
-    def msg(self, file, line = "all"):
+    def msg(self, filepath, line = "all"):
         """get the coresponding message in the selected language
 
         Arguments:
-            file {str} -- the name of the message file, 
+            filepath {str} -- the name of the message file, 
                           e.g. "greeting_all" for the first group message, 
                           this file needs to exist at least in the "msg/en/" folder
 
@@ -451,39 +488,47 @@ class Game(object):
         """
 
         try:
+            file = open("messages/"+self.lang+"/"+filepath+".txt", "r")
             if line == "all":
-                return open("messages/"+self.lang+"/"+file+".txt", "r").read()
+                msg = file.read()
             elif type(line) == int:
-                return open("messages/"+self.lang+"/"+file+".txt", "r").readlines()[line].replace("\n", "")
+                msg = file.readlines()[line].replace("\n", "")
+            file.close()
+            return msg
         except FileNotFoundError:
             try:
+                file = open("messages/en/"+filepath+".txt", "r")
                 if line == "all":
-                    return open("messages/en/"+file+".txt", "r").read()
+                    msg = file.read()
                 elif type(line) == int:
-                    return open("messages/en/"+file+".txt", "r").readlines()[line].replace("\n", "")
+                    msg = file.readlines()[line].replace("\n", "")
+                file.close()
+                return msg
             except FileNotFoundError:
                 print("no such file defined in any language")
-                self.log.debug("the choosen message " + file + "didn't exist")
+                self.log.debug("the choosen message " + 
+                               filepath + "didn't exist")
 
     def bkp(self):
         """backup the game!"""
-        bkp = shelve.open(self.bkp_dir+"/backup_" + self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
+        bkp = shelve.open(self.bkp_dir+"/backup_" + 
+                          self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
         bkp["game"] = self
         bkp.close()
 
     @staticmethod
-    def load_bkp(file):
+    def load_bkp(filepath):
         """load a backup-file
 
         Arguments:
-            file {str} -- filepath of the backup-file to be loaded
+            filepath {str} -- filepath of the backup-file to be loaded
 
         Returns:
             Game -- the old Game object
         """  
 
         #class methode to load a game from a backup
-        bkp = shelve.open(file)
+        bkp = shelve.open(filepath)
         game = bkp["game"]
         bkp.close()
         return game
@@ -517,7 +562,7 @@ class Nightactions(object):
         lskill {list of bool} -- list of one bool for every player if (s)he got killed in the night
                                  e.g. lskill[1] says if player[1] got killed
         lstogether {list of tuple of int} -- list of players ids that stayed together during the night.
-                                            always as tuple of two ids, first one is the player that visits
+                                            always as tuple of two ids, first one is the player who stays at home
     """
 
     def __init__(self, alive, game, noone = True):
@@ -539,22 +584,45 @@ class Nightactions(object):
         self.lskill = [False]*len(alive)
         self.lstogether = []
 
-    def kill(self, person_number):
-        if not person_number == 0:
-            self.lskill[person_number-1] = True
+    def kill(self, player_number):
+        """kill a player
 
-    def save(self, person_number):
-        if not person_number == 0:
-            self.lskill[person_number-1] = False
+        Arguments:
+            player_number {[type]} -- number of the player in the alive_string
+        """        
 
-    def together(self, person_notsave_number, person_save_number):
-        #person_save_number: prostitute, does not die unless person_notsave_number dies
+        if not player_number == 0:
+            self.lskill[player_number-1] = True
+
+    def save(self, player_number):
+        """save a player
+
+        Arguments:
+            player_number {[type]} -- number of the player in the alive_string
+        """   
+        if not player_number == 0:
+            self.lskill[player_number-1] = False
+
+    def together(self, player_home_number, player_visit_number):
+        """set 2 people together for this night
+
+        Arguments:
+            player_home_number {int} -- the number in the alive_string of the player, who's at home
+            player_visit_number {int} -- the number in the alive_string of the player, who's visiting the other
+        """        
+        #player_visit_number: prostitute, does not die unless player_home_number dies
         # convention in tuple first is unsave, second is save unless other dies
-        if (not person_notsave_number == 0) and (not person_save_number  == 0):
-            self.lstogether.append((person_notsave_number-1, person_save_number-1))
+        if (not player_home_number == 0) and (not player_visit_number  == 0):
+            self.lstogether.append((player_home_number-1, player_visit_number-1))
 
     def finish_night(self):
-        # save the persons that were not at home
+        """finish the night and get the name(group) of the plaers that died
+
+        Returns:
+            list of str -- A list of all the players that died this night as name(group)
+        """       
+         
+        # save the players that were not at home
         for tog in self.lstogether: 
             self.lskill[tog[1]] = False
 
@@ -568,6 +636,12 @@ class Nightactions(object):
         return set(killed)
 
     def get_killed_id(self):
+        """get the id of the killed player
+
+        Returns:
+            int -- id of the killed player
+        """      
+
         for i in range(len(self.alive)):
             if self.lskill[i]:
                 return i
@@ -575,7 +649,6 @@ class Nightactions(object):
 # Skype message waiting class
 # --------------------------
 
-#token "temp/token.txt"
 class SkypeCommands(SkypeEventLoop):
     """Class to ask players for answers in Skype
 
@@ -853,10 +926,33 @@ class Player(object):
 #------------------------------------------------------------------------------------------------
 
 class Role(object):
+    """main class for the roles
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+    """ 
+
     role = "not set"
     group = "not set"
 
     def __init__(self, player, game):
+        """initilaize the Role object
+
+        Arguments:
+            player {list of Player} -- all the players that belong to this role
+            game {Game} -- the main Game object
+            chatid {str} -- SkypeChat id of the player(s) chat
+            game {Game} -- the main Game object
+            chat {SkypeChat} -- group/single SkypeChat of the player(s)
+            skc {SkypeCommands} -- object of the SkypeCommands class for this role
+        """        
         self.game = game
         # add Player(s)
         if type(player)==list:
@@ -866,32 +962,47 @@ class Role(object):
 
         #add Skype Chat variables
         if len(self.players) > 1:
-            self.player_ids = []
+            player_ids = []
             for pl in self.players:
-                self.player_ids.append(pl.id)
-            self.chatid = self.game.sk.chats.create(self.player_ids).id
+                player_ids.append(pl.id)
+            self.chatid = self.game.sk.chats.create(player_ids).id
             self.game.sk.chats[self.chatid].setTopic(self.role + "_group")
         else:
             self.chatid = self.players[0].chatid
         self.chat = self.game.sk.chats[self.chatid]
         self.skc = SkypeCommands(self.chatid, self.game)
 
+        # add role to the player(s)
         for player in self.players:
             player.role = self
         
-    def greeting(self, game = None):
+    def greeting(self):
+        """inform players about their role"""        
         self.chat.sendMsg(self.game.msg("greeting_"+ self.role.lower()))
 
     def night(self, nightactions):
+        """do the corresponding night phase
+
+        Arguments:
+            nightactions {Nightactions} -- log of all the actions that happen(d) in the night
+        """
+
         pass
 
-    def getNames(self):
+    def get_names(self):
+        """get the names of the players of this role
+
+        Returns:
+            list of str -- list of all the names of the roles players
+        """
+
         names = []
         for i in range(len(self.players)):
             names.append(self.players[i].name)
         return names
 
     def msg_group_night(self):
+        """send a notification to the group chat, which role got called"""        
         self.game.chat.sendMsg("I call the {0}".format(self.role))
         # test if a player of the role is still alive
         test_alive = False
@@ -907,10 +1018,31 @@ class Role(object):
 
 
 class Werewolf(Role):
+    """class of the werewolf role
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+    """  
+
     role = "Werewolf"
     group = "Werewolf"
     
     def night(self, nightactions):
+        """do the Werewolfs night phase
+
+        ask whome to kill this night
+
+        Arguments:
+            nightactions {Nightactions} -- log of all the actions that happen(d) in the night
+        """
+
         self.msg_group_night()
         self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
         self.chat.sendMsg(nightactions.alive_string)
@@ -925,16 +1057,43 @@ class Werewolf(Role):
             self.game.log.info("The werewolf(s) killed " + nightactions.alive[id-1].get_name_group())
 
 class Villager(Role):
+    """class for the Villager role
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+    """ 
+
     role = "Villager"
     group = "Villager"
 
 class Amor(Villager):
+    """class for the Amor role
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+    """ 
+
     role = "Amor"
 
-    def greeting(self, game):
+    def greeting(self):
+        """inform player about their role and give amor the oportunity to throw his arrow"""
         super().greeting()
-        alive = game.get_alive()
-        alive_string = game.get_alive_string(noone = False)
+        alive = self.game.get_alive()
+        alive_string = self.game.get_alive_string(noone = False)
         self.chat.sendMsg(alive_string)
         ids = self.skc.ask("arrow", alive, num_ids = 2, min_id = 1)
         alive[ids[0]-1].love_arrow(alive[ids[1]-1])
@@ -944,9 +1103,30 @@ class Amor(Villager):
         self.game.log.info("Amor trows his arrow to "+ " & ".join([alive[ids[0]-1].name, alive[ids[1]-1].name]))
 
 class Prostitute(Villager):
+    """class for the Prostitute role
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+    """ 
+
     role = "Prostitute"
 
     def night(self, nightactions):
+        """do the Prostetutes night phase
+
+        ask where (s)he wants to stay
+
+        Arguments:
+            nightactions {Nightactions} -- log of all the actions that happen(d) in the night
+        """
+
         self.msg_group_night()
         self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
         self.chat.sendMsg(nightactions.alive_string)
@@ -959,14 +1139,42 @@ class Prostitute(Villager):
         self.chat.sendMsg(self.game.msg("night_sleep"))
 
 class Witch(Villager):
+    """class for the Witch role
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+        elixier {bool} -- True: the witchs elixier is still available
+                          False: the witchs elixier got already used
+        poison {bool} -- True: the witchs elixier is still available
+                         False: the witchs elixier got already used
+    """ 
+    
     role = "Witch"
     
-    def greeting(self, game = None):
+    def greeting(self):
+        """inform player about their role and initialize the poison and elixier"""
         super().greeting()
         self.poison = True
         self.elixier = True
 
     def night(self, nightactions):
+        """do the witchs night phase
+
+        tell her whos going to die
+        ask if he wants to save, by using her elixier
+        ask if he wants to kill someone, by using her poison
+
+        Arguments:
+            nightactions {Nightactions} -- log of all the actions that happen(d) in the night
+        """
+
         self.msg_group_night()
         self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % {"elixier": int(self.elixier), "poison": int(self.poison)})
         
@@ -1001,9 +1209,31 @@ class Witch(Villager):
         self.chat.sendMsg(self.game.msg("night_sleep"))
         
 class Visionary(Villager):
+    """class for the Visionary role
+
+    Attributes:
+        role {str} -- the name of the role
+        group {str} -- the name of the group "Werewolf"/"Villager"
+        player {list of Player} -- all the players that belong to this role
+        game {Game} -- the main Game object
+        chatid {str} -- SkypeChat id of the player(s) chat
+        game {Game} -- the main Game object
+        chat {SkypeChat} -- group/single SkypeChat of the player(s)
+        skc {SkypeCommands} -- object of the SkypeCommands class for this role
+    """ 
+    
     role = "Visionary"
 
     def night(self, nightactions):
+        """do the visionarys night phase
+
+        ask whome (s)he wants to see
+        tell him/her the group of this player
+
+        Arguments:
+            nightactions {Nightactions} -- log of all the actions that happen(d) in the night
+        """
+
         self.msg_group_night()
         self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
         self.chat.sendMsg(nightactions.alive_string)
@@ -1014,5 +1244,4 @@ class Visionary(Villager):
             self.game.log.info("The visionary sees "+ nightactions.alive[id].get_name_group())
 
 # To do
-    # Klasse mit einzelnem Werwolf erstellen, Ausnahme
-    # Mehr Rollen definieren
+    # define more roles

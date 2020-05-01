@@ -23,5 +23,7 @@ root()
 
 # add license to the headers of the scripts
 
+# add GPL-3.0-or-later to the description
+
 # finish docstrings
 
