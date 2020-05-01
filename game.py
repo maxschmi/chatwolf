@@ -701,7 +701,8 @@ class SkypeCommands(SkypeEventLoop):
         if command == "bool":
             self.chat.sendMsg(self.game.msg("ask", 0) + "\"Yes\" / \"No\"")
         else:
-            self.chat.sendMsg(self.game.msg("ask", 0) + "\"" + command + ":" + self.game.msg("ask", 1) * num_ids + "\"")
+            self.chat.sendMsg(self.game.msg("ask", 0) + "\"" + command + ":" 
+                              + self.game.msg("ask", 1) * num_ids + "\"")
         
         # check previous
         events = self.getEvents()
@@ -714,7 +715,8 @@ class SkypeCommands(SkypeEventLoop):
 
             for event in events:
                 if type(event) == SkypeNewMessageEvent:
-                    if (event.msg.chat.id == self.chatid) and (not event.msg.user.id == self.game.sk.user.id):
+                    if ((event.msg.chat.id == self.chatid) and 
+                        (not event.msg.user.id == self.game.sk.user.id)):
                         msg = event.msg.content
                         self.game.log.debug("the message the SkypeCommands methode ask() received was :" + msg)
                         self.game.log.debug("from event: " + repr(event))
@@ -723,7 +725,8 @@ class SkypeCommands(SkypeEventLoop):
                         elif command == "name":
                             answer = self.get_name(msg)
                         else:
-                            answer = self.get_id(msg, command, alive, num_ids, min_id)
+                            answer = self.get_id(msg, command, alive, 
+                                                 num_ids, min_id)
                         if not answer == None:
                             return answer
                 if self.autoAck:
@@ -759,14 +762,17 @@ class SkypeCommands(SkypeEventLoop):
                 id = int(ids[0])
                 if (id >= min_id) and (id <= len(alive)):#check if number in list
                     if id == 0:
-                        self.chat.sendMsg(self.game.msg("ask", 2) % {"command" : command})
+                        self.chat.sendMsg(self.game.msg("ask", 2) % 
+                                          {"command" : command})
                     else:
-                        self.chat.sendMsg(self.game.msg("ask", 3) % {"command" : command, "name" : alive[id-1].name})
+                        self.chat.sendMsg(self.game.msg("ask", 3) % 
+                                          {"command" : command, 
+                                           "name" : alive[id-1].name})
                     return id
                 else: 
                     self.chat.sendMsg(self.game.msg("ask", 4))
 
-            elif (len(ids)==num_ids) and (len(set(ids))==num_ids):					#if list is allowed
+            elif (len(ids)==num_ids) and (len(set(ids))==num_ids):          	#if list is allowed
                 list_id = []
                 for id in ids:
                     id = int(id)
@@ -895,9 +901,11 @@ class Player(object):
         self.game.log.info(self.name + " dies")
         if self.love:
             self.lover.alive = False
-            self.game.log.info(self.name + " was in love with " + self.lover.name + ", therefor (s)he died too!")
+            self.game.log.info(self.name + " was in love with " + 
+                               self.lover.name + ", therefor (s)he died too!")
             if answer: 
-                return [self.name + "(" + self.role.group + ")", self.lover.name+ "(" + self.lover.role.group + ")"]
+                return [self.name + "(" + self.role.group + ")", 
+                        self.lover.name+ "(" + self.lover.role.group + ")"]
         else:
             if answer:
                 return [self.name+ "(" + self.role.group + ")"]
@@ -1054,7 +1062,8 @@ class Werewolf(Role):
         if id == 0:
             self.game.log.info("The werewolf(s) killed noone")
         else:
-            self.game.log.info("The werewolf(s) killed " + nightactions.alive[id-1].get_name_group())
+            self.game.log.info("The werewolf(s) killed " + 
+                               nightactions.alive[id-1].get_name_group())
 
 class Villager(Role):
     """class for the Villager role
@@ -1100,7 +1109,9 @@ class Amor(Villager):
         alive[ids[1]-1].love_arrow(alive[ids[0]-1])
 
         #log
-        self.game.log.info("Amor trows his arrow to "+ " & ".join([alive[ids[0]-1].name, alive[ids[1]-1].name]))
+        self.game.log.info("Amor trows his arrow to "+ 
+                           " & ".join([alive[ids[0]-1].name, 
+                                       alive[ids[1]-1].name]))
 
 class Prostitute(Villager):
     """class for the Prostitute role
@@ -1176,7 +1187,9 @@ class Witch(Villager):
         """
 
         self.msg_group_night()
-        self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % {"elixier": int(self.elixier), "poison": int(self.poison)})
+        self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % 
+                          {"elixier": int(self.elixier), 
+                           "poison": int(self.poison)})
         
         killed_id = nightactions.get_killed_id()
         if (killed_id == None):
@@ -1185,26 +1198,32 @@ class Witch(Villager):
             killed_name = nightactions.alive[killed_id].name
             time.sleep(1*self.game.wait_mult)
             if self.elixier:
-                self.chat.sendMsg(self.game.msg("night_witch_save", 0) % {"killed": killed_name} + self.game.msg("night_witch_save", 1))
+                self.chat.sendMsg(self.game.msg("night_witch_save", 0) % 
+                                  {"killed": killed_name} + 
+                                  self.game.msg("night_witch_save", 1))
                 if self.skc.ask("bool"):
                     nightactions.save(killed_id+1)
                     self.elixier = False
-                    self.game.log.info("The witch uses her elixier and saves " + killed_name)
+                    self.game.log.info("The witch uses her elixier and saves " +
+                                      killed_name)
             else:
-                    self.chat.sendMsg(self.game.msg("night_witch_save", 0) % {"killed": killed_name} + self.game.msg("night_witch_save", 2))
+                    self.chat.sendMsg(self.game.msg("night_witch_save", 0) % 
+                                      {"killed": killed_name} + 
+                                      self.game.msg("night_witch_save", 2))
 
         time.sleep(1*self.game.wait_mult)
         if self.poison:
-            self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()+"_kill"))
+            self.chat.sendMsg(self.game.msg("night_witch_kill"))
             time.sleep(1*self.game.wait_mult)
             if self.skc.ask("bool"):
-                self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()+"_kill_list"))
+                self.chat.sendMsg(self.game.msg("night_witch_kill_list"))
                 self.chat.sendMsg(nightactions.alive_string)
                 id = self.skc.ask("kill", nightactions.alive)
                 if not id == 0:
                     nightactions.kill(id)
                     self.poison = False
-                    self.game.log.info("The witch uses her poison to kill " + nightactions.alive[id-1].name)
+                    self.game.log.info("The witch uses her poison to kill " + 
+                                       nightactions.alive[id-1].name)
         time.sleep(2*self.game.wait_mult)
         self.chat.sendMsg(self.game.msg("night_sleep"))
         
@@ -1241,7 +1260,8 @@ class Visionary(Villager):
         if not id == 0:
             id -= 1
             self.chat.sendMsg(nightactions.alive[id].get_name_group())
-            self.game.log.info("The visionary sees "+ nightactions.alive[id].get_name_group())
+            self.game.log.info("The visionary sees "+ 
+                               nightactions.alive[id].get_name_group())
 
 # To do
     # define more roles
