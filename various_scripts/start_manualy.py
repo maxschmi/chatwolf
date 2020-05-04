@@ -28,7 +28,7 @@
 
 # librarys
 from skpy import Skype, SkypeAuthException
-from game import *
+from chatwolf.game import *
 from getpass import getpass
 
 # open Skype connection
@@ -38,7 +38,7 @@ except SkypeAuthException:
     sk = Skype(input("username"), getpass())
 
 # get properties and start the game
-# chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
+chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
 # chatid ='19:9718b408a11b43f780aa71bf6c50156e@thread.skype'
 
 game = Game(sk, 

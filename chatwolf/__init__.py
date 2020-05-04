@@ -7,23 +7,9 @@
 #-------------------------------------------------#
 
 # librarys
-from start_window import *
-
-# open window to start the programm
-root()
-
-# ideas to add:
-# rolls possible to add several times
-
-# better implementation of translation
-
-# do docstring and wiki
-
-# continue_bkp needs to reload sk, maybe get it as an argument
-
-# add license to the headers of the scripts
-
-# add GPL-3.0-or-later to the description
-
-# finish docstrings
-
+#from chatwolf.start_window import *
+from chatwolf.game import Game
+from chatwolf.player import Player
+from chatwolf.roles import Role, Werewolf, Villager, Witch, Visionary, Amor, Prostitute
+from chatwolf.skypecommands import SkypeCommands
+from chatwolf.nightactions import Nightactions

@@ -5,7 +5,8 @@
     <ProjectGuid>c4736365-e2b5-4964-88ff-002069eade22</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>__init__.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,22 +26,25 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="start_manualy.py">
+    <Compile Include="chatwolf\game.py" />
+    <Compile Include="chatwolf\gui.py" />
+    <Compile Include="setup.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="start_window.py">
+    <Compile Include="various_scripts\module1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="start_console.py">
+    <Compile Include="various_scripts\start_window.py" />
+    <Compile Include="chatwolf\__init__.py" />
+    <Compile Include="chatwolf\nightactions.py" />
+    <Compile Include="chatwolf\player.py" />
+    <Compile Include="chatwolf\skypecommands.py" />
+    <Compile Include="chatwolf\roles.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="test.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="game.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="__init__.py" />
+    <Compile Include="various_scripts\start_console.py" />
+    <Compile Include="various_scripts\start_manualy.py" />
+    <Compile Include="various_scripts\test.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
@@ -55,6 +59,19 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="chatwolf\" />
+    <Folder Include="chatwolf\__pycache__\" />
+    <Folder Include="various_scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chatwolf\__pycache__\game.cpython-37.pyc" />
+    <Content Include="chatwolf\__pycache__\start_console.cpython-37.pyc" />
+    <Content Include="chatwolf\__pycache__\start_manualy.cpython-37.pyc" />
+    <Content Include="chatwolf\__pycache__\start_window.cpython-37.pyc" />
+    <Content Include="chatwolf\__pycache__\test.cpython-37.pyc" />
+    <Content Include="chatwolf\__pycache__\__init__.cpython-37.pyc" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

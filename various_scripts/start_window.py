@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------#
 #                         Chatwolf                                      #
-#                     author:  Max Schmit                               #
-#                                                                       #
+#                     author. :  Max Schmit                             #
+#             email: maxschm (at) hotmail (dot) com                     #
 #-----------------------------------------------------------------------#
 # license information:                                                  #
 # "Chatwolf" unofficial game to play the popular werewolf game on Skype #
@@ -29,7 +29,7 @@
 # librarys
 from skpy import Skype, SkypeAuthException, SkypeGroupChat
 import os
-from game import *
+from chatwolf.game import *
 from tkinter import *
 from tkinter import messagebox, filedialog
 from tkinter.ttk import Notebook, Frame
@@ -399,11 +399,3 @@ def root():
     tab_parent.add(tabexpert, text ="expert")
     tab_parent.pack(expand=1, fill='both')
     root.mainloop()
-
-#root()
-
-# ideas to add:
-
-# delete older bkp files and logging files
-# add an about page with license information
-# programm in proper class declarations

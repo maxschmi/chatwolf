@@ -343,3 +343,5 @@ healthchecksdb
 /bkp
 /env
 /error_messages-to-solve
+/.vscode
+/conv

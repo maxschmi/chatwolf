@@ -1,0 +1,2074 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>chatwolf package &mdash; Chatwolf 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="chatwolf" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Chatwolf
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">intro</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">chatwolf</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">chatwolf package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.game">chatwolf.game module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.gui">chatwolf.gui module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.nightactions">chatwolf.nightactions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.player">chatwolf.player module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chatwolf-roles-module">chatwolf.roles module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.skypecommands">chatwolf.skypecommands module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chatwolf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">chatwolf</a> &raquo;</li>
+        
+      <li>chatwolf package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/chatwolf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chatwolf-package">
+<h1>chatwolf package<a class="headerlink" href="#chatwolf-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-chatwolf.game">
+<span id="chatwolf-game-module"></span><h2>chatwolf.game module<a class="headerlink" href="#module-chatwolf.game" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chatwolf.game.Game">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">numwerewolfs</span></em>, <em class="sig-param"><span class="n">amor</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">witch</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">prostitute</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">visionary</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is the main game class, that starts all the other necessary classes to play!</p>
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.sk">
+<code class="sig-name descname">sk</code><a class="headerlink" href="#chatwolf.game.Game.sk" title="Permalink to this definition">¶</a></dt>
+<dd><p>logged in Skype Object of the Game-master</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>skpy.Skype</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.chatid">
+<code class="sig-name descname">chatid</code><a class="headerlink" href="#chatwolf.game.Game.chatid" title="Permalink to this definition">¶</a></dt>
+<dd><p>chatid of the group-chat, where all players and the game-master are in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.chat">
+<code class="sig-name descname">chat</code><a class="headerlink" href="#chatwolf.game.Game.chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>the group chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.skc">
+<code class="sig-name descname">skc</code><a class="headerlink" href="#chatwolf.game.Game.skc" title="Permalink to this definition">¶</a></dt>
+<dd><p>object of the SkypeCommands class for the group chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.numwerewolfs">
+<code class="sig-name descname">numwerewolfs</code><a class="headerlink" href="#chatwolf.game.Game.numwerewolfs" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of werewolfs for the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.amor">
+<code class="sig-name descname">amor</code><a class="headerlink" href="#chatwolf.game.Game.amor" title="Permalink to this definition">¶</a></dt>
+<dd><p>should the amor role be in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.witch">
+<code class="sig-name descname">witch</code><a class="headerlink" href="#chatwolf.game.Game.witch" title="Permalink to this definition">¶</a></dt>
+<dd><p>should the witch role be in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.prostitute">
+<code class="sig-name descname">prostitute</code><a class="headerlink" href="#chatwolf.game.Game.prostitute" title="Permalink to this definition">¶</a></dt>
+<dd><p>should the prostitute role be in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.visionary">
+<code class="sig-name descname">visionary</code><a class="headerlink" href="#chatwolf.game.Game.visionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>should the visionary role be in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.lang">
+<code class="sig-name descname">lang</code><a class="headerlink" href="#chatwolf.game.Game.lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>language to use for the messages of the Game-master</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.wait_mult">
+<code class="sig-name descname">wait_mult</code><a class="headerlink" href="#chatwolf.game.Game.wait_mult" title="Permalink to this definition">¶</a></dt>
+<dd><p>multiplier for the waiting seequences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.log_dir">
+<code class="sig-name descname">log_dir</code><a class="headerlink" href="#chatwolf.game.Game.log_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory path as str for the logging file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.logfilename">
+<code class="sig-name descname">logfilename</code><a class="headerlink" href="#chatwolf.game.Game.logfilename" title="Permalink to this definition">¶</a></dt>
+<dd><p>filepath of the logger file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.bkp_dir">
+<code class="sig-name descname">bkp_dir</code><a class="headerlink" href="#chatwolf.game.Game.bkp_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory path as str for the backup file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.do_debug">
+<code class="sig-name descname">do_debug</code><a class="headerlink" href="#chatwolf.game.Game.do_debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>should a debug logging file be created</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.starttime">
+<code class="sig-name descname">starttime</code><a class="headerlink" href="#chatwolf.game.Game.starttime" title="Permalink to this definition">¶</a></dt>
+<dd><p>starttime of the game (time when the Game object was created)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.nn">
+<code class="sig-name descname">nn</code><a class="headerlink" href="#chatwolf.game.Game.nn" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of nights played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.nd">
+<code class="sig-name descname">nd</code><a class="headerlink" href="#chatwolf.game.Game.nd" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of days played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.log">
+<code class="sig-name descname">log</code><a class="headerlink" href="#chatwolf.game.Game.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>the Logger of the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.players">
+<code class="sig-name descname">players</code><a class="headerlink" href="#chatwolf.game.Game.players" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of all players of the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Players</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.roles">
+<code class="sig-name descname">roles</code><a class="headerlink" href="#chatwolf.game.Game.roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of all the roles in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Roles</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.bkp">
+<code class="sig-name descname">bkp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.bkp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Backup the game.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.continue_bkp">
+<code class="sig-name descname">continue_bkp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.continue_bkp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Continue a game that was loaded from a backup-file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.day">
+<code class="sig-name descname">day</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.day" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do a day phase!</p>
+<dl class="simple">
+<dt>Does:</dt><dd><p>ask whom to kill this day
+if game not over, start a night phase by calling Game.night()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.dist_roles">
+<code class="sig-name descname">dist_roles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.dist_roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distribute the roles to the players.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.end">
+<code class="sig-name descname">end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.end" title="Permalink to this definition">¶</a></dt>
+<dd><p>End the game!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.get_alive">
+<code class="sig-name descname">get_alive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of players that are alive!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of players that are alive.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.get_alive_string">
+<code class="sig-name descname">get_alive_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">noone</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_alive_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of players that are still alive as string entries with their number!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments</dt>
+<dd class="field-odd"><p><strong>noone</strong> (<em>bool</em><em>, </em><em>optional</em>) – True: add “0: noone” to the list; False: only players without “0: noone”  . Defaults to True.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list with one entry per player, each entry is the number in the alive list + 1 and the name of the player</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.get_players_role">
+<code class="sig-name descname">get_players_role</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">all</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_players_role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all players with their roles!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments</dt>
+<dd class="field-odd"><p><strong>all</strong> (<em>bool</em><em>, </em><em>optional</em>) – True: every player of the game is listed; False: only the living players are listed . Defaults to True.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list with one entry per player with: “name (role)”</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.get_roles">
+<code class="sig-name descname">get_roles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of the activated roles of the game.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of the activated roles of the game</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.is_end">
+<code class="sig-name descname">is_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.is_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if game is over!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>True: game is over, on party won;</dt><dd><p>False: Noone won yet, the game is still on</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.load_bkp">
+<em class="property">static </em><code class="sig-name descname">load_bkp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.load_bkp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a backup-file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – filepath of the backup-file to be loaded</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the old Game object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.msg">
+<code class="sig-name descname">msg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em>, <em class="sig-param"><span class="n">line</span><span class="o">=</span><span class="default_value">'all'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the coresponding message in the selected language.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – the name of the message file,
+e.g. “greeting_all” for the first group message,
+this file needs to exist at least in the “msg/en/” folder</p>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>line</strong> (<em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – specify if the whole message should be returned (“all”)
+or only a specific line(int) . Defaults to “all”.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>message in the selected language (self.lang) or in english if there is no translation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.night">
+<code class="sig-name descname">night</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.night" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do a night phase.</p>
+<dl class="simple">
+<dt>Does:</dt><dd><p>create a Nightaction object as na
+call every Role.night(na)
+resume the night
+if game not over, start a day phase by calling game.day()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.restart">
+<code class="sig-name descname">restart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.restart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a new game with the same settings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.game.Game.start">
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the game!</p>
+<dl class="simple">
+<dt>does:</dt><dd><p>check if players did already accept the game-master as contact
+send greeting to the group
+distribute roles by calling Game.dist_roles()
+inform players of them, by calling Role.greeting()
+start first day</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-chatwolf.gui">
+<span id="chatwolf-gui-module"></span><h2>chatwolf.gui module<a class="headerlink" href="#module-chatwolf.gui" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chatwolf.gui.GUI">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.gui.</code><code class="sig-name descname">GUI</code><a class="headerlink" href="#chatwolf.gui.GUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tkinter.Tk</span></code></p>
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.chack_ebkp_file">
+<code class="sig-name descname">chack_ebkp_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.chack_ebkp_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_e_numwerewolfs">
+<code class="sig-name descname">check_e_numwerewolfs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_numwerewolfs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_ebkp_dir">
+<code class="sig-name descname">check_ebkp_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_ebkp_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_elog_dir">
+<code class="sig-name descname">check_elog_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_elog_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_ewait_mult">
+<code class="sig-name descname">check_ewait_mult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_ewait_mult" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_lb_chats">
+<code class="sig-name descname">check_lb_chats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_lb_chats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_sk">
+<code class="sig-name descname">check_sk</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_sk" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.check_start">
+<code class="sig-name descname">check_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.click_b_login">
+<code class="sig-name descname">click_b_login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.click_b_login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.dict_chats">
+<code class="sig-name descname">dict_chats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.dict_chats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.fill_chatid">
+<code class="sig-name descname">fill_chatid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.fill_chatid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.get_bkp_file">
+<code class="sig-name descname">get_bkp_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.get_bkp_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.get_chatid">
+<code class="sig-name descname">get_chatid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.get_chatid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.get_dir">
+<code class="sig-name descname">get_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.get_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.list_chatid">
+<code class="sig-name descname">list_chatid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.list_chatid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.start_game">
+<code class="sig-name descname">start_game</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.start_game" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.w_error">
+<em class="property">static </em><code class="sig-name descname">w_error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.w_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.GUI.w_run">
+<code class="sig-name descname">w_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.w_run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="chatwolf.gui.TlBkp">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.gui.</code><code class="sig-name descname">TlBkp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.TlBkp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tkinter.Toplevel</span></code></p>
+<dl class="py method">
+<dt id="chatwolf.gui.TlBkp.restart_bkp">
+<code class="sig-name descname">restart_bkp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.TlBkp.restart_bkp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="chatwolf.gui.TlLog">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.gui.</code><code class="sig-name descname">TlLog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.TlLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tkinter.Toplevel</span></code></p>
+<dl class="py method">
+<dt id="chatwolf.gui.TlLog.login_skype">
+<code class="sig-name descname">login_skype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.TlLog.login_skype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.gui.TlLog.login_skype_token">
+<code class="sig-name descname">login_skype_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.TlLog.login_skype_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-chatwolf.nightactions">
+<span id="chatwolf-nightactions-module"></span><h2>chatwolf.nightactions module<a class="headerlink" href="#module-chatwolf.nightactions" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chatwolf.nightactions.Nightactions">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.nightactions.</code><code class="sig-name descname">Nightactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alive</span></em>, <em class="sig-param"><span class="n">game</span></em>, <em class="sig-param"><span class="n">noone</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to log all the actions that happen in the night and resume.</p>
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.game">
+<code class="sig-name descname">game</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.game" title="Permalink to this definition">¶</a></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.alive">
+<code class="sig-name descname">alive</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of players that are still alive</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Players</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.alive_string">
+<code class="sig-name descname">alive_string</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.alive_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of players, that are still alive as “id: Name”
+id is place in alive list + 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.lskill">
+<code class="sig-name descname">lskill</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.lskill" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of one bool for every player if (s)he got killed in the night
+e.g. lskill[1] says if player[1] got killed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.lstogether">
+<code class="sig-name descname">lstogether</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.lstogether" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of players ids that stayed together during the night.
+always as tuple of two ids, first one is the player who stays at home</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.finish_night">
+<code class="sig-name descname">finish_night</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.finish_night" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finish the night and get the name(group) of the plaers that died.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of all the players that died this night as name(group)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.get_killed_id">
+<code class="sig-name descname">get_killed_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.get_killed_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the id of the killed player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>id of the killed player</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.kill">
+<code class="sig-name descname">kill</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kill a player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>player_number</strong> (<em>[</em><em>type</em><em>]</em>) – number of the player in the alive_string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>player_number</strong> (<em>[</em><em>type</em><em>]</em>) – number of the player in the alive_string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.together">
+<code class="sig-name descname">together</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_home_number</span></em>, <em class="sig-param"><span class="n">player_visit_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.together" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set 2 people together for this night.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>player_home_number</strong> (<em>int</em>) – the number in the alive_string of the player, who’s at home</p></li>
+<li><p><strong>player_visit_number</strong> (<em>int</em>) – the number in the alive_string of the player, who’s visiting the other</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-chatwolf.player">
+<span id="chatwolf-player-module"></span><h2>chatwolf.player module<a class="headerlink" href="#module-chatwolf.player" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chatwolf.player.Player">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.player.</code><code class="sig-name descname">Player</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.player.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for every player.</p>
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.chatid">
+<code class="sig-name descname">chatid</code><a class="headerlink" href="#chatwolf.player.Player.chatid" title="Permalink to this definition">¶</a></dt>
+<dd><p>chatid of the corresponding skpy.SkypeSingleChat of the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#chatwolf.player.Player.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skype id of the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.game">
+<code class="sig-name descname">game</code><a class="headerlink" href="#chatwolf.player.Player.game" title="Permalink to this definition">¶</a></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.chat">
+<code class="sig-name descname">chat</code><a class="headerlink" href="#chatwolf.player.Player.chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>the single chat of the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.skc">
+<code class="sig-name descname">skc</code><a class="headerlink" href="#chatwolf.player.Player.skc" title="Permalink to this definition">¶</a></dt>
+<dd><p>object of the SkypeCommands class for the single chat of the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#chatwolf.player.Player.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.alive">
+<code class="sig-name descname">alive</code><a class="headerlink" href="#chatwolf.player.Player.alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>True: the player is alive ; False: the player is dead</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.love">
+<code class="sig-name descname">love</code><a class="headerlink" href="#chatwolf.player.Player.love" title="Permalink to this definition">¶</a></dt>
+<dd><p>True: the player is in love with someone</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.lover">
+<code class="sig-name descname">lover</code><a class="headerlink" href="#chatwolf.player.Player.lover" title="Permalink to this definition">¶</a></dt>
+<dd><p>The player (s)he is in love with</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.player.Player.role">
+<code class="sig-name descname">role</code><a class="headerlink" href="#chatwolf.player.Player.role" title="Permalink to this definition">¶</a></dt>
+<dd><p>The role the player has got for the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Role</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.player.Player.die">
+<code class="sig-name descname">die</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">answer</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.player.Player.die" title="Permalink to this definition">¶</a></dt>
+<dd><p>The player dies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Keyword Arguments</dt>
+<dd class="field-odd"><p><strong>answer</strong> (<em>bool</em><em>, </em><em>optional</em>) – should the methode return the name and the group of the player
+e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>“name (group)” of the player or None if the answer argument is False</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.player.Player.get_name_group">
+<code class="sig-name descname">get_name_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.player.Player.get_name_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a string with the name and the group of the player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>“name (group)” of the player</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.player.Player.get_name_role">
+<code class="sig-name descname">get_name_role</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.player.Player.get_name_role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a string with the name and role of the player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>“name (role)” of the player</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.player.Player.love_arrow">
+<code class="sig-name descname">love_arrow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lover</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.player.Player.love_arrow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Throw an arrow at this player, so (s)he fells in love.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lover</strong> (<a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player"><em>Player</em></a>) – The player (s)he fells in love with</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="chatwolf-roles-module">
+<h2>chatwolf.roles module<a class="headerlink" href="#chatwolf-roles-module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Amor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
+<p>Class for the Amor role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">greeting</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>inform player about their role and give amor the oportunity to throw his arrow</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'Amor'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Prostitute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
+<p>Class for the Prostitute role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">night</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nightactions</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Do the Prostetutes night phase.</p>
+<p>ask where (s)he wants to stay</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nightactions</strong> (<a class="reference internal" href="#chatwolf.nightactions.Nightactions" title="chatwolf.nightactions.Nightactions"><em>Nightactions</em></a>) – log of all the actions that happen(d) in the night</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'Prostitute'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Role</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Main class for the roles.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">get_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Get the names of the players of this role.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all the names of the roles players</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">greeting</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Inform players about their role.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code><em class="property"> = 'not set'</em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">msg_group_night</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Send a notification to the group chat, which role got called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">night</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nightactions</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Do the corresponding night phase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nightactions</strong> (<a class="reference internal" href="#chatwolf.nightactions.Nightactions" title="chatwolf.nightactions.Nightactions"><em>Nightactions</em></a>) – log of all the actions that happen(d) in the night</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'not set'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Villager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Role</span></code></p>
+<p>Class for the Villager role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code><em class="property"> = 'Villager'</em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'Villager'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Visionary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
+<p>Class for the Visionary role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">night</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nightactions</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Do the visionarys night phase.</p>
+<p>ask whome (s)he wants to see
+tell him/her the group of this player</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nightactions</strong> (<a class="reference internal" href="#chatwolf.nightactions.Nightactions" title="chatwolf.nightactions.Nightactions"><em>Nightactions</em></a>) – log of all the actions that happen(d) in the night</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'Visionary'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Werewolf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Role</span></code></p>
+<p>Class of the werewolf role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code><em class="property"> = 'Werewolf'</em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">night</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nightactions</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Do the Werewolfs night phase.</p>
+<p>ask whome to kill this night</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nightactions</strong> (<a class="reference internal" href="#chatwolf.nightactions.Nightactions" title="chatwolf.nightactions.Nightactions"><em>Nightactions</em></a>) – log of all the actions that happen(d) in the night</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'Werewolf'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Witch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
+<p>Class for the Witch role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">elixier</code></dt>
+<dd><p>True: the witchs elixier is still available
+False: the witchs elixier got already used</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">poison</code></dt>
+<dd><p>True: the witchs elixier is still available
+False: the witchs elixier got already used</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">greeting</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Inform player about their role and initialize the poison and elixier.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname">night</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nightactions</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Do the witchs night phase.</p>
+<p>tell her whos going to die
+ask if he wants to save, by using her elixier
+ask if he wants to kill someone, by using her poison</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nightactions</strong> (<a class="reference internal" href="#chatwolf.nightactions.Nightactions" title="chatwolf.nightactions.Nightactions"><em>Nightactions</em></a>) – log of all the actions that happen(d) in the night</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">role</code><em class="property"> = 'Witch'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-chatwolf.skypecommands">
+<span id="chatwolf-skypecommands-module"></span><h2>chatwolf.skypecommands module<a class="headerlink" href="#module-chatwolf.skypecommands" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chatwolf.skypecommands.SkypeCommands">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.skypecommands.</code><code class="sig-name descname">SkypeCommands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">game</span></em>, <em class="sig-param"><span class="n">tokenFile</span><span class="o">=</span><span class="default_value">'temp/token.txt'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">skpy.main.SkypeEventLoop</span></code></p>
+<p>Class to ask players for answers in Skype.</p>
+<dl class="py attribute">
+<dt id="chatwolf.skypecommands.SkypeCommands.chatid">
+<code class="sig-name descname">chatid</code><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.chatid" title="Permalink to this definition">¶</a></dt>
+<dd><p>chatid of the corresponding chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.skypecommands.SkypeCommands.game">
+<code class="sig-name descname">game</code><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.game" title="Permalink to this definition">¶</a></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.skypecommands.SkypeCommands.chat">
+<code class="sig-name descname">chat</code><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>the group chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.skypecommands.SkypeCommands.ask">
+<code class="sig-name descname">ask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">command</span></em>, <em class="sig-param"><span class="n">alive</span><span class="o">=</span><span class="default_value">[None]</span></em>, <em class="sig-param"><span class="n">num_ids</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">min_id</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.ask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask for an answer in the corresponding chat.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>str</em>) – command to ask for, e.g. “kill” for “kill: number”: return int
+or “bool” for “yes/no”: return bool
+or “name” for “name:”: retrun str</p>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>alive</strong> (<em>list of Player</em><em>, </em><em>optional</em>) – all the alive Players that are at disponible . Defaults to [None].</p></li>
+<li><p><strong>num_ids</strong> (<em>int</em><em>, </em><em>optional</em>) – number of ids that must be asked for and returned . Defaults to 1.</p></li>
+<li><p><strong>min_id</strong> (<em>int</em><em>, </em><em>optional</em>) – the smallest id possible to choose from,
+basicaly if theire is an id 0 for “noone” disponible . Defaults to 0.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>either the number(s) of the corresponding player(s) (alive[return-1])</dt><dd><p>or a bool, depending on the command
+or a name(str), if command = “name”</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int or bool or str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.skypecommands.SkypeCommands.get_bool">
+<code class="sig-name descname">get_bool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.get_bool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the message received was a “yes/no” answer and return it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – the message text someone send to the chat</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>the answer to the question “yes”:True; “no”:False</dt><dd><p>or None if the message wasn’t a correct answer</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.skypecommands.SkypeCommands.get_id">
+<code class="sig-name descname">get_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">command</span></em>, <em class="sig-param"><span class="n">alive</span><span class="o">=</span><span class="default_value">[None]</span></em>, <em class="sig-param"><span class="n">num_ids</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">min_id</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the message for an id and return it if the message was right.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<em>str</em>) – the message text someone send to the chat</p></li>
+<li><p><strong>command</strong> (<em>str</em>) – command that was asked for,
+e.g. “kill” for “kill: number”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>alive</strong> (<em>list of Player</em><em>, </em><em>optional</em>) – all the alive Players that are at disponible . Defaults to [None].</p></li>
+<li><p><strong>num_ids</strong> (<em>int</em><em>, </em><em>optional</em>) – number of ids that must be asked for and returned . Defaults to 1.</p></li>
+<li><p><strong>min_id</strong> (<em>int</em><em>, </em><em>optional</em>) – the smallest id possible to choose from,
+basicaly if theire is an id 0 for “noone” disponible . Defaults to 0.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>the number(s) of the corresponding player(s) (alive[return-1])</dt><dd><p>or None if the message wasn’t a correct answer</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.skypecommands.SkypeCommands.get_name">
+<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the name the player sended.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – the message text someone send to the chat</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>the Name entered</dt><dd><p>or None if the message was not a correct answer</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-chatwolf">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-chatwolf" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="chatwolf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Max Schmit
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
