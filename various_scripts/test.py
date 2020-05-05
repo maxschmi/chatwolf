@@ -28,7 +28,7 @@
 
 # librarys
 from skpy import Skype, SkypeAuthException
-from Game import *
+from chatwolf import Game, Player
 from getpass import getpass
 
 # open Skype connection
@@ -42,7 +42,7 @@ chatid = '19:3db90f3ba215466aa082243848d24289@thread.skype' # test
 
 game = Game(sk, 
             chatid, 
-            numwerewolfs = 1, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0)
+            numwerewolfs = 1, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0.2)
 
 # add only me to the game
 for i in range(5):
@@ -57,7 +57,7 @@ game.prostitute = True
 game.visionary = True
 game.numplayers = len(game.players)
 
-#game.dist_roles() manualy distribute roles, is also done in strat methode
+#game.dist_roles() manualy distribute roles, is also done in start methode
 game.start()
 
 # restart from bkp

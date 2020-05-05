@@ -212,7 +212,7 @@ class Game(object):
                       ("\n" + " "*30).join(self.get_players_role()))
         # greet Roles
         for r in self.roles:
-            r.greeting(self)
+            r.greeting()
         self.bkp()
 
         time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
@@ -249,8 +249,7 @@ class Game(object):
             self.roles.append(Villager(self.players[j], self))
 
         if self.amor:  #last because this greeting methode takes longer
-            self.roles.append(Amor(self.players[i], self))
-            i += 1
+            self.roles.append(Amor(self.players[j+1], self))
     
     def restart(self):
         """Start a new game with the same settings."""
@@ -465,7 +464,7 @@ class Game(object):
 
         ls =[]
         for role in self.roles:
-            ls.append(role.role)
+            ls.append(role.name)
         st = set(ls)
         if "Werewolf" in st:st.remove("Werewolf")
         if "Villager" in st: st.remove("Villager")

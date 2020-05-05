@@ -30,6 +30,9 @@
 # library
 from .skypecommands import SkypeCommands
 
+# depencies
+from skpy import SkypeUser
+
 # class definition
 
 class Player(object):
@@ -122,7 +125,7 @@ class Player(object):
             str: "name (group)" of the player
         """  
 
-        return self.name + "("+self.role.group+")"
+        return self.name + "(" + self.role.group + ")"
 
     def get_name_role(self):
         """Get a string with the name and role of the player.
@@ -131,4 +134,4 @@ class Player(object):
             str: "name (role)" of the player
         """  
 
-        return self.name + "("+self.role.role+")"
+        return self.name + "(" + self.role.name + ")"

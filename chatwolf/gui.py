@@ -42,7 +42,7 @@ from tkinter.ttk import Notebook, Frame
 
 class GUI(Tk):
     def __init__(self):
-        super.__init__(self)
+        super().__init__()
         self.iconphoto(True, PhotoImage(master = self, file = "data/icon.png"))
         self.title("Skype-Werewolf - game properties")
         self.tab_parent = Notebook(self)
@@ -51,85 +51,104 @@ class GUI(Tk):
         self.tabgame = Frame(self.tab_parent)
     
         # skype login
-        self.blogin = Button(self.tabgame, text = "login Skype", bg = "#FF0040", 
-                            command = self.click_b_login)
-        self.blogin.grid(row = 0)
-        self.lsk = Label(self.tabgame, text = "You are not loged in!")
-        self.lsk.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
+        self.b_login = Button(self.tabgame, text = "login Skype", 
+                              bg = "#FF0040", command = self.click_b_login)
+        self.b_login.grid(row = 0)
+        self.l_sk = Label(self.tabgame, text = "You are not loged in!")
+        self.l_sk.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
 
         #select chat
-        Label(self.tabgame, text = "Select your chat:").grid(row = 1)
+        Label(self.tabgame, text = "Select your groupchat:").grid(row = 1)
 
         Label(self.tabgame, text = " "*100).grid(row = 2, column = 3) # to expand the lb_chats
-        self.frchats = Frame(self.tabgame, height = 800, width = 1000)
-        self.lb_chats = Listbox(self.frchats, selectmode = "single", height = 5, width = 100)
-        lb_chats_vsc = Scrollbar(self.lb_chats, orient="vertical", command = self.lb_chats.yview)
+        self.fr_chats = Frame(self.tabgame, height = 800, width = 1000)
+        self.lb_chats = Listbox(self.fr_chats, selectmode = "single", 
+                                height = 5, width = 100)
+        lb_chats_vsc = Scrollbar(self.lb_chats, orient="vertical", 
+                                 command = self.lb_chats.yview)
         lb_chats_vsc.pack(side=RIGHT, fill=Y)
-        lb_chats_hsc = Scrollbar(self.lb_chats, orient="horizontal", command = self.lb_chats.xview)
+        lb_chats_hsc = Scrollbar(self.lb_chats, orient="horizontal", 
+                                 command = self.lb_chats.xview)
         lb_chats_hsc.pack(side = BOTTOM, fill = X)
-        self.lb_chats.config(yscrollcommand = lb_chats_vsc.set, xscrollcommand = lb_chats_hsc.set)
+        self.lb_chats.config(yscrollcommand = lb_chats_vsc.set, 
+                             xscrollcommand = lb_chats_hsc.set)
         self.lb_chats.pack(side = LEFT, fill = BOTH, expand = 1)
-        self.frchats.grid(row = 1, column = 1, columnspan = 5, sticky = "nwse")
+        self.fr_chats.grid(row = 1, column = 1, columnspan = 5, sticky = "nwse")
 
         #roles
         Label(self.tabgame, text="number of werewolfs").grid(row=2)
-        self.e_numwerewolfs = Entry(self.tabgame, validate= "focusout", validatecommand= self.check_e_numwerewolfs)
+        self.e_numwerewolfs = Entry(self.tabgame, validate= "focusout", 
+                                    validatecommand= self.check_e_numwerewolfs)
         self.e_numwerewolfs.grid(row=2, column=1, sticky = "w")
 
         Label(self.tabgame, text = "select your roles:").grid(row = 3, column = 0, columnspan = 2, sticky = "w")
+
         self.amor = BooleanVar()
-        self.bamor = Checkbutton(self.tabgame, text="amor", variable = self.amor)
-        self.bamor.grid(row=4, column = 0, sticky = "w")
+        self.b_amor = Checkbutton(self.tabgame, 
+                                  text="amor", 
+                                  variable = self.amor)
+        self.b_amor.grid(row=4, column = 0, sticky = "w")
 
         self.witch = BooleanVar()
-        self.bwitch = Checkbutton(self.tabgame, text = "witch", variable = self.witch)
-        self.bwitch.grid(row=5, column = 0, sticky = "w")
+        self.b_witch = Checkbutton(self.tabgame, 
+                                   text = "witch", 
+                                   variable = self.witch)
+        self.b_witch.grid(row=5, column = 0, sticky = "w")
 
         self.visionary = BooleanVar()
-        self.bvisionary = Checkbutton(self.tabgame, text="visionary", variable = self.visionary)
-        self.bvisionary.grid(row=6, column = 0, sticky = "w")
+        self.b_visionary = Checkbutton(self.tabgame, 
+                                       text="visionary", 
+                                       variable = self.visionary)
+        self.b_visionary.grid(row=6, column = 0, sticky = "w")
 
         self.prostitute = BooleanVar()
-        self.bprostitute = Checkbutton(self.tabgame, text="prostitute", variable = self.prostitute)
-        self.bprostitute.grid(row=7, column = 0, sticky = "w")
+        self.b_prostitute = Checkbutton(self.tabgame, 
+                                        text="prostitute", 
+                                        variable = self.prostitute)
+        self.b_prostitute.grid(row=7, column = 0, sticky = "w")
     
         #start button
-        self.bstart = Button(self.tabgame, text = "start the game", command = self.start_game).grid(row = 8, column = 1)
+        self.b_start = Button(self.tabgame, text = "start the game", 
+                              command = self.start_game)
+        self.b_start.grid(row = 8, column = 1)
 
         # other settings tab
         #-------------------
-        self.tabexpert = Frame(tab_parent)
+        self.tabexpert = Frame(self.tab_parent)
         self.tabexpert.pack()
         Label(self.tabexpert, text = "other settings:").grid(row = 0, columnspan = 2)
 
         #Language
         self.lang_dic = {"English": "en", "Deutsch": "de"}
         Label(self.tabexpert, text="language: ").grid(row=1, column = 0)
-        self.sblang = Spinbox(self.tabexpert, values = tuple(self.lang_dic.keys()))
-        self.sblang.grid(row=1, column = 1, sticky = "w")
+        self.sb_lang= Spinbox(self.tabexpert, values = tuple(self.lang_dic.keys()))
+        self.sb_lang.grid(row=1, column = 1, sticky = "w")
 
         #waiting multiplier
         Label(self.tabexpert, text="waiting multiplier: ").grid(row=2, column = 0, sticky = "w")
-        self.ewait_mult = Entry(self.tabexpert, validate= "focusout", validatecommand= self.check_ewait_mult)
-        self.ewait_mult.insert(0, "1")
-        self.ewait_mult.grid(row=2, column = 1, sticky = "e")
+        self.e_wait_mult = Entry(self.tabexpert, validate= "focusout", 
+                                 validatecommand= self.check_e_wait_mult)
+        self.e_wait_mult.insert(0, "1")
+        self.e_wait_mult.grid(row=2, column = 1, sticky = "e")
 
         #directory for the logging file
         Label(self.tabexpert, text="directory for logging file: ").grid(row=3, column = 0)
         self.log_dir = os.getcwd() + "\\logs"
-        self.elog_dir = Entry(self.tabexpert, validate= "focusout", validatecommand= self.check_elog_dir, width = 60)
-        self.elog_dir.insert(0, log_dir)
-        self.elog_dir.grid(row = 3, column = 1, columnspan = 4)
-        self.b_get_log_dir = Button(self.tabexpert, text = "get directory", command = lambda: get_dir(self.elog_dir))
+        self.e_log_dir = Entry(self.tabexpert, validate= "focusout", 
+                               validatecommand= self.check_e_log_dir, width = 60)
+        self.e_log_dir.insert(0, self.log_dir)
+        self.e_log_dir.grid(row = 3, column = 1, columnspan = 4)
+        self.b_get_log_dir = Button(self.tabexpert, text = "get directory", 
+                                    command = lambda: self.get_dir(self.e_log_dir))
         self.b_get_log_dir.grid(row=3, column = 5)
 
         #directory for backup file:
         Label(self.tabexpert, text="directory for backup file: ").grid(row=4, column = 0)
         self.bkp_dir = os.getcwd() + "\\bkp"
-        self.ebkp_dir = Entry(self.tabexpert, validate= "focusout", validatecommand= self.check_ebkp_dir, width = 60)
-        self.ebkp_dir.insert(0, bkp_dir)
-        self.ebkp_dir.grid(row = 4, column = 1, columnspan = 4)
-        self.b_get_bkp_dir = Button(self.tabexpert, text = "get directory", command = lambda: get_dir(self.ebkp_dir))
+        self.e_bkp_dir = Entry(self.tabexpert, validate= "focusout", validatecommand= self.check_e_bkp_dir, width = 60)
+        self.e_bkp_dir.insert(0, self.bkp_dir)
+        self.e_bkp_dir.grid(row = 4, column = 1, columnspan = 4)
+        self.b_get_bkp_dir = Button(self.tabexpert, text = "get directory", command = lambda: self.get_dir(self.e_bkp_dir))
         self.b_get_bkp_dir.grid(row=4, column = 5)
 
         #Debug logging file yes/no
@@ -139,19 +158,25 @@ class GUI(Tk):
         self.cb_do_debug.grid(row = 5, column = 0, columnspan = 2)
 
         #restart from Backup
-        self.b_restart_bkp = Button(self.tabexpert, text = "restart from Backup", command = self.w_bkp)
+        self.b_restart_bkp = Button(self.tabexpert, text = "restart from Backup", 
+                                    command = self.click_b_bkp)
         self.b_restart_bkp.grid(row = 7, column = 1)
 
+        #About page
+        #----------
+        self.tababout = Frame(self.tab_parent)
         #initialise tabs
         self.tab_parent.add(self.tabgame, text = "main")
         self.tab_parent.add(self.tabexpert, text ="expert")
         self.tab_parent.pack(expand=1, fill='both')
 
-        #initialise other variables
-        self.sk = None
-
     def click_b_login(self):
-        self.wlog = TlLog(self)
+        self.w_log = TlLog(self)
+        self.w_log.grab_set()
+
+    def click_b_bkp(self):
+        self.w_bkp = TlBkp(self)
+        self.w_bkp.grab_set()
 
     def start_game(self):
         if self.check_start():
@@ -161,35 +186,29 @@ class GUI(Tk):
                             witch = self.witch.get(), 
                             prostitute = self.prostitute.get(), 
                             visionary = self.visionary.get(), 
-                            lang = self.lang_dic[self.sblang.get()], 
-                            wait_mult = int(self.ewait_mult.get()),
-                            log_dir = self.elog_dir.get(), 
-                            bkp_dir = self.ebkp_dir.get(), 
+                            lang = self.lang_dic[self.sb_lang.get()], 
+                            wait_mult = int(self.e_wait_mult.get()),
+                            log_dir = self.e_log_dir.get(), 
+                            bkp_dir = self.e_bkp_dir.get(), 
                             do_debug = self.do_debug.get())
 
-            self.w_run()
-            if hasattr(self, "wbkp"): self.wbkp.withdraw()
+            self.start_w_run()
+            if hasattr(self, "wbkp"): 
+                self.wbkp.destroy()
 
             try:
                 self.game.start()
             except:
                 self.w_error("There was an error, please load the backup and restart." +
-                             "\nTo get more information about the error, please read the")
+                             "\nTo get more information about the error, please read the documentations!")
 
-            self.wrun.withdraw()
+            self.wrun.destroy()
 
-    def get_dir(entry_widget):
+    def get_dir(self, entry_widget):
         dir = filedialog.askdirectory()
         if os.path.isdir(dir):
             entry_widget.delete(0, END)
             entry_widget.insert(0, dir)
-
-    def get_bkp_file(self):
-        file = filedialog.askopenfilename(filetypes = (("Backup file", "*.dat"),))
-        if os.path.isfile(file):
-            file = file[0:-4] # delete ending
-            self.ebkp_file.delete(0, END)
-            self.ebkp_file.insert(0, file)
 
 
     # check functions
@@ -222,44 +241,36 @@ class GUI(Tk):
         else:
             return False
 
-    def check_elog_dir(self):
-        if os.path.isdir(self.elog_dir.get()):
-            self.elog_dir.config(bg = "#FFFFFF")
+    def check_e_log_dir(self):
+        if os.path.isdir(self.e_log_dir.get()):
+            self.e_log_dir.config(bg = "#FFFFFF")
             return True
         else:
-            self.elog_dir.config(bg = "#F78181")
+            self.e_log_dir.config(bg = "#F78181")
             return False
 
-    def check_ebkp_dir(self):
-        if os.path.isdir(self.ebkp_dir.get()):
-            self.ebkp_dir.config(bg = "#FFFFFF")
+    def check_e_bkp_dir(self):
+        if os.path.isdir(self.e_bkp_dir.get()):
+            self.e_bkp_dir.config(bg = "#FFFFFF")
             return True
         else:
-            self.ebkp_dir.config(bg = "#F78181")
+            self.e_bkp_dir.config(bg = "#F78181")
             return False
 
-    def chack_ebkp_file(self):
-        if os.path.isfile(self.ebkp_file.get()):
-            self.ebkp_file.config(bg = "#FFFFFF")
-            return True
-        else:
-            self.ebkp_file.config(bg = "#F78181")
-            return False
-
-    def check_ewait_mult(self):
+    def check_e_wait_mult(self):
         try:
-            int(self.ewait_mult.get())
-            self.ewait_mult.config(bg = "#FFFFFF")
+            int(self.e_wait_mult.get())
+            self.e_wait_mult.config(bg = "#FFFFFF")
             return True
         except ValueError:
-            self.ewait_mult.config(bg = "#F78181")
+            self.e_wait_mult.config(bg = "#F78181")
             return False
 
 
     def check_start(self):
         if (self.check_e_numwerewolfs() + self.check_sk() + 
-            self.check_ewait_mult() + self.check_lb_chats() + 
-            self.check_elog_dir() + self.check_ebkp_dir()) < 6:
+            self.check_e_wait_mult() + self.check_lb_chats() + 
+            self.check_e_log_dir() + self.check_e_bkp_dir()) < 6:
             return False
         
         #check if there are not to many roles selected for the selected chat
@@ -273,6 +284,19 @@ class GUI(Tk):
 
         return True
 
+    def login_succes(self):
+        self.b_login.config(bg = "#40FF00")
+        self.fill_chatid()
+        first = self.sk.user.name.first
+        first = first if first else ""
+        last = self.sk.user.name.last
+        last = last if last else ""
+        name = first + " " + last
+        self.l_sk.config(text = ("You are loged in as " + name + " (" + self.sk.user.id + ")"))
+        try:
+            self.w_log.destroy()
+        except:
+            pass
 
     # other functions
     def get_chatid(self):
@@ -285,7 +309,7 @@ class GUI(Tk):
         while not self.lb_chats.get("end") == "":
             self.lb_chats.delete("end")
 
-        self.d_chats = dict_chats()
+        self.d_chats = self.dict_chats()
         for chat in list(self.d_chats.keys()):
             self.lb_chats.insert("end", chat)
 
@@ -312,11 +336,11 @@ class GUI(Tk):
         else:
             return "you are not yet loged in to Skype!"
 
-    def w_run():
-        self.wrun = Toplevel(self)
-        self.wrun.title("Skype-Werewolf - the game is on")
-        self.wrun.grab_set()
-        Label(self.wrun, text = "the game is now running, so go to skype and play." +
+    def start_w_run(self):
+        self.w_run = Toplevel(self)
+        self.w_run.title("Skype-Werewolf - the game is on")
+        self.w_run.grab_set()
+        Label(self.w_run, text = "the game is now running, so go to Skype and play." +
               "\n!!!!Leave this window open!!!!").pack()
     
     @staticmethod
@@ -329,7 +353,7 @@ class GUI(Tk):
 #  zum login
 class TlLog(Toplevel):
     def __init__(self, root):
-        super.__init__(self, root)
+        super().__init__(root)
         self.title("Skype-Werewolf - login")
         self.grab_set()
         self.root = root
@@ -371,27 +395,96 @@ class TlLog(Toplevel):
 # start from Backup window
 class TlBkp(Toplevel):
     def __init__(self, root):
-        super.__init__(self, root) 
+        super().__init__(root) 
         self.root = root
-        self.wbkp.title("Skype-Werewolf - restart from backup")
+        self.title("Skype-Werewolf - restart from backup")
         self.grab_set()
 
+        # login to Skype
+        self.b_login = Button(self, text = "login Skype", 
+                              bg = "#FF0040", command = self.click_b_login)
+        self.b_login.grid(row = 0)
+        self.l_sk = Label(self, text = "You are not loged in!")
+        self.l_sk.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
+        self.check_login()
+
+        # get the bkp file
         Label(self, text = "").grid(row = 0)
         Label(self, text = "select the Backup file to reload from").grid(row = 1)
-        self.ebkp_file = Entry(self, validate = "focusout", 
-                        validatecommand = root.check_ebkp_dir, width = 60)
-        self.ebkp_file.grid(row = 1, column = 1, columnspan = 4)
+        self.e_bkp_file = Entry(self, validate = "focusout", 
+                        validatecommand = self.check_e_bkp_file, width = 60)
+        self.e_bkp_file.grid(row = 1, column = 1, columnspan = 4)
         Button(self, text = "get file", 
-            command = root.get_bkp_file).grid(row = 1, column = 6)
+            command = self.get_bkp_file).grid(row = 1, column = 6)
 
         Button(self, text = "restart from Backup", 
                command = self.restart_bkp).grid(row = 3, column = 1)
 
     def restart_bkp(self):
-        if not self.check_ebkp_file():
-            file = self.ebkp_file.get()
-            self.game = Game.load_bkp(file)
-            self.game.continue_bkp()
+        if not self.check_e_bkp_file():
+            file = self.e_bkp_file.get()
+            try:
+                self.game = Game.load_bkp(file)
+                self.game.sk = self.root.sk
+                self.game.continue_bkp()
+            except:
+                self.root.w_error("Something went wrong, \n" + 
+                                "please check if you are loged in to Skype in the main window")
 
+    def check_e_bkp_file(self):
+        bkp_file = self.e_bkp_file.get()
 
+        if bkp_file[-4:-1]==".dat":
+            self.e_bkp_file.delete(len(bkp_file)-4, END)
+        else:
+            bkp_file += ".dat"
 
+        if os.path.isfile(bkp_file):
+            self.e_bkp_file.config(bg = "#FFFFFF")
+            return True
+        else:
+            self.e_bkp_file.config(bg = "#F78181")
+            return False
+
+    def get_bkp_file(self):
+        file = filedialog.askopenfilename(filetypes = (("Backup file", "*.dat"),))
+        if os.path.isfile(file):
+            file = file[0:-4] # delete ending
+            self.e_bkp_file.delete(0, END)
+            self.e_bkp_file.insert(0, file)
+
+    def click_b_login(self):
+        self.w_log = TlLog(self)
+        self.w_log.grab_set()
+
+    def check_login(self):
+        if hasattr(self.root, "sk"):
+            if self.root.sk.conn.connected:
+                self.sk = self.root.sk
+                self.login_succes()
+                return True
+            else:
+                return False
+
+    def login_succes(self):
+        #give sk to root
+        self.root.sk = self.sk
+        self.root.login_succes()
+
+        #set login succes for self
+        self.b_login.config(bg = "#40FF00")
+        first = self.root.sk.user.name.first
+        first = first if first else ""
+        last = self.root.sk.user.name.last
+        last = last if last else ""
+        name = first + " " + last
+        self.l_sk.config(text = ("You are loged in as " + name + 
+                                 " (" + self.root.sk.user.id + ")"))
+
+        try:
+            self.w_log.destroy()
+        except:
+            pass
+
+#root = GUI()
+#root.mainloop()

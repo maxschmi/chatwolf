@@ -41,7 +41,7 @@ class Role(object):
     """Main class for the roles.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -51,7 +51,7 @@ class Role(object):
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
 
-    role = "not set"
+    name ="not set"
     group = "not set"
 
     def __init__(self, player, game):
@@ -78,7 +78,7 @@ class Role(object):
             for pl in self.players:
                 player_ids.append(pl.id)
             self.chatid = self.game.sk.chats.create(player_ids).id
-            self.game.sk.chats[self.chatid].setTopic(self.role + "_group")
+            self.game.sk.chats[self.chatid].setTopic(self.name + "_group")
         else:
             self.chatid = self.players[0].chatid
         self.chat = self.game.sk.chats[self.chatid]
@@ -90,7 +90,7 @@ class Role(object):
         
     def greeting(self):
         """Inform players about their role."""
-        self.chat.sendMsg(self.game.msg("greeting_"+ self.role.lower()))
+        self.chat.sendMsg(self.game.msg("greeting_"+ self.name.lower()))
 
     def night(self, nightactions):
         """Do the corresponding night phase.
@@ -115,7 +115,7 @@ class Role(object):
 
     def msg_group_night(self):
         """Send a notification to the group chat, which role got called."""        
-        self.game.chat.sendMsg("I call the {0}".format(self.role))
+        self.game.chat.sendMsg("I call the {0}".format(self.name))
         # test if a player of the role is still alive
         test_alive = False
         for p in self.players:
@@ -134,7 +134,7 @@ class Werewolf(Role):
     Class of the werewolf role.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -144,7 +144,7 @@ class Werewolf(Role):
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """  
 
-    role = "Werewolf"
+    name ="Werewolf"
     group = "Werewolf"
     
     def night(self, nightactions):
@@ -157,7 +157,7 @@ class Werewolf(Role):
         """
 
         self.msg_group_night()
-        self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
+        self.chat.sendMsg(self.game.msg("night_"+ self.name.lower()))
         self.chat.sendMsg(nightactions.alive_string)
         id = self.skc.ask("kill", nightactions.alive)
         nightactions.kill(id)
@@ -174,7 +174,7 @@ class Villager(Role):
     """Class for the Villager role.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -184,14 +184,14 @@ class Villager(Role):
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
 
-    role = "Villager"
+    name = "Villager"
     group = "Villager"
 
 class Amor(Villager):
     """Class for the Amor role.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -201,7 +201,7 @@ class Amor(Villager):
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
 
-    role = "Amor"
+    name ="Amor"
 
     def greeting(self):
         """inform player about their role and give amor the oportunity to throw his arrow"""
@@ -222,7 +222,7 @@ class Prostitute(Villager):
     """Class for the Prostitute role.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -232,7 +232,7 @@ class Prostitute(Villager):
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
 
-    role = "Prostitute"
+    name ="Prostitute"
 
     def night(self, nightactions):
         """Do the Prostetutes night phase.
@@ -244,7 +244,7 @@ class Prostitute(Villager):
         """
 
         self.msg_group_night()
-        self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
+        self.chat.sendMsg(self.game.msg("night_"+ self.name.lower()))
         self.chat.sendMsg(nightactions.alive_string)
         id = self.skc.ask("visit", nightactions.alive)
         if not id == 0:
@@ -258,7 +258,7 @@ class Witch(Villager):
     """Class for the Witch role.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -272,7 +272,7 @@ class Witch(Villager):
                          False: the witchs elixier got already used
     """ 
     
-    role = "Witch"
+    name ="Witch"
     
     def greeting(self):
         """Inform player about their role and initialize the poison and elixier."""
@@ -292,7 +292,7 @@ class Witch(Villager):
         """
 
         self.msg_group_night()
-        self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()) % 
+        self.chat.sendMsg(self.game.msg("night_"+ self.name.lower()) % 
                           {"elixier": int(self.elixier), 
                            "poison": int(self.poison)})
         
@@ -337,7 +337,7 @@ class Visionary(Villager):
     Class for the Visionary role.
 
     Attributes:
-        role (str): the name of the role
+        name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
@@ -347,7 +347,7 @@ class Visionary(Villager):
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
     
-    role = "Visionary"
+    name ="Visionary"
 
     def night(self, nightactions):
         """Do the visionarys night phase.
@@ -360,7 +360,7 @@ class Visionary(Villager):
         """
 
         self.msg_group_night()
-        self.chat.sendMsg(self.game.msg("night_"+ self.role.lower()))
+        self.chat.sendMsg(self.game.msg("night_"+ self.name.lower()))
         self.chat.sendMsg(nightactions.alive_string)
         id = self.skc.ask("see", nightactions.alive)
         if not id == 0:
