@@ -28,10 +28,13 @@
   <ItemGroup>
     <Compile Include="chatwolf\game.py" />
     <Compile Include="chatwolf\gui.py" />
+    <Compile Include="chatwolf\__main__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="setup.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="various_scripts\module1.py">
+    <Compile Include="various_scripts\docblockr-to-google-format.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="various_scripts\start_window.py" />
@@ -62,10 +65,47 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="chatwolf\" />
+    <Folder Include="chatwolf\data\" />
+    <Folder Include="chatwolf\data\messages\" />
+    <Folder Include="chatwolf\data\messages\en\" />
     <Folder Include="chatwolf\__pycache__\" />
     <Folder Include="various_scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chatwolf\data\conf.json" />
+    <Content Include="chatwolf\data\icon.ico" />
+    <Content Include="chatwolf\data\icon.png" />
+    <Content Include="chatwolf\data\messages\en\ask.txt" />
+    <Content Include="chatwolf\data\messages\en\day_end.txt" />
+    <Content Include="chatwolf\data\messages\en\day_killed.txt" />
+    <Content Include="chatwolf\data\messages\en\day_start_all.txt" />
+    <Content Include="chatwolf\data\messages\en\end_intro.txt" />
+    <Content Include="chatwolf\data\messages\en\end_love.txt" />
+    <Content Include="chatwolf\data\messages\en\end_noone.txt" />
+    <Content Include="chatwolf\data\messages\en\end_villager.txt" />
+    <Content Include="chatwolf\data\messages\en\end_werewolfs.txt" />
+    <Content Include="chatwolf\data\messages\en\error_request.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_all.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_all_roles.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_amor.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_prostitute.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_start10s.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_villager.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_visionary.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_werewolf.txt" />
+    <Content Include="chatwolf\data\messages\en\greeting_witch.txt" />
+    <Content Include="chatwolf\data\messages\en\night_prostitute.txt" />
+    <Content Include="chatwolf\data\messages\en\night_resume.txt" />
+    <Content Include="chatwolf\data\messages\en\night_sleep.txt" />
+    <Content Include="chatwolf\data\messages\en\night_visionary.txt" />
+    <Content Include="chatwolf\data\messages\en\night_werewolf.txt" />
+    <Content Include="chatwolf\data\messages\en\night_witch.txt" />
+    <Content Include="chatwolf\data\messages\en\night_witch_kill.txt" />
+    <Content Include="chatwolf\data\messages\en\night_witch_kill_list.txt" />
+    <Content Include="chatwolf\data\messages\en\night_witch_noone.txt" />
+    <Content Include="chatwolf\data\messages\en\night_witch_save.txt" />
+    <Content Include="chatwolf\data\messages\en\player_arrow.txt" />
+    <Content Include="chatwolf\data\messages\en\welcome_player.txt" />
     <Content Include="chatwolf\__pycache__\game.cpython-37.pyc" />
     <Content Include="chatwolf\__pycache__\start_console.cpython-37.pyc" />
     <Content Include="chatwolf\__pycache__\start_manualy.cpython-37.pyc" />
