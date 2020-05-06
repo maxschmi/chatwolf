@@ -37,7 +37,7 @@ conf_json = open("chatwolf\\data\\conf.json", "w")
 conf = json.load(conf_json)
 
 # create directories if not yet done
-if not conf["is_dir_created"] or os.path.isdir(:
+if not conf["is_dir_created"]:
     dir_main = os.getenv('LOCALAPPDATA') + "\\chatwolf\\"
     log_dir = dir_main + "\\logs"
     bkp_dir = dir_main + "\\bkp"
