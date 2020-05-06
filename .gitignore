@@ -348,3 +348,4 @@ healthchecksdb
 /chatwolf/data/conf.json
 chatwolf.pyproj
 chatwolf.sln
+conf.json

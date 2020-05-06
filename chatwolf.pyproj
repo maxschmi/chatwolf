@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="chatwolf\data\conf.json" />
+    <Content Include="chatwolf\data\conf_root.json" />
     <Content Include="chatwolf\data\icon.ico" />
     <Content Include="chatwolf\data\icon.png" />
     <Content Include="chatwolf\data\messages\en\ask.txt" />

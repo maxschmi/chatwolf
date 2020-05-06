@@ -1,1 +1,0 @@
-this is the folder to save the temporary files, like the token for the login
