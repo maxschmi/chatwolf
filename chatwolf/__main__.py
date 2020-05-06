@@ -33,16 +33,25 @@ import json
 import os
 
 #iport config
-conf_json = open("chatwolf\\data\\conf.json")
+conf_json = open("chatwolf\\data\\conf.json", "w")
 conf = json.load(conf_json)
 
 # create directories if not yet done
-if not conf["is_dir_created"]:
+if not conf["is_dir_created"] or os.path.isdir(:
     dir_main = os.getenv('LOCALAPPDATA') + "\\chatwolf\\"
     log_dir = dir_main + "\\logs"
     bkp_dir = dir_main + "\\bkp"
-    os.mkdir(log_dir)
-    os.mkdir(bkp_dir)
+    if not os.path.isdir(dir_main): os.mkdir(dir_main)
+    if not os.path.isdir(log_dir): os.mkdir(log_dir)
+    if not os.path.isdir(bkp_dir): os.mkdir(bkp_dir)
+    conf["main_dir"] = main_dir
     conf["log_dir"] = log_dir
     conf["bkp_dir"] = bkp_dir
     conf["is_dir_"] = True
+    json.dump(conf, conf_json)
+
+conf_json.close()
+
+# delete old logs and backups
+for file in os.listdir(conf["log_dir"]):
+    os.path.getatime(conf["log_dir"] + "\\" + file)

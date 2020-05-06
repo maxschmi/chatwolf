@@ -1,9 +1,11 @@
 {
   "is_dir_created": false,
-  "log_dir": "logs",
-  "bkp_dir": "bkp",
+  "main_dir": "",
+  "log_dir": "",
+  "bkp_dir": "",
   "days_keep_log": 30,
   "days_keep_bkp": 7,
   "lang": "en",
-  "do_debug": true
+  "do_debug": true,
+  "is_dir_": true
 }

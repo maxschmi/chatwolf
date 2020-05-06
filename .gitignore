@@ -345,3 +345,6 @@ healthchecksdb
 /error_messages-to-solve
 /.vscode
 /conv
+/chatwolf/data/conf.json
+chatwolf.pyproj
+chatwolf.sln
