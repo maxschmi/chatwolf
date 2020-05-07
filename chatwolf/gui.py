@@ -27,8 +27,9 @@
 #                                                                       #
 #-----------------------------------------------------------------------#
 
-# own libraries
+# own libraries and configurations
 from .game import Game
+from ._conf import _conf
 
 # other libraries
 from skpy import Skype, SkypeAuthException, SkypeGroupChat
@@ -36,6 +37,9 @@ import os
 from tkinter import *
 from tkinter import messagebox, filedialog
 from tkinter.ttk import Notebook, Frame
+import json
+from pkg_resources import resource_filename as res_file
+from pkg_resources import resource_string as res_str
 
 # class definitions
 #------------------
@@ -43,25 +47,28 @@ from tkinter.ttk import Notebook, Frame
 class GUI(Tk):
     def __init__(self):
         super().__init__()
-        self.iconphoto(True, PhotoImage(master = self, file = "data/icon.png"))
+        self.iconphoto(True, 
+                       PhotoImage(master = self, 
+                                  file = res_file("chatwolf", 
+                                                  "/data/icon.png")))
         self.title("Skype-Werewolf - game properties")
         self.tab_parent = Notebook(self)
 
         # main game settings
-        self.tabgame = Frame(self.tab_parent)
+        self.tab_game = Frame(self.tab_parent)
     
         # skype login
-        self.b_login = Button(self.tabgame, text = "login Skype", 
+        self.b_login = Button(self.tab_game, text = "login Skype", 
                               bg = "#FF0040", command = self.click_b_login)
         self.b_login.grid(row = 0)
-        self.l_sk = Label(self.tabgame, text = "You are not loged in!")
+        self.l_sk = Label(self.tab_game, text = "You are not loged in!")
         self.l_sk.grid(row = 0, column = 1, columnspan = 4, sticky = "w")
 
         #select chat
-        Label(self.tabgame, text = "Select your groupchat:").grid(row = 1)
+        Label(self.tab_game, text = "Select your groupchat:").grid(row = 1)
 
-        Label(self.tabgame, text = " "*100).grid(row = 2, column = 3) # to expand the lb_chats
-        self.fr_chats = Frame(self.tabgame, height = 800, width = 1000)
+        Label(self.tab_game, text = " "*100).grid(row = 2, column = 3) # to expand the lb_chats
+        self.fr_chats = Frame(self.tab_game, height = 800, width = 1000)
         self.lb_chats = Listbox(self.fr_chats, selectmode = "single", 
                                 height = 5, width = 100)
         lb_chats_vsc = Scrollbar(self.lb_chats, orient="vertical", 
@@ -76,98 +83,106 @@ class GUI(Tk):
         self.fr_chats.grid(row = 1, column = 1, columnspan = 5, sticky = "nwse")
 
         #roles
-        Label(self.tabgame, text="number of werewolfs").grid(row=2)
-        self.e_numwerewolfs = Entry(self.tabgame, validate= "focusout", 
+        Label(self.tab_game, text="number of werewolfs").grid(row=2)
+        self.e_numwerewolfs = Entry(self.tab_game, validate= "focusout", 
                                     validatecommand= self.check_e_numwerewolfs)
         self.e_numwerewolfs.grid(row=2, column=1, sticky = "w")
 
-        Label(self.tabgame, text = "select your roles:").grid(row = 3, column = 0, columnspan = 2, sticky = "w")
+        Label(self.tab_game, text = "select your roles:").grid(row = 3, column = 0, columnspan = 2, sticky = "w")
 
         self.amor = BooleanVar()
-        self.b_amor = Checkbutton(self.tabgame, 
+        self.b_amor = Checkbutton(self.tab_game, 
                                   text="amor", 
                                   variable = self.amor)
         self.b_amor.grid(row=4, column = 0, sticky = "w")
 
         self.witch = BooleanVar()
-        self.b_witch = Checkbutton(self.tabgame, 
+        self.b_witch = Checkbutton(self.tab_game, 
                                    text = "witch", 
                                    variable = self.witch)
         self.b_witch.grid(row=5, column = 0, sticky = "w")
 
         self.visionary = BooleanVar()
-        self.b_visionary = Checkbutton(self.tabgame, 
+        self.b_visionary = Checkbutton(self.tab_game, 
                                        text="visionary", 
                                        variable = self.visionary)
         self.b_visionary.grid(row=6, column = 0, sticky = "w")
 
         self.prostitute = BooleanVar()
-        self.b_prostitute = Checkbutton(self.tabgame, 
+        self.b_prostitute = Checkbutton(self.tab_game, 
                                         text="prostitute", 
                                         variable = self.prostitute)
         self.b_prostitute.grid(row=7, column = 0, sticky = "w")
     
         #start button
-        self.b_start = Button(self.tabgame, text = "start the game", 
+        self.b_start = Button(self.tab_game, text = "start the game", 
                               command = self.start_game)
         self.b_start.grid(row = 8, column = 1)
 
         # other settings tab
         #-------------------
-        self.tabexpert = Frame(self.tab_parent)
-        self.tabexpert.pack()
-        Label(self.tabexpert, text = "other settings:").grid(row = 0, columnspan = 2)
+        self.tab_expert = Frame(self.tab_parent)
+        self.tab_expert.pack()
+        Label(self.tab_expert, text = "other settings:").grid(row = 0, columnspan = 2)
 
         #Language
         self.lang_dic = {"English": "en", "Deutsch": "de"}
-        Label(self.tabexpert, text="language: ").grid(row=1, column = 0)
-        self.sb_lang= Spinbox(self.tabexpert, values = tuple(self.lang_dic.keys()))
+        for key, value in self.lang_dic.items(): 
+            if value == _conf["lang"]: 
+                def_lang = self.lang_dic[key]
+
+        Label(self.tab_expert, text="language: ").grid(row=1, column = 0)
+        self.sb_lang= Spinbox(self.tab_expert, values = tuple(self.lang_dic.keys()),
+                              textvariable = def_lang)
         self.sb_lang.grid(row=1, column = 1, sticky = "w")
 
         #waiting multiplier
-        Label(self.tabexpert, text="waiting multiplier: ").grid(row=2, column = 0, sticky = "w")
-        self.e_wait_mult = Entry(self.tabexpert, validate= "focusout", 
+        Label(self.tab_expert, text="waiting multiplier: ").grid(row=2, column = 0, sticky = "w")
+        self.e_wait_mult = Entry(self.tab_expert, validate= "focusout", 
                                  validatecommand= self.check_e_wait_mult)
         self.e_wait_mult.insert(0, "1")
         self.e_wait_mult.grid(row=2, column = 1, sticky = "e")
 
         #directory for the logging file
-        Label(self.tabexpert, text="directory for logging file: ").grid(row=3, column = 0)
-        self.log_dir = os.getcwd() + "\\logs"
-        self.e_log_dir = Entry(self.tabexpert, validate= "focusout", 
+        Label(self.tab_expert, text="directory for logging file: ").grid(row=3, column = 0)
+        self.e_log_dir = Entry(self.tab_expert, validate= "focusout", 
                                validatecommand= self.check_e_log_dir, width = 60)
-        self.e_log_dir.insert(0, self.log_dir)
+        self.e_log_dir.insert(0, _conf["log_dir"])
         self.e_log_dir.grid(row = 3, column = 1, columnspan = 4)
-        self.b_get_log_dir = Button(self.tabexpert, text = "get directory", 
+        self.b_get_log_dir = Button(self.tab_expert, text = "get directory", 
                                     command = lambda: self.get_dir(self.e_log_dir))
         self.b_get_log_dir.grid(row=3, column = 5)
 
         #directory for backup file:
-        Label(self.tabexpert, text="directory for backup file: ").grid(row=4, column = 0)
+        Label(self.tab_expert, text="directory for backup file: ").grid(row=4, column = 0)
         self.bkp_dir = os.getcwd() + "\\bkp"
-        self.e_bkp_dir = Entry(self.tabexpert, validate= "focusout", validatecommand= self.check_e_bkp_dir, width = 60)
-        self.e_bkp_dir.insert(0, self.bkp_dir)
+        self.e_bkp_dir = Entry(self.tab_expert, validate= "focusout", validatecommand= self.check_e_bkp_dir, width = 60)
+        self.e_bkp_dir.insert(0, _conf["bkp_dir"])
         self.e_bkp_dir.grid(row = 4, column = 1, columnspan = 4)
-        self.b_get_bkp_dir = Button(self.tabexpert, text = "get directory", command = lambda: self.get_dir(self.e_bkp_dir))
+        self.b_get_bkp_dir = Button(self.tab_expert, text = "get directory", command = lambda: self.get_dir(self.e_bkp_dir))
         self.b_get_bkp_dir.grid(row=4, column = 5)
 
         #Debug logging file yes/no
         self.do_debug = BooleanVar()
-        self.do_debug.set(True)
-        self.cb_do_debug = Checkbutton(self.tabexpert, text = "write a debug logging file", variable = self.do_debug)
+        self.do_debug.set(_conf["do_debug"])
+        self.cb_do_debug = Checkbutton(self.tab_expert, text = "write a debug logging file", variable = self.do_debug)
         self.cb_do_debug.grid(row = 5, column = 0, columnspan = 2)
 
         #restart from Backup
-        self.b_restart_bkp = Button(self.tabexpert, text = "restart from Backup", 
+        self.b_restart_bkp = Button(self.tab_expert, text = "restart from Backup", 
                                     command = self.click_b_bkp)
         self.b_restart_bkp.grid(row = 7, column = 1)
 
-        #About page
-        #----------
-        self.tababout = Frame(self.tab_parent)
+        #info
+        self.tab_info = Frame(self)
+        self.b_about = Button(self.tab_info, text = "About",
+                             command = self.click_about)
+        self.b_about.pack()
+
         #initialise tabs
-        self.tab_parent.add(self.tabgame, text = "main")
-        self.tab_parent.add(self.tabexpert, text ="expert")
+        self.tab_parent.add(self.tab_game, text = "main")
+        self.tab_parent.add(self.tab_expert, text ="expert")
+        self.tab_parent.add(self.tab_info, text = "info")
         self.tab_parent.pack(expand=1, fill='both')
 
     def click_b_login(self):
@@ -177,6 +192,9 @@ class GUI(Tk):
     def click_b_bkp(self):
         self.w_bkp = TlBkp(self)
         self.w_bkp.grab_set()
+
+    def click_about(self):
+        os.startfile(res_file("chatwolf", "data/about.html"))
 
     def start_game(self):
         if self.check_start():
@@ -193,8 +211,6 @@ class GUI(Tk):
                             do_debug = self.do_debug.get())
 
             self.start_w_run()
-            if hasattr(self, "wbkp"): 
-                self.wbkp.destroy()
 
             try:
                 self.game.start()
@@ -202,7 +218,7 @@ class GUI(Tk):
                 self.w_error("There was an error, please load the backup and restart." +
                              "\nTo get more information about the error, please read the documentations!")
 
-            self.wrun.destroy()
+            self.w_run.destroy()
 
     def get_dir(self, entry_widget):
         dir = filedialog.askdirectory()
@@ -339,9 +355,9 @@ class GUI(Tk):
     def start_w_run(self):
         self.w_run = Toplevel(self)
         self.w_run.title("Skype-Werewolf - the game is on")
-        self.w_run.grab_set()
         Label(self.w_run, text = "the game is now running, so go to Skype and play." +
               "\n!!!!Leave this window open!!!!").pack()
+        self.w_run.grab_set()
     
     @staticmethod
     def w_error(msg):
@@ -368,8 +384,10 @@ class TlLog(Toplevel):
         self.pwd = Entry(self, show = "*")
         self.pwd.grid(row = 2, column = 1)
 
-        Button(self, text = "login", command = self.login_skype).grid(row=3, column=0)
-        Button(self, text = "try token", command = self.login_skype_token).grid(row=3, column=1)
+        self.b_login = Button(self, text = "login", command = self.login_skype)
+        self.b_login.grid(row=3, column=0)
+        self.b_token = Button(self, text = "try token", command = self.login_skype_token)
+        self.b_token.grid(row=3, column=1)
 
     def login_skype(self):
         try:
@@ -383,7 +401,7 @@ class TlLog(Toplevel):
 
     def login_skype_token(self):
         try:
-            self.root.sk = Skype(tokenFile = "temp/token.txt")
+            self.root.sk = Skype(tokenFile = _conf["temp_dir"] + "/token.txt")
             if self.root.sk.conn.connected:
                 self.root.login_succes()
             else:
@@ -486,5 +504,6 @@ class TlBkp(Toplevel):
         except:
             pass
 
-#root = GUI()
-#root.mainloop()
+if __name__ == "__main__":
+    root = GUI()
+    root.mainloop()

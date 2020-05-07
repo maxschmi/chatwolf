@@ -27,11 +27,13 @@
 #                                                                       #
 #-----------------------------------------------------------------------#
 
+#own libraries
+from ._conf import _conf
+
 # other libraries
 from skpy import SkypeEventLoop, SkypeNewMessageEvent
 import re
 import time
-
 
 # Skype message waiting class
 # --------------------------
@@ -45,7 +47,7 @@ class SkypeCommands(SkypeEventLoop):
         chat (SkypeChat): the group chat
     """
 
-    def __init__(self, chatid, game, tokenFile = "temp/token.txt"):
+    def __init__(self, chatid, game, tokenFile = _conf["temp_dir"] + "/token.txt"):
         """Initialize the object.
 
         Args:

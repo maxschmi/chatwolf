@@ -338,14 +338,15 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/logs
-/temp
-/bkp
+
+#diferent folders and directories
 /env
 /error_messages-to-solve
 /.vscode
 /conv
 /chatwolf/data/conf.json
+/chatwolf/data/conf
 chatwolf.pyproj
 chatwolf.sln
 conf.json
+/various_scripts

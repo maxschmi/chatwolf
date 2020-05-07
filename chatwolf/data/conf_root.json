@@ -7,6 +7,5 @@
   "days_keep_bkp": 7,
   "days_keep_temp":  2,
   "lang": "en",
-  "do_debug": true,
-  "is_dir_": true
+  "do_debug": true
 }

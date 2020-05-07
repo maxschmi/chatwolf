@@ -20,62 +20,19 @@
 #                                                                       #
 #You should have received a copy of the GNU General Public License      #
 #along with this program.  If not, see <https://www.gnu.org/licenses/>. #
-
+#
 #-----------------------------------------------------------------------#
 #                                                                       #
-#                         main Game classes                             #
+#                 get the configuration file                            #
 #                                                                       #
 #-----------------------------------------------------------------------#
 
-
-#libraries
+#other libraries
 import json
-import os
-import time
+from os import path
+from pkg_resources import resource_filename as res_file
 
 #import config
-try:
-    conf_json = open("chatwolf\\data\\conf.json", "r")
-except:
-    conf_json = open("chatwolf\\data\\conf_root.json", "r")
-
-conf = json.load(conf_json)
+conf_json = open(res_file(__name__, "/data/conf.json"), "r")
+_conf = json.load(conf_json)
 conf_json.close()
-
-# create directories if not yet done
-if not conf["is_dir_created"]:
-    main_dir = os.getenv('LOCALAPPDATA') + "\\chatwolf\\"
-    log_dir = main_dir + "\\logs"
-    bkp_dir = main_dir + "\\bkp"
-    temp_dir = main_dir + "\\temp"
-    if not os.path.isdir(main_dir): os.mkdir(main_dir)
-    if not os.path.isdir(log_dir): os.mkdir(log_dir)
-    if not os.path.isdir(bkp_dir): os.mkdir(bkp_dir)
-    if not os.path.isdir(temp_dir): os.mkdir(temp_dir)
-    conf["main_dir"] = main_dir
-    conf["log_dir"] = log_dir
-    conf["bkp_dir"] = bkp_dir
-    conf["temp_dir"] = temp_dir
-    conf["is_dir_created"] = True
-    conf_json = open("chatwolf\\data\\conf.json", "w")
-    json.dump(conf, conf_json)
-    conf_json.close()
-
-# delete old logs, backups and tokens
-limit_time = time.time() - (86400 * conf["days_keep_log"])
-for file in os.listdir(conf["log_dir"]):
-    file = conf["log_dir"] + "\\" + file
-    if os.path.getmtime(file) > limit_time:
-        os.remove(file)
-
-limit_time = time.time() - (86400 * conf["days_keep_bkp"])
-for file in os.listdir(conf["bkp_dir"]):
-    file = conf["bkp_dir"] + "\\" + file
-    if os.path.getmtime(file) > limit_time:
-        os.remove(file)
-
-limit_time = time.time() - (86400 * conf["days_keep_temp"])
-for file in os.listdir(conf["temp_dir"]):
-    file = conf["temp_dir"] + "\\" + file
-    if os.path.getmtime(file) > limit_time:
-        os.remove(file)

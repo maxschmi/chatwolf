@@ -33,6 +33,7 @@ from .player import Player
 from .roles import Role, Werewolf, Villager, Witch, Visionary, Amor, Prostitute
 from .skypecommands import SkypeCommands
 from .nightactions import Nightactions
+from ._conf import _conf
 
 #other libraries
 from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent
@@ -42,6 +43,9 @@ import random as rd
 import logging
 import datetime
 import shelve
+import json
+from pkg_resources import resource_string as res_str
+from pkg_resources import resource_filename as res_file
 
 # game class definition
 #----------------------
@@ -75,8 +79,9 @@ class Game(object):
 
     def __init__(self, sk, chatid, numwerewolfs, 
                  amor = False, witch = False, prostitute = False,
-                 visionary = False, lang = "en", wait_mult = 1, 
-                 log_dir = "logs", bkp_dir = "bkp", do_debug = True):
+                 visionary = False, lang = _conf["lang"], wait_mult = 1, 
+                 log_dir = _conf["log_dir"], bkp_dir = _conf["bkp_dir"], 
+                 do_debug = _conf["do_debug"]):
         """Initialize the game.
 
         Does:
@@ -112,7 +117,7 @@ class Game(object):
         self.sk = sk
         self.chatid = chatid
         self.chat = sk.chats[chatid]
-        self.sk.conn.setTokenFile("temp/token.txt")
+        self.sk.conn.setTokenFile(_conf["temp_dir"] +"/token.txt")
         self.sk.conn.writeToken()
         self.skc = SkypeCommands(chatid, self)
         self.wait_mult = wait_mult
@@ -151,7 +156,7 @@ class Game(object):
         #Roles
         self.numroles = numwerewolfs + amor + witch + prostitute + visionary
         if self.numroles > len(player_ids):
-            raise ValueError('You entered to many roles for the amount of players')
+            raise ValueError('You entered too many roles for the amount of players')
         self.numwerewolfs = numwerewolfs
         self.amor = amor
         self.witch = witch
@@ -162,8 +167,9 @@ class Game(object):
         self.nd = 0 # number of days played
         self.nn = 0 # number of nights played
 
-        #other arguments
+        #other arguments and config
         self.bkp_dir = bkp_dir
+        self.save_config()
 
     def start(self):
         """Start the game!
@@ -475,11 +481,11 @@ class Game(object):
 
         return ls
 
-    def msg(self, filepath, line = "all"):
+    def msg(self, filename, line = "all"):
         """Get the coresponding message in the selected language.
 
         Args:
-            filepath (str): the name of the message file, 
+            filename (str): the name of the message file, 
                           e.g. "greeting_all" for the first group message, 
                           this file needs to exist at least in the "msg/en/" folder
 
@@ -490,9 +496,10 @@ class Game(object):
         Returns:
             str: message in the selected language (self.lang) or in english if there is no translation
         """
-
         try:
-            file = open("messages/"+self.lang+"/"+filepath+".txt", "r")
+            file = open(res_file("chatwolf", 
+                           "data/messages/"+self.lang+"/"+
+                           filename+".txt"), "r")
             if line == "all":
                 msg = file.read()
             elif type(line) == int:
@@ -501,7 +508,9 @@ class Game(object):
             return msg
         except FileNotFoundError:
             try:
-                file = open("messages/en/"+filepath+".txt", "r")
+                file = open(res_file("chatwolf", 
+                               "data/messages/en/"+
+                               filename+".txt"), "r")
                 if line == "all":
                     msg = file.read()
                 elif type(line) == int:
@@ -511,7 +520,7 @@ class Game(object):
             except FileNotFoundError:
                 print("no such file defined in any language")
                 self.log.debug("the choosen message " + 
-                               filepath + "didn't exist")
+                               filename + " didn't exist")
 
     def bkp(self):
         """Backup the game."""
@@ -553,6 +562,14 @@ class Game(object):
             elif self.nd == self.nn:
                 self.nn -= 1
                 self.night()
+
+    def save_config(self):
+        _conf["do_debug"] = self.do_debug
+        _conf["log_dir"] = self.log_dir
+        _conf["bkp_dir"] = self.bkp_dir
+        _conf["do_debug"] = self.do_debug
+        json.dump(_conf, open(res_file("chatwolf", "/data/conf.json"), "w"))
+
 
 
 

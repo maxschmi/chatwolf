@@ -28,13 +28,19 @@
   <ItemGroup>
     <Compile Include="chatwolf\game.py" />
     <Compile Include="chatwolf\gui.py" />
-    <Compile Include="chatwolf\__main__.py">
+    <Compile Include="chatwolf\check_conf.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="chatwolf\_conf.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="setup.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="various_scripts\docblockr-to-google-format.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="various_scripts\start_package.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="various_scripts\start_window.py" />
@@ -68,14 +74,20 @@
     <Folder Include="chatwolf\data\" />
     <Folder Include="chatwolf\data\messages\" />
     <Folder Include="chatwolf\data\messages\en\" />
+    <Folder Include="chatwolf\scripts\" />
     <Folder Include="chatwolf\__pycache__\" />
     <Folder Include="various_scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chatwolf\data\conf.json" />
-    <Content Include="chatwolf\data\conf_root.json" />
-    <Content Include="chatwolf\data\icon.ico" />
-    <Content Include="chatwolf\data\icon.png" />
+    <Content Include="chatwolf\data\conf_root.json">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="chatwolf\data\icon.ico">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="chatwolf\data\icon.png">
+      <Publish>True</Publish>
+    </Content>
     <Content Include="chatwolf\data\messages\en\ask.txt" />
     <Content Include="chatwolf\data\messages\en\day_end.txt" />
     <Content Include="chatwolf\data\messages\en\day_killed.txt" />
