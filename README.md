@@ -19,10 +19,10 @@ Until now it only works on Skype, but maybe I will add other chat services.
 "Chatwolf" unofficial game to play the popular werewolf game on Skype
  Copyright (C) 2020 Max Schmit
 
-licensed with GPL-3.0-or-later
+[licensed with GPL-3.0-or-later](LICENSE.txt)
 
-# license of dependencies
-[here](Dependecies_Licenses.txt)
+# licenses of dependencies
+see [Dependencies_Licenses.txt](Dependecies_Licenses.txt)
 
 # more information
 you will find a complete documentation of the classes in doc\
