@@ -45,7 +45,10 @@ def check_conf():
 
     # create directories if not yet done
     if not conf["is_dir_created"]:
-        main_dir = os.getenv('LOCALAPPDATA') + "/chatwolf"
+        try:
+            main_dir = os.getenv('HOMEPATH') + "/chatwolf"
+        except:
+            main_dir = os.getcwd() + "/Userdata"
         log_dir = main_dir + "/logs"
         bkp_dir = main_dir + "/bkp"
         temp_dir = main_dir + "/temp"

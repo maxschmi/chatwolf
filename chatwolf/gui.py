@@ -45,7 +45,13 @@ from pkg_resources import resource_string as res_str
 #------------------
 
 class GUI(Tk):
+    """main class for the Graphical User interface
+
+    use GUI().mainloop() to start the GUI and play the game
+    """    
     def __init__(self):
+        """initializing the GUI object
+        """     
         super().__init__()
         self.iconphoto(True, 
                        PhotoImage(master = self, 

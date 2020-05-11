@@ -28,7 +28,7 @@
 
 # librarys
 from skpy import Skype, SkypeAuthException
-from chatwolf.game import *
+from chatwolf import Game
 from getpass import getpass, getuser
 
 # define functions
