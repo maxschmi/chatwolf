@@ -350,3 +350,6 @@ chatwolf.pyproj
 chatwolf.sln
 conf.json
 /various_scripts
+/build/CMakeFiles
+/build
+/Chatwolf.egg-info
