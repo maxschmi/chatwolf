@@ -33,6 +33,6 @@ from os import path
 from pkg_resources import resource_filename as res_file
 
 #import config
-conf_json = open(res_file(__name__, "/data/conf.json"), "r")
+conf_json = open(os.path.realpath(__name__) + "/data/conf.json"), "r")
 _conf = json.load(conf_json)
 conf_json.close()
