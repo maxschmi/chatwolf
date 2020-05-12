@@ -1,7 +1,7 @@
 ## Chatwolf
 Chatwolf is a small bot to play the popular Werewolf game in a group over a videochat.
 Until now it only works on Skype, but maybe I will add other chat services.
-
+[![Documentation Status](https://readthedocs.org/projects/chatwolf/badge/?version=latest)](https://chatwolf.readthedocs.io/en/latest/?badge=latest)
 # Rules
 Here you can find the basic rules in german language:
 [www.werwolfspielen.info](www.werwolfspielen.info)
