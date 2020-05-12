@@ -17,7 +17,7 @@ setup(name="Chatwolf",
       url="https://github.com/maxschmi/chatwolf",
       project_urls={ 
         'Github': 'https://github.com/maxschmi/chatwolf',
-        'Docs': ''},
+        'Docs': 'https://chatwolf.readthedocs.io'},
       entry_points={
         'console_scripts': ['chatwolf=chatwolf.__main__:main',
         ],},
