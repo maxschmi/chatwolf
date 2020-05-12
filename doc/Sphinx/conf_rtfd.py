@@ -13,9 +13,21 @@
 import os
 import sys
 from pathlib import Path
+print(os.path.abspath('.'))
+print(os.listdir(os.path.abspath('.')))
 chatwolf_path = Path(os.path.abspath('.')).parent.parent
+print(chatwolf_path)
+print(os.listdir(chatwolf_path))
 sys.path.insert(0, chatwolf_path)
 import sphinx_rtd_theme
+
+# get copies of docs from top
+top_files = ["Readme.md", "LICENSE.txt", "CHANGELOG.txt", "Dependecies_Licenses.txt"]
+for file_name in top_files:
+    cont = open(str(chatwolf_path) + "/" + file_name, "r").read()
+    file_build = open("build/" + file_name, "w")
+    file_build.write(cont)
+    file_build.close()
 
 # -- Project information -----------------------------------------------------
 
