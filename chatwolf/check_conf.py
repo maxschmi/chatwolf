@@ -61,7 +61,7 @@ def check_conf():
         conf["bkp_dir"] = bkp_dir
         conf["temp_dir"] = temp_dir
         conf["is_dir_created"] = True
-        conf_json = open(os.path.realpath(__name__) + "/data/conf.json", "w")
+        conf_json = open(os.path.dirname(os.path.realpath(__name__)) + "/data/conf.json", "w")
         json.dump(conf, conf_json)
         conf_json.close()
 
