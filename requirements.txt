@@ -1,2 +1,1 @@
 skpy
-tkinterhtml
