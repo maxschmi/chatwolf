@@ -13,7 +13,11 @@
 import os
 import sys
 from pathlib import Path
+print(os.path.abspath('.'))
+print(os.listdir(os.path.abspath('.')))
 chatwolf_path = Path(os.path.abspath('.')).parent.parent
+print(chatwolf_path)
+print(os.listdir(chatwolf_path))
 sys.path.insert(0, chatwolf_path)
 import sphinx_rtd_theme
 
