@@ -281,7 +281,7 @@ class GUI(Tk):
 
     def check_e_wait_mult(self):
         try:
-            int(self.e_wait_mult.get())
+            float(self.e_wait_mult.get())
             self.e_wait_mult.config(bg = "#FFFFFF")
             return True
         except ValueError:
