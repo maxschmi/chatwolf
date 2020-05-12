@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>chatwolf package &mdash; Chatwolf 0.1 documentation</title>
+  <title>chatwolf package &mdash; Chatwolf 0.1.0 documentation</title>
   
 
   
@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="chatwolf" href="modules.html" /> 
+    <link rel="next" title="license" href="license.html" />
+    <link rel="prev" title="Chatwolf" href="build/Readme.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,20 +82,17 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">intro</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">chatwolf</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">chatwolf package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.game">chatwolf.game module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.gui">chatwolf.gui module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.nightactions">chatwolf.nightactions module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.player">chatwolf.player module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#chatwolf-roles-module">chatwolf.roles module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf.skypecommands">chatwolf.skypecommands module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-chatwolf">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">code reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-chatwolf.game">chatwolf.game module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chatwolf.gui">chatwolf.gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chatwolf.player">chatwolf.player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chatwolf-roles-module">chatwolf.roles module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chatwolf.nightactions">chatwolf.nightactions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chatwolf.skypecommands">chatwolf.skypecommands module</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">license</a></li>
 </ul>
 
             
@@ -139,8 +137,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="modules.html">chatwolf</a> &raquo;</li>
         
       <li>chatwolf package</li>
     
@@ -751,138 +747,6 @@ start first day</p>
 <dt id="chatwolf.gui.TlLog.login_skype_token">
 <code class="sig-name descname">login_skype_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.TlLog.login_skype_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-chatwolf.nightactions">
-<span id="chatwolf-nightactions-module"></span><h2>chatwolf.nightactions module<a class="headerlink" href="#module-chatwolf.nightactions" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="chatwolf.nightactions.Nightactions">
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.nightactions.</code><code class="sig-name descname">Nightactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alive</span></em>, <em class="sig-param"><span class="n">game</span></em>, <em class="sig-param"><span class="n">noone</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Class to log all the actions that happen in the night and resume.</p>
-<dl class="py attribute">
-<dt id="chatwolf.nightactions.Nightactions.game">
-<code class="sig-name descname">game</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.game" title="Permalink to this definition">¶</a></dt>
-<dd><p>the main Game object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chatwolf.nightactions.Nightactions.alive">
-<code class="sig-name descname">alive</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.alive" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of players that are still alive</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of Players</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chatwolf.nightactions.Nightactions.alive_string">
-<code class="sig-name descname">alive_string</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.alive_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of players, that are still alive as “id: Name”
-id is place in alive list + 1</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chatwolf.nightactions.Nightactions.lskill">
-<code class="sig-name descname">lskill</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.lskill" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of one bool for every player if (s)he got killed in the night
-e.g. lskill[1] says if player[1] got killed</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chatwolf.nightactions.Nightactions.lstogether">
-<code class="sig-name descname">lstogether</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.lstogether" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of players ids that stayed together during the night.
-always as tuple of two ids, first one is the player who stays at home</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of tuple of int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chatwolf.nightactions.Nightactions.finish_night">
-<code class="sig-name descname">finish_night</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.finish_night" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finish the night and get the name(group) of the plaers that died.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A list of all the players that died this night as name(group)</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list of str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chatwolf.nightactions.Nightactions.get_killed_id">
-<code class="sig-name descname">get_killed_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.get_killed_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the id of the killed player.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>id of the killed player</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chatwolf.nightactions.Nightactions.kill">
-<code class="sig-name descname">kill</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.kill" title="Permalink to this definition">¶</a></dt>
-<dd><p>Kill a player.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>player_number</strong> (<em>[</em><em>type</em><em>]</em>) – number of the player in the alive_string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chatwolf.nightactions.Nightactions.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save a player.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>player_number</strong> (<em>[</em><em>type</em><em>]</em>) – number of the player in the alive_string</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chatwolf.nightactions.Nightactions.together">
-<code class="sig-name descname">together</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_home_number</span></em>, <em class="sig-param"><span class="n">player_visit_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.together" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set 2 people together for this night.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>player_home_number</strong> (<em>int</em>) – the number in the alive_string of the player, who’s at home</p></li>
-<li><p><strong>player_visit_number</strong> (<em>int</em>) – the number in the alive_string of the player, who’s visiting the other</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 
@@ -1906,6 +1770,138 @@ ask if he wants to kill someone, by using her poison</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-chatwolf.nightactions">
+<span id="chatwolf-nightactions-module"></span><h2>chatwolf.nightactions module<a class="headerlink" href="#module-chatwolf.nightactions" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="chatwolf.nightactions.Nightactions">
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.nightactions.</code><code class="sig-name descname">Nightactions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alive</span></em>, <em class="sig-param"><span class="n">game</span></em>, <em class="sig-param"><span class="n">noone</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to log all the actions that happen in the night and resume.</p>
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.game">
+<code class="sig-name descname">game</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.game" title="Permalink to this definition">¶</a></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.alive">
+<code class="sig-name descname">alive</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of players that are still alive</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Players</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.alive_string">
+<code class="sig-name descname">alive_string</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.alive_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of players, that are still alive as “id: Name”
+id is place in alive list + 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.lskill">
+<code class="sig-name descname">lskill</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.lskill" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of one bool for every player if (s)he got killed in the night
+e.g. lskill[1] says if player[1] got killed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.nightactions.Nightactions.lstogether">
+<code class="sig-name descname">lstogether</code><a class="headerlink" href="#chatwolf.nightactions.Nightactions.lstogether" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of players ids that stayed together during the night.
+always as tuple of two ids, first one is the player who stays at home</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of tuple of int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.finish_night">
+<code class="sig-name descname">finish_night</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.finish_night" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finish the night and get the name(group) of the plaers that died.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of all the players that died this night as name(group)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.get_killed_id">
+<code class="sig-name descname">get_killed_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.get_killed_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the id of the killed player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>id of the killed player</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.kill">
+<code class="sig-name descname">kill</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kill a player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>player_number</strong> (<em>[</em><em>type</em><em>]</em>) – number of the player in the alive_string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>player_number</strong> (<em>[</em><em>type</em><em>]</em>) – number of the player in the alive_string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="chatwolf.nightactions.Nightactions.together">
+<code class="sig-name descname">together</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player_home_number</span></em>, <em class="sig-param"><span class="n">player_visit_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.nightactions.Nightactions.together" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set 2 people together for this night.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>player_home_number</strong> (<em>int</em>) – the number in the alive_string of the player, who’s at home</p></li>
+<li><p><strong>player_visit_number</strong> (<em>int</em>) – the number in the alive_string of the player, who’s visiting the other</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-chatwolf.skypecommands">
 <span id="chatwolf-skypecommands-module"></span><h2>chatwolf.skypecommands module<a class="headerlink" href="#module-chatwolf.skypecommands" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
@@ -2056,9 +2052,6 @@ basicaly if theire is an id 0 for “noone” disponible . Defaults to 0.</p></l
 </dd></dl>
 
 </div>
-<div class="section" id="module-chatwolf">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-chatwolf" title="Permalink to this headline">¶</a></h2>
-</div>
 </div>
 
 
@@ -2069,8 +2062,10 @@ basicaly if theire is an id 0 for “noone” disponible . Defaults to 0.</p></l
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="license.html" class="btn btn-neutral float-right" title="license" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="modules.html" class="btn btn-neutral float-left" title="chatwolf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="build/Readme.html" class="btn btn-neutral float-left" title="Chatwolf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

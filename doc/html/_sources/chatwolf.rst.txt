@@ -17,14 +17,6 @@ chatwolf.gui module
    :undoc-members:
    :show-inheritance:
 
-chatwolf.nightactions module
-----------------------------
-
-.. automodule:: chatwolf.nightactions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 chatwolf.player module
 ----------------------
 
@@ -42,19 +34,18 @@ chatwolf.roles module
    :show-inheritance:
    :noindex:
 
-chatwolf.skypecommands module
------------------------------
+chatwolf.nightactions module
+----------------------------
 
-.. automodule:: chatwolf.skypecommands
+.. automodule:: chatwolf.nightactions
    :members:
    :undoc-members:
    :show-inheritance:
 
+chatwolf.skypecommands module
+-----------------------------
 
-Module contents
----------------
-
-.. automodule:: chatwolf
+.. automodule:: chatwolf.skypecommands
    :members:
    :undoc-members:
    :show-inheritance:

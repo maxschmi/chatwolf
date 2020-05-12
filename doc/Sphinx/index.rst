@@ -7,11 +7,12 @@ Welcome to Chatwolf's documentation!
 ====================================
 
 .. toctree::
-   :maxdepth: 6
+   :maxdepth: 2
    :caption: Contents:
    
-   intro
-   modules
+   Intro <intro>
+   code reference <chatwolf>
+   licenses
 
 Indices and tables
 ==================

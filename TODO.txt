@@ -3,10 +3,5 @@
 - rolles possible to add several times
 - better implementation of translation
 - do docstring and wiki
-- continue_bkp needs to reload sk, maybe get it as an argument
-- add GPL-3.0-or-later to the description
-- finish docstrings
+- continue_bkp needs to reload sk, maybe get it as an argument -> for gui this is done
 - add more rolles
-- automaticly delete older bkp files and logging files
-- add an about page with license information to GUI
-- programm GUI in proper class declarations

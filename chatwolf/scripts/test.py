@@ -62,4 +62,4 @@ game.numplayers = len(game.players)
 game.start()
 
 # restart from bkp
-#game = Game.load_bkp("C:/Users/Max/source/repos/maxschmi/Skype-Werewolf/bkp/backup_2020-04-22_21-50-54") # enter the correct file
+#game = Game.load_bkp("C:/Users/User/chatwolf/bkp/...") # enter the correct file

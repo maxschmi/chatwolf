@@ -353,3 +353,4 @@ conf.json
 /build/CMakeFiles
 /build
 /Chatwolf.egg-info
+/doc/Sphinx/build
