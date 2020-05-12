@@ -1,11 +1,4 @@
 from setuptools import setup
-#import os
-
-#messages =[]
-#for file in os.walk("messages", topdown=False):
-#    if os.path.isfile(file):
-#        print(file)
-#        messages.append(file)
 
 setup(name="Chatwolf",
       version = "0.1.0",
@@ -25,7 +18,7 @@ setup(name="Chatwolf",
       project_urls={ 
         'Github': 'https://github.com/maxschmi/chatwolf',
         'Docs': ''},
-      entry_points={  # Optional
+      entry_points={
         'console_scripts': ['chatwolf=chatwolf.__main__:main',
         ],},
       license = "GPL-3.0-or-later",
