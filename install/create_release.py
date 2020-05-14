@@ -114,6 +114,7 @@ os.system('pyinstaller --add-data="README.md;." --add-data="LICENSE.txt;." '+
     '--add-data="chatwolf/data/conf_root.json;chatwolf/data/" '+
     '--add-data="chatwolf/data/icon.png;chatwolf/data/" '+
     '--name="Chatwolf" '+
+    '--specpath="install/" ' +
     '--icon=install/icon.ico --version-file="install/file_version_info.txt" ' +
     '--onedir --noconfirm --hidden-import="pkg_resources.py2_warn" ' +
     '--windowed --clean run.pyw')
