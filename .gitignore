@@ -343,13 +343,11 @@ healthchecksdb
 /env
 /error_messages-to-solve
 /.vscode
-/conv
 /chatwolf/data/conf.json
-/chatwolf/data/conf
 chatwolf.pyproj
 chatwolf.sln
 conf.json
 /various_scripts
-/build/CMakeFiles
 /build
 /Chatwolf.egg-info
+/dist
