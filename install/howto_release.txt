@@ -1,0 +1,25 @@
+#automaticaly
+-------------
+change the version in install/build_release.py and run the script
+
+
+#manualy
+--------
+# change Version
+- in setup.py
+- in doc/Sphinx/conf.py
+- in install/file_version_info.txt (4times)
+
+# redo documentation
+- open the Powershell
+cd to doc
+comands:
+Sphinx-build -b latex Sphinx latex
+Sphinx-build -b html Sphinx html
+- open the index.tex and create the pdf, store it in doc/pdf
+
+#create standalone
+in Powershell:
+pyinstaller --add-data="README.md;." --add-data="LICENSE.txt;." --add-data="doc/pdf/chatwolf.pdf;doc/" --add-data="chatwolf/data/messages;chatwolf/data/messages" --add-data="chatwolf/data/conf_root.json;chatwolf/data/" --add-data="chatwolf/data/icon.png;chatwolf/data/" --name="Chatwolf" --icon=install/icon.ico --version-file="install/file_version_info.txt" --onedir --noconfirm --hidden-import="pkg_resources.py2_warn" --windowed --clean run.pyw
+
+zip the created directory and delete the folder

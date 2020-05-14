@@ -44,7 +44,6 @@ import logging
 import datetime
 import shelve
 import json
-from pkg_resources import resource_string as res_str
 from pkg_resources import resource_filename as res_file
 
 # game class definition
@@ -256,6 +255,8 @@ class Game(object):
 
         if self.amor:  #last because this greeting methode takes longer
             self.roles.append(Amor(self.players[j+1], self))
+
+        self.bkp()
     
     def restart(self):
         """Start a new game with the same settings."""
@@ -476,7 +477,8 @@ class Game(object):
         if "Villager" in st: st.remove("Villager")
         ls = list(st)
         numvillagers = len(self.players)-len(ls)-self.numwerewolfs
-        ls.append(str(numvillagers) + " Villager(s)")
+        if numvillagers>0: 
+            ls.append(str(numvillagers) + " Villager(s)")
         ls.append(str(self.numwerewolfs) + " Werewolf(s)")
 
         return ls

@@ -4,4 +4,4 @@ Intro
 .. toctree::
    :hidden:
 
-   readme <build/Readme>
+   readme <data/Readme>

@@ -13,9 +13,11 @@
 import os
 import sys
 from pathlib import Path
-chatwolf_path = Path(os.path.abspath('.')).parent.parent
-sys.path.insert(0, chatwolf_path)
 import sphinx_rtd_theme
+
+base_path = Path(os.path.abspath(__file__)).parent.parent.parent
+sys.path.insert(0, base_path)
+exec(open(str(base_path) + "/doc/Sphinx/create_build.py", "r").read())
 
 # -- Project information -----------------------------------------------------
 
@@ -25,7 +27,7 @@ author = 'Max Schmit'
 author_email = 'maxschm@hotmail.com'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.1'
+release = '0.1.3'
 
 
 # -- General configuration ---------------------------------------------------

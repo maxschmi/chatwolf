@@ -73,8 +73,8 @@
 
 
 \title{Chatwolf}
-\date{May 12, 2020}
-\release{0.1.0}
+\date{May 14, 2020}
+\release{0.1.3}
 \author{Max Schmit}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -94,39 +94,70 @@
 \label{\detokenize{intro:intro}}\label{\detokenize{intro::doc}}
 
 \section{Chatwolf}
-\label{\detokenize{build/Readme:chatwolf}}\label{\detokenize{build/Readme::doc}}
+\label{\detokenize{data/Readme:chatwolf}}\label{\detokenize{data/Readme::doc}}
 Chatwolf is a small bot to play the popular Werewolf game in a group over a videochat.
 Until now it only works on Skype, but maybe I will add other chat services.
 
 
-\section{Rules}
-\label{\detokenize{build/Readme:rules}}
-Here you can find the basic rules in german language:
-\sphinxurl{www.werwolfspielen.info}
+\section{Rules of the game}
+\label{\detokenize{data/Readme:rules-of-the-game}}
+Here you can find the basic rules of the werewolf game in german language:
+\sphinxhref{http://www.werwolfspielen.info/spielregeln.html}{www.werwolfspielen.info}
 
 
-\section{install}
-\label{\detokenize{build/Readme:install}}\begin{enumerate}
+\section{install the executable distribution (easiest way)}
+\label{\detokenize{data/Readme:install-the-executable-distribution-easiest-way}}\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+download the latest distribution from \sphinxhref{https://github.com/maxschmi/chatwolf/releases}{here}
+
+\item {} 
+unzip the folder to where you want to have the program
+It is standalone, so you do not need to install. To unistall simply delete the whole folder.
+
+\item {} 
+do to the folder and run the “chatwolf.exe” file
+
+\end{enumerate}
+
+
+\section{install by source}
+\label{\detokenize{data/Readme:install-by-source}}\begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
 you need Python3 installed.
 If you haven’t got it install it from \sphinxhref{https://www.python.org/downloads/}{here}
 
 \item {} 
-start python.exe
-
-\item {} 
-install chatwolf from pypi with:
+open the terminal and install chatwolf from pypi with:
 
 \end{enumerate}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{python3} \PYG{n}{pip} \PYG{n}{install} \PYG{n}{chatwolf}
+\PYG{n}{pip} \PYG{n}{install} \PYG{n}{chatwolf}
+\end{sphinxVerbatim}
+
+You can now use it ass a package.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+start the GUI or use the “start\_manualy.py” script, which is in “chatwolf/scripts/”.
+
+\end{enumerate}
+
+To start the GUI just enter \sphinxcode{\sphinxupquote{chatwolf}} in the terminal.
+
+If this doesn’t work, open python.exe and enter:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{chatwolf}
+\PYG{n}{root} \PYG{o}{=} \PYG{n}{chatwolf}\PYG{o}{.}\PYG{n}{GUI}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{root}\PYG{o}{.}\PYG{n}{mainloop}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
-\section{Quickstart:}
-\label{\detokenize{build/Readme:quickstart}}\begin{itemize}
+\section{Quickstart with GUI:}
+\label{\detokenize{data/Readme:quickstart-with-gui}}\begin{itemize}
 \item {} 
 you need one additional Skype account, wich will be the Game\sphinxhyphen{}master\sphinxhyphen{}Account.
 Create one or just ask a friend whos not playing to give you his/her account
@@ -135,20 +166,20 @@ Create one or just ask a friend whos not playing to give you his/her account
 create a group in Skype with your friends and the Game\sphinxhyphen{}master\sphinxhyphen{}Account.
 
 \item {} 
-start the programm and log in with the Skype account of the Game\sphinxhyphen{}master\sphinxhyphen{}Account
+log in with the Skype account of the Game\sphinxhyphen{}master\sphinxhyphen{}Account in the program
 
 \item {} 
 select the groupchat, the number of werewolfs and the roles you want
 
 \item {} 
 start the game and play on Skype.
-You will gett all further commands over Skype from the Game\sphinxhyphen{}master\sphinxhyphen{}Account
+You will get all further commands over Skype from the Game\sphinxhyphen{}master\sphinxhyphen{}Account
 
 \end{itemize}
 
 
 \section{Tip:}
-\label{\detokenize{build/Readme:tip}}\begin{itemize}
+\label{\detokenize{data/Readme:tip}}\begin{itemize}
 \item {} 
 if you want to use another Videochat service for the Videocalls, you can do so.
 Just use Skype to talk to the Game\sphinxhyphen{}master\sphinxhyphen{}Account.
@@ -163,7 +194,7 @@ Just use Skype to talk to the Game\sphinxhyphen{}master\sphinxhyphen{}Account.
 \label{\detokenize{chatwolf:module-chatwolf.game}}\label{\detokenize{chatwolf:chatwolf-game-module}}\index{module@\spxentry{module}!chatwolf.game@\spxentry{chatwolf.game}}\index{chatwolf.game@\spxentry{chatwolf.game}!module@\spxentry{module}}\index{Game (class in chatwolf.game)@\spxentry{Game}\spxextra{class in chatwolf.game}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.game.}}\sphinxbfcode{\sphinxupquote{Game}}}{\emph{\DUrole{n}{sk}}, \emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{numwerewolfs}}, \emph{\DUrole{n}{amor}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{witch}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{prostitute}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{visionary}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{lang}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}en\textquotesingle{}}}, \emph{\DUrole{n}{wait\_mult}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{log\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C:\textbackslash{}\textbackslash{}Users\textbackslash{}\textbackslash{}Max\textbackslash{}\textbackslash{}AppData\textbackslash{}\textbackslash{}Local/chatwolf/logs\textquotesingle{}}}, \emph{\DUrole{n}{bkp\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C:\textbackslash{}\textbackslash{}Users\textbackslash{}\textbackslash{}Max\textbackslash{}\textbackslash{}AppData\textbackslash{}\textbackslash{}Local/chatwolf/bkp\textquotesingle{}}}, \emph{\DUrole{n}{do\_debug}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.game.}}\sphinxbfcode{\sphinxupquote{Game}}}{\emph{\DUrole{n}{sk}}, \emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{numwerewolfs}}, \emph{\DUrole{n}{amor}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{witch}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{prostitute}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{visionary}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{lang}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}en\textquotesingle{}}}, \emph{\DUrole{n}{wait\_mult}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{log\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/logs\textquotesingle{}}}, \emph{\DUrole{n}{bkp\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/bkp\textquotesingle{}}}, \emph{\DUrole{n}{do\_debug}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
 Bases: \sphinxcode{\sphinxupquote{object}}
 
 This is the main game class, that starts all the other necessary classes to play!
@@ -2249,7 +2280,7 @@ Set 2 people together for this night.
 \label{\detokenize{chatwolf:module-chatwolf.skypecommands}}\label{\detokenize{chatwolf:chatwolf-skypecommands-module}}\index{module@\spxentry{module}!chatwolf.skypecommands@\spxentry{chatwolf.skypecommands}}\index{chatwolf.skypecommands@\spxentry{chatwolf.skypecommands}!module@\spxentry{module}}\index{SkypeCommands (class in chatwolf.skypecommands)@\spxentry{SkypeCommands}\spxextra{class in chatwolf.skypecommands}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.skypecommands.SkypeCommands}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.skypecommands.}}\sphinxbfcode{\sphinxupquote{SkypeCommands}}}{\emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{game}}, \emph{\DUrole{n}{tokenFile}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}C:\textbackslash{}\textbackslash{}Users\textbackslash{}\textbackslash{}Max\textbackslash{}\textbackslash{}AppData\textbackslash{}\textbackslash{}Local/chatwolf/temp/token.txt\textquotesingle{}}}}{}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.skypecommands.SkypeCommands}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.skypecommands.}}\sphinxbfcode{\sphinxupquote{SkypeCommands}}}{\emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{game}}, \emph{\DUrole{n}{tokenFile}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/temp/token.txt\textquotesingle{}}}}{}
 Bases: \sphinxcode{\sphinxupquote{skpy.main.SkypeEventLoop}}
 
 Class to ask players for answers in Skype.
@@ -3116,7 +3147,7 @@ Public License instead of this License.  But first, please read
 \label{\detokenize{license_dependencies:dependencies}}\label{\detokenize{license_dependencies::doc}}
 
 \subsection{skpy\sphinxhyphen{}package:}
-\label{\detokenize{build/Dependecies_Licenses:skpy-package}}\label{\detokenize{build/Dependecies_Licenses::doc}}
+\label{\detokenize{data/Dependecies_Licenses:skpy-package}}\label{\detokenize{data/Dependecies_Licenses::doc}}
 BSD 3\sphinxhyphen{}Clause License
 
 Copyright (c) 2018, Terrance
@@ -3154,7 +3185,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 \subsection{Icon:}
-\label{\detokenize{build/Dependecies_Licenses:icon}}
+\label{\detokenize{data/Dependecies_Licenses:icon}}
 source of icon:
 \sphinxurl{https://icons8.com/icons/set/werewolf}
 

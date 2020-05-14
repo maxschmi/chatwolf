@@ -36,19 +36,20 @@ from pkg_resources import resource_filename as res_file
 def check_conf():
     #import configurations
     try:
-        conf_json = open(res_file(__name__, "/data/conf.json"), "r")
+        conf_json = open(res_file("chatwolf", "/data/conf.json"), "r")
     except:
-        conf_json = open(res_file(__name__, "/data/conf_root.json"), "r")
+        conf_json = open(res_file("chatwolf", "/data/conf_root.json"), "r")
 
     conf = json.load(conf_json)
     conf_json.close()
 
     # create directories if not yet done
     if not conf["is_dir_created"]:
-        try:
-            main_dir = os.getenv('HOMEPATH') + "/chatwolf"
-        except:
-            main_dir = os.getcwd() + "/Userdata"
+        #try:
+        #    main_dir = os.getenv('HOMEPATH') + "/chatwolf"
+        #except:
+        #    main_dir = os.getcwd() + "/Userdata"
+        main_dir = res_file("chatwolf", "") + "/user_data"
         log_dir = main_dir + "/logs"
         bkp_dir = main_dir + "/bkp"
         temp_dir = main_dir + "/temp"
@@ -61,7 +62,7 @@ def check_conf():
         conf["bkp_dir"] = bkp_dir
         conf["temp_dir"] = temp_dir
         conf["is_dir_created"] = True
-        conf_json = open(os.path.dirname(os.path.realpath(__name__)) + "/data/conf.json", "w")
+        conf_json = open(res_file("chatwolf", "data") + "/conf.json", "w")
         json.dump(conf, conf_json)
         conf_json.close()
 

@@ -26,13 +26,16 @@
 #                             __init__                                  #
 #                                                                       #
 #-----------------------------------------------------------------------#
+"""Chatwolf is a game to play Werewolf on Skype!
 
-#check if directories and configuration file (config.json) got created
-#exec(open("chatwolf\\scripts\\check_conf.py", "r").read())
-
+To start it you can do this:
+import chatwolf
+root = chatwolf.GUI()
+root.mainloop() # if not already started
+"""
 # libraries
 from chatwolf.check_conf import check_conf
-check_conf()
+check_conf() # create directories and create configuration file, if not already done
 from chatwolf.game import Game
 from chatwolf.player import Player
 from chatwolf.roles import Role, Werewolf, Villager, Witch, Visionary, Amor, Prostitute

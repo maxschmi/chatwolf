@@ -37,6 +37,7 @@ import os
 from tkinter import *
 from tkinter import messagebox, filedialog
 from tkinter.ttk import Notebook, Frame
+import time
 import json
 from pkg_resources import resource_filename as res_file
 from pkg_resources import resource_string as res_str
@@ -217,6 +218,7 @@ class GUI(Tk):
                             do_debug = self.do_debug.get())
 
             self.start_w_run()
+            time.sleep(3)
 
             try:
                 self.game.start()
@@ -227,7 +229,7 @@ class GUI(Tk):
             self.w_run.destroy()
 
     def get_dir(self, entry_widget):
-        dir = filedialog.askdirectory()
+        dir = filedialog.askdirectory(parent=self, initialdir=entry_widget.get())
         if os.path.isdir(dir):
             entry_widget.delete(0, END)
             entry_widget.insert(0, dir)
@@ -471,7 +473,8 @@ class TlBkp(Toplevel):
             return False
 
     def get_bkp_file(self):
-        file = filedialog.askopenfilename(filetypes = (("Backup file", "*.dat"),))
+        file = filedialog.askopenfilename(filetypes = (("Backup file", "*.dat"),), 
+                                          initialdir =self.root.e_bkp_dir.get())
         if os.path.isfile(file):
             file = file[0:-4] # delete ending
             self.e_bkp_file.delete(0, END)

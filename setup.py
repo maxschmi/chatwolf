@@ -1,16 +1,15 @@
 from setuptools import setup
 
 setup(name="Chatwolf",
-      version = "0.1.2",
+      version = "0.1.3",
       description="An unofficial game, to play Werewolf on Skype",
       long_description=open("README.md", "r").read(),
       long_description_content_type="text/markdown",
       packages=["chatwolf"],
-      #package_dir={"chatwolf": "chatwolf"},
       package_data={'chatwolf': ['data/messages/en/*.txt',
                                  "data/icon.png",
                                  "data/conf_root.json",
-                                 ]},
+                                 "scripts/*.py"]},
       install_requires=["skpy"],
       python_requires='>=3',
       author = "Max Schmit",
@@ -37,4 +36,3 @@ setup(name="Chatwolf",
         "Topic :: Games/Entertainment :: Role-Playing"],
       keywords = "chat werewolf game multiplayer online skype",
         )
-

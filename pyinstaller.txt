@@ -1,0 +1,4 @@
+pyinstaller --add-data="README.md;." --add-data="LICENSE.txt;." --add-data="doc/pdf/chatwolf.pdf;doc" --add-data="chatwolf/data/messages;data/messages" --add-data="chatwolf/data/conf_root.json;data/" --add-data="chatwolf/data/icon.png;data/" --name="Chatwolf" --icon=install/icon.ico --onefile --clean --windowed --noconfirm run.pyw
+
+without windowed it works when called by terminal
+with it it gives error Failed to execute script pyi_rth_pkgres

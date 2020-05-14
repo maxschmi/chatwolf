@@ -29,7 +29,6 @@
 
 #other libraries
 import json
-from os import path
 from pkg_resources import resource_filename as res_file
 
 #import config

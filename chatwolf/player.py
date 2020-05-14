@@ -78,7 +78,7 @@ class Player(object):
         last = last if last else ""
         self.name = " ".join([first, last])
         if self.name == "":
-            self.name = self.skc.ask("name")
+            self.name = self.id
         
         self.alive = True
         self.love = False

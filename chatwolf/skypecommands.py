@@ -106,7 +106,7 @@ class SkypeCommands(SkypeEventLoop):
                     if ((event.msg.chat.id == self.chatid) and 
                         (not event.msg.user.id == self.game.sk.user.id)):
                         msg = event.msg.content
-                        self.game.log.debug("the message the SkypeCommands methode ask() received was :" + msg)
+                        self.game.log.debug("the message the SkypeCommands methode ask() received was: " + msg)
                         self.game.log.debug("from event: " + repr(event))
                         if command == "bool":
                             answer = self.get_bool(msg)

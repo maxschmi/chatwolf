@@ -1,0 +1,9 @@
+# v0.1.3
+- errors fixed
+- user_data saved in own directory be default, to be standalone
+- standalone distribution created
+- gui goes to selected directories if dialog opens
+- GUI opens runnning window
+
+# v0.1.2
+- bug fixes

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>chatwolf package &mdash; Chatwolf 0.1.0 documentation</title>
+  <title>chatwolf package &mdash; Chatwolf 0.1.3 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="license" href="license.html" />
-    <link rel="prev" title="Chatwolf" href="build/Readme.html" /> 
+    <link rel="next" title="license" href="licenses.html" />
+    <link rel="prev" title="Chatwolf" href="data/Readme.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,7 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-chatwolf.skypecommands">chatwolf.skypecommands module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">license</a></li>
 </ul>
 
             
@@ -163,7 +163,7 @@
 <span id="chatwolf-game-module"></span><h2>chatwolf.game module<a class="headerlink" href="#module-chatwolf.game" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="chatwolf.game.Game">
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">numwerewolfs</span></em>, <em class="sig-param"><span class="n">amor</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">witch</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">prostitute</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">visionary</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'C:\\Users\\Max\\AppData\\Local/chatwolf/logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'C:\\Users\\Max\\AppData\\Local/chatwolf/bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">numwerewolfs</span></em>, <em class="sig-param"><span class="n">amor</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">witch</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">prostitute</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">visionary</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is the main game class, that starts all the other necessary classes to play!</p>
 <dl class="py attribute">
@@ -1906,7 +1906,7 @@ always as tuple of two ids, first one is the player who stays at home</p>
 <span id="chatwolf-skypecommands-module"></span><h2>chatwolf.skypecommands module<a class="headerlink" href="#module-chatwolf.skypecommands" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="chatwolf.skypecommands.SkypeCommands">
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.skypecommands.</code><code class="sig-name descname">SkypeCommands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">game</span></em>, <em class="sig-param"><span class="n">tokenFile</span><span class="o">=</span><span class="default_value">'C:\\Users\\Max\\AppData\\Local/chatwolf/temp/token.txt'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.skypecommands.</code><code class="sig-name descname">SkypeCommands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">game</span></em>, <em class="sig-param"><span class="n">tokenFile</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/temp/token.txt'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.skypecommands.SkypeCommands" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">skpy.main.SkypeEventLoop</span></code></p>
 <p>Class to ask players for answers in Skype.</p>
 <dl class="py attribute">
@@ -2062,10 +2062,10 @@ basicaly if theire is an id 0 for “noone” disponible . Defaults to 0.</p></l
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="license.html" class="btn btn-neutral float-right" title="license" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="licenses.html" class="btn btn-neutral float-right" title="license" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="build/Readme.html" class="btn btn-neutral float-left" title="Chatwolf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="data/Readme.html" class="btn btn-neutral float-left" title="Chatwolf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
