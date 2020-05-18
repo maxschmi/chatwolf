@@ -1,0 +1,3 @@
+The night is over and you can wake up again.
+Uff, luckiliy, no one died tonight.
+This night %(names)s died!

@@ -1,0 +1,3 @@
+Diese Nacht wurde %(killed)s umgebracht, 
+willst du sie/ihn retten?
+aber du kanst ihn/sie nicht mehr retten.

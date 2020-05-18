@@ -1,0 +1,5 @@
+Das Spiel beginnt!
+Ihr seid %(numplayers)i Menschen in eurem Dorf, aber %(numwerwolfs)i von euch sind scheinbar zu Werwölfen mutiert.
+Ihr solltet besser etwas dagegen unternehmen!
+Während dem Tag könnt ihr einen Videochat hier starten und diskutieren wenn ihr umbringen wollt. Währedn der Nach werde ich alle extra Rollen anschreiben. In der Nacht könnt ihr kein Videochat machen, aber ihr könnt euch gegenseitig schreiben. Vielleicht hilft das ja die Werwölfe zu entlarven.
+Ich werde jetzt jedem seine Rolle zuweisen und diese erklären.

@@ -92,7 +92,7 @@ class Player(object):
         """        
         self.love = True
         self.lover = lover #Player object
-        self.chat.sendMsg(self.game.msg("player_arrow") + lover.name)
+        self.chat.sendMsg(self.game.msg("player_arrow").format(lover.name))
 
     def die(self, answer = True):
         """The player dies.

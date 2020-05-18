@@ -1,1 +1,2 @@
-An arrow of love hit you. you are now in love with 
+An arrow of love hit you. You are now in love with {0}s.
+This means you have to survive together in order to win. If one of you dies you will both die, because you can't survive without your deepest love.

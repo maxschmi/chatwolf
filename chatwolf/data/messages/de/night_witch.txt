@@ -1,0 +1,2 @@
+Hallo Hexe,
+Du hast noch %(elixier)i Hailtrunk und %(poison)i Gifttrank übrig.

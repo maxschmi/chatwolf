@@ -1,0 +1,8 @@
+Schick mir: 
+ Nummer
+Danke, Nachricht "%(command)s niemanden" erhalten!
+Danke, Nachricht "%(command)s %(name)s" erhalten
+Nummer ist nicht in der Liste, versuch es nochmal.
+Nummer %(id)i ist nicht in der Liste, versuch es nochmal.
+Danke, ich habe deine Nachricht erhalten 
+Es ist ein Fehler aufgetretten, bitte versuch es nochmal!
