@@ -57,11 +57,11 @@ class Game(object):
         chatid (str): chatid of the group-chat, where all players and the game-master are in
         chat (SkypeChat): the group chat
         skc (SkypeCommands): object of the SkypeCommands class for the group chat
-        numwerewolfs (int): number of werewolfs for the game
-        amor (bool): should the amor role be in the game
-        witch (bool): should the witch role be in the game
-        prostitute (bool): should the prostitute role be in the game
-        visionary (bool): should the visionary role be in the game
+        num_werewolfs (int): number of werewolfs for the game
+        num_amor (int): how many times the amor role should be in the game
+        num_witch (int): how many times the witch role should be in the game
+        num_prostitute (int): how many times the prostitute role should be in the game
+        num_visionary (int): how many times the visionary role should be in the game
         lang (str): language to use for the messages of the Game-master
         wait_mult (int): multiplier for the waiting seequences
         log_dir (str): directory path as str for the logging file
@@ -76,9 +76,9 @@ class Game(object):
         roles (list of Roles): list of all the roles in the game
     """
 
-    def __init__(self, sk, chatid, numwerewolfs, 
-                 amor = False, witch = False, prostitute = False,
-                 visionary = False, lang = _conf["lang"], wait_mult = 1, 
+    def __init__(self, sk, chatid, num_werewolfs, 
+                 num_amor = 0, num_witch = 0, num_prostitute = 0,
+                 num_visionary = 0, lang = _conf["lang"], wait_mult = 1, 
                  log_dir = _conf["log_dir"], bkp_dir = _conf["bkp_dir"], 
                  do_debug = _conf["do_debug"]):
         """Initialize the game.
@@ -94,13 +94,13 @@ class Game(object):
         Args:
             sk (skpy.Skype): logged in Skype Object of the Game-master
             chatid (str): chatid of the group-chat, where all players and the game-master are in
-            numwerewolfs (int): number of werewolfs for the game
+            num_werewolfs (int): number of werewolfs for the game
 
         Keyword Args:
-            amor (bool, optional): should the amor role be in the game . Defaults to False.
-            witch (bool, optional): should the witch role be in the game . Defaults to False.
-            prostitute (bool, optional): should the prostitute role be in the game . Defaults to False.
-            visionary (bool, optional): should the visionary role be in the game . Defaults to False.
+            num_amor (int, optional): how many times the amor role should be in the game . Defaults to 0.
+            num_witch (int, optional): how many times the witch role should be in the game . Defaults to 0.
+            num_prostitute (int, optional): how many times the prostitute role should be in the game . Defaults to 0.
+            num_visionary (int, optional): how many times the visionary role should be in the game . Defaults to 0.
             lang (str, optional): language to use for the messages of the Game-master . Defaults to "en".
             wait_mult (int, optional): multiplier for the waiting seequences . Defaults to 1.
             log_dir (str, optional): directory path as str for the logging file . Defaults to "logs".
@@ -153,14 +153,14 @@ class Game(object):
             self.players.append(Player(player_ids[i], self))
 
         #Roles
-        self.numroles = numwerewolfs + amor + witch + prostitute + visionary
+        self.numroles = num_werewolfs + num_amor + num_witch + num_prostitute + num_visionary
         if self.numroles > len(player_ids):
             raise ValueError('You entered too many roles for the amount of players')
-        self.numwerewolfs = numwerewolfs
-        self.amor = amor
-        self.witch = witch
-        self.prostitute = prostitute
-        self.visionary = visionary
+        self.num_werewolfs = num_werewolfs
+        self.num_amor = num_amor
+        self.num_witch = num_witch
+        self.num_prostitute = num_prostitute
+        self.num_visionary = num_visionary
 
         # counters for days and night
         self.nd = 0 # number of days played
@@ -205,13 +205,13 @@ class Game(object):
         #Greet players
         self.chat.sendMsg(self.msg("greeting_all") % 
                           {"numplayers": len(self.players),
-                           "numwerwolfs": self.numwerewolfs})
+                           "numwerwolfs": self.num_werewolfs})
         time.sleep(20*self.wait_mult)
 
         self.dist_roles()
 
         self.chat.sendMsg(self.msg("greeting_all_roles") + 
-                          (" & ".join(self.get_roles())))
+                          (" & ".join(self.get_num_roles())))
         
         self.log.info("Rolls got distributed: \n"+ " "*30 + 
                       ("\n" + " "*30).join(self.get_players_role()))
@@ -234,34 +234,36 @@ class Game(object):
         self.roles = list()
         i = 0
 
-        if self.prostitute: 
+        for n in range(self.num_prostitute): 
             self.roles.append(Prostitute(self.players[i], self))
             i += 1
 
-        self.werewolfs = Werewolf(self.players[i:(self.numwerewolfs+i)], self)
+        self.werewolfs = Werewolf(self.players[i:(self.num_werewolfs+i)], self)
         self.roles.append(self.werewolfs)
-        i += self.numwerewolfs
+        i += self.num_werewolfs
 
-        if self.witch: 
+        for n in range(self.num_witch): 
             self.roles.append(Witch(self.players[i], self))
             i += 1
 
-        if self.visionary: 
+        for n in range(self.num_visionary): 
             self.roles.append(Visionary(self.players[i], self))
             i += 1
         
-        for j in range(i, len(self.players) - self.amor):
-            self.roles.append(Villager(self.players[j], self))
+        for n in range(i, len(self.players) - self.num_amor):
+            self.roles.append(Villager(self.players[i], self))
+            i += 1
 
-        if self.amor:  #last because this greeting methode takes longer
-            self.roles.append(Amor(self.players[j+1], self))
+        for n in range(self.num_amor):  #last because this greeting methode takes longer
+            self.roles.append(Amor(self.players[i], self))
+            i+=1
 
         self.bkp()
     
     def restart(self):
         """Start a new game with the same settings."""
-        self.__init__(self.sk, self.chatid, self.numwerewolfs, 
-                      self.amor, self.witch, self.prostitute, self.visionary, 
+        self.__init__(self.sk, self.chatid, self.num_werewolfs, 
+                      self.num_amor, self.num_witch, self.num_prostitute, self.num_visionary, 
                       self.lang, self.wait_mult, self.log_dir, self.bkp_dir, 
                       do_debug = self.do_debug)
 
@@ -462,26 +464,27 @@ class Game(object):
             alive_string.append(str(i+1) + " : " + alive_players[i].name)
         return "\n".join(alive_string)
 
-    def get_roles(self):
+    def get_num_roles(self):
         """Get a list of the activated roles of the game.
 
         Returns:
             list of str: list of the activated roles of the game
         """
 
-        ls =[]
+        ls_roles =[]
         for role in self.roles:
-            ls.append(role.name)
-        st = set(ls)
-        if "Werewolf" in st:st.remove("Werewolf")
-        if "Villager" in st: st.remove("Villager")
-        ls = list(st)
-        numvillagers = len(self.players)-len(ls)-self.numwerewolfs
-        if numvillagers>0: 
-            ls.append(str(numvillagers) + " Villager(s)")
-        ls.append(str(self.numwerewolfs) + " Werewolf(s)")
+            ls_roles.append(role.name)
+        st_roles = set(ls_roles)
 
-        return ls
+        ret = []
+        for role in st_roles:
+            count = 0
+            for it in ls_roles:
+                if role == it:
+                    count += 1
+            ret.append(str(count) + " " + role)
+
+        return ret
 
     def msg(self, filename, line = "all"):
         """Get the coresponding message in the selected language.

@@ -28,35 +28,36 @@
 
 # librarys
 from skpy import Skype, SkypeAuthException
-from chatwolf import Game, Player
+from chatwolf import Game, Player, _conf
 from getpass import getpass
 
 # open Skype connection
 try:
-    sk = Skype(tokenFile = "temp/token.txt")
+    sk = Skype(tokenFile = _conf["temp_dir"] + "/token.txt")
 except SkypeAuthException:
     sk = Skype(input("username"), getpass())
 
 # get properties and start the game
 chatid = #enter here your chatid. to get your latest chats: sk.chats.recent()
-player_user_id = #enter here your id of the player who tests the game
+player_user_id =  #enter here your id of the player who tests the game
 
 game = Game(sk, 
             chatid, 
-            numwerewolfs = 1, amor = False, witch = False, prostitute = False, visionary = False, lang = "en", wait_mult = 0.2)
+            num_werewolfs = 1, num_amor = 0, num_witch = 0, 
+            num_prostitute = 0, num_visionary = 0, lang = "en", 
+            wait_mult = 0.2)
 
 # add only one player to the game
 game.players = []
-for i in range(5):
+for i in range(10):
     game.players.append(Player(player_user_id, game))
 
 #set the roles again
-game.numwerewolfs = 1
-game.amor = True
-game.witch = True
-game.prostitute = True
-game.visionary = True
-game.numplayers = len(game.players)
+game.num_werewolfs = 1
+game.num_amor = 2
+game.num_witch = 2
+game.num_prostitute = 2
+game.num_visionary = 2
 
 #game.dist_roles() manualy distribute roles, is also done in start methode
 game.start()

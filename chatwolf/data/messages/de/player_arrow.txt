@@ -1,2 +1,2 @@
-Ein Liebespfeil hat dich getroffen. Du bist jetzt in {0}s verliebt.
+Ein Liebespfeil hat dich getroffen. Du bist jetzt in {0} verliebt.
 Das bedeutet, dass ihr nur zusammen gewinnen könnt. Ihr müsst versuchen die letzten Überlebenden zu sein. Wenn eine*r von euch stirbt, sterbt ihr leider beide, da ihr nicht ohne einander überleben könnt.
