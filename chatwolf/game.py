@@ -38,7 +38,7 @@ from ._conf import _conf
 #other libraries
 from skpy import Skype, SkypeEventLoop, SkypeNewMessageEvent
 from skpy import SkypeUser, SkypeContacts
-import time
+from time import sleep
 import random as rd
 import logging
 import datetime
@@ -68,6 +68,7 @@ class Game(object):
         logfilename (str): filepath of the logger file
         bkp_dir (str): directory path as str for the backup file 
         do_debug (bool): should a debug logging file be created
+        do_save_conf (bool): should the actual settings get saved as standards
         starttime (datetime): starttime of the game (time when the Game object was created)
         nn (int): number of nights played
         nd (int): number of days played 
@@ -80,7 +81,7 @@ class Game(object):
                  num_amor = 0, num_witch = 0, num_prostitute = 0,
                  num_visionary = 0, lang = _conf["lang"], wait_mult = 1, 
                  log_dir = _conf["log_dir"], bkp_dir = _conf["bkp_dir"], 
-                 do_debug = _conf["do_debug"]):
+                 do_debug = _conf["do_debug"], do_save_conf = True):
         """Initialize the game.
 
         Does:
@@ -106,6 +107,7 @@ class Game(object):
             log_dir (str, optional): directory path as str for the logging file . Defaults to "logs".
             bkp_dir (str, optional): directory path as str for the backup file . Defaults to "bkp".
             do_debug (bool, optional): should a debug logging file be created . Defaults to True.
+            do_save_conf (bool, optional): should the actual settings get saved as standards. Defaults to True.
 
         Raises:
             ValueError: if too many roles for the amount of players were selected
@@ -128,7 +130,7 @@ class Game(object):
 
         self.logfilename = (log_dir + "/Game_" + 
                             self.starttime.strftime("%Y-%m-%d_%H-%M-%S"))
-        self.log = logging.getLogger("Werewolf")
+        self.log = logging.getLogger("Chatwolf")
         self.log.setLevel(logging.INFO)
         fhl = logging.FileHandler(self.logfilename+".txt")
         fhl.setLevel(logging.INFO)
@@ -139,7 +141,7 @@ class Game(object):
             self.log.setLevel(logging.DEBUG)
 
             #get all the errors to log in the file
-            open(self.logfilename + "_debug.txt", "w+") # create the file
+            open(self.logfilename + "_debug.txt", "w+").close() # create the file
             logging.basicConfig(filename = self.logfilename+"_debug.txt",
                             filemode = 'a',
                             level=logging.DEBUG)
@@ -168,6 +170,7 @@ class Game(object):
 
         #other arguments and config
         self.bkp_dir = bkp_dir
+        self.do_save_conf = do_save_conf
         self.save_config()
 
     def start(self):
@@ -193,20 +196,19 @@ class Game(object):
                     pl_error.append(player.name)
             
             if len(pl_error)>0:
-                self.chat.sendMsg(self.msg("error"))
                 if (i%6 == 0) or (i == 0):
                     self.chat.sendMsg(self.msg("error_request").format(" & ".join(pl_error)))
             else:
                 break
 
             i +=1
-            time.sleep(4)
+            sleep(4)
         
         #Greet players
         self.chat.sendMsg(self.msg("greeting_all") % 
                           {"numplayers": len(self.players),
                            "numwerwolfs": self.num_werewolfs})
-        time.sleep(20*self.wait_mult)
+        sleep(20*self.wait_mult)
 
         self.dist_roles()
 
@@ -220,9 +222,9 @@ class Game(object):
             r.greeting()
         self.bkp()
 
-        time.sleep(40*self.wait_mult) # so everyone can get ready and has read his role
+        sleep(40*self.wait_mult) # so everyone can get ready and has read his role
         self.chat.sendMsg(self.msg("greeting_start10s"))
-        time.sleep(10*self.wait_mult)
+        sleep(10*self.wait_mult)
 
         self.day()
 
@@ -287,13 +289,16 @@ class Game(object):
         # ask every role for night action
         na = Nightactions(alive = self.get_alive(), game = self)
         for r in self.roles:
-            r.night(na)
+            for p in r.players:
+                if p.alive:
+                    r.night(na)
+                    break
 
         killed = na.finish_night()
 
-        time.sleep(5*self.wait_mult)
+        sleep(5*self.wait_mult)
         msg = self.msg("night_resume", line = 0)
-        time.sleep(2*self.wait_mult)
+        sleep(2*self.wait_mult)
         if len(killed) == 0:
             msg = msg + "\n" + self.msg("night_resume", line = 1)
             self.log.info("Resume night: No one got killed during the night")
@@ -304,7 +309,7 @@ class Game(object):
                           " got killed during the night")
         self.chat.sendMsg(msg)
 
-        time.sleep(5*self.wait_mult)
+        sleep(5*self.wait_mult)
         if not self.is_end():
             self.bkp()
             self.day()
@@ -329,17 +334,17 @@ class Game(object):
         else:
             id -= 1
             killed = alive_players[id].die()
-            time.sleep(2*self.wait_mult)
+            sleep(2*self.wait_mult)
             self.chat.sendMsg(self.msg("day_killed", 0) + " " + 
                               self.msg("day_killed", 1).join(killed))
             self.log.info(" & ".join(killed)+"got killed.")
         
-        time.sleep(4*self.wait_mult)
+        sleep(4*self.wait_mult)
         if not self.is_end():
             self.bkp()
             self.chat.sendMsg(self.msg("day_end"))
             while not self.skc.ask("bool"): pass
-            time.sleep(3*self.wait_mult)
+            sleep(3*self.wait_mult)
             self.night()
 
     def is_end(self):
@@ -358,7 +363,7 @@ class Game(object):
             self.chat.sendMsg(self.msg("end_noone"))
             self.log.info("The Game ends, because all players are dead!" +
                           "\nNo one won!")
-            time.sleep(2*self.wait_mult)
+            sleep(2*self.wait_mult)
             self.end()
             return True
 
@@ -369,7 +374,7 @@ class Game(object):
                                                               alive[1].name))
                 self.log.info("The Game ends, because only the loving players " +
                               "are alive!\nThe love won!")
-                time.sleep(2*self.wait_mult)
+                sleep(2*self.wait_mult)
                 self.end()
                 return True
 
@@ -382,7 +387,7 @@ class Game(object):
             self.chat.sendMsg(self.msg("end_werewolfs"))
             self.log.info("The Game ends, because only werewolfs are alive!" +
                           "\nThe werewolfs won!")
-            time.sleep(2*self.wait_mult)
+            sleep(2*self.wait_mult)
             self.end()
             return True
 
@@ -391,7 +396,7 @@ class Game(object):
             self.chat.sendMsg(self.msg("end_villager"))
             self.log.info("The Game ends, because only villagers are alive!" +
                           "\nThe villagers won!")
-            time.sleep(2*self.wait_mult)
+            sleep(2*self.wait_mult)
             self.end()
             return True
 
@@ -400,10 +405,11 @@ class Game(object):
     def end(self):
         """End the game!"""
         self.chat.sendMsg(self.msg("end_intro"))
-        time.sleep(5*self.wait_mult)
+        sleep(5*self.wait_mult)
         self.chat.sendMsg("\n".join(self.get_players_role()))
-        self.chat.sendFile(open(self.logfilename+".txt", "r"), 
-                           name = "log_file.txt")
+        with open(self.logfilename+".txt", "r") as log_file:
+            self.chat.sendFile(log_file, 
+                           name = "logbook.txt")
         
         #log the players that are still alive
         self.log.info("still alive were: " + 
@@ -503,8 +509,8 @@ class Game(object):
         """
         try:
             file = open(res_file("chatwolf", 
-                           "data/messages/"+self.lang+"/"+
-                           filename+".txt"), "r")
+                           "data/messages/" + self.lang + "/" +
+                           filename + ".txt"), "r")
             if line == "all":
                 msg = file.read()
             elif type(line) == int:
@@ -569,15 +575,11 @@ class Game(object):
                 self.night()
 
     def save_config(self):
-        _conf["do_debug"] = self.do_debug
-        _conf["log_dir"] = self.log_dir
-        _conf["bkp_dir"] = self.bkp_dir
-        _conf["do_debug"] = self.do_debug
-        json.dump(_conf, open(res_file("chatwolf", "/data/conf.json"), "w"))
-
-
-
-
-
-
-
+        if self.do_save_conf:
+            _conf["do_debug"] = self.do_debug
+            _conf["log_dir"] = self.log_dir
+            _conf["bkp_dir"] = self.bkp_dir
+            _conf["do_debug"] = self.do_debug
+            conf_file = open(res_file("chatwolf", "data") + "\\conf.json", "w")
+            json.dump(_conf, conf_file)
+            conf_file.close()

@@ -351,4 +351,4 @@ conf.json
 /build
 /Chatwolf.egg-info
 /dist
-/chatwolf/scripts/dummy_Skype.py
+/test/test_log

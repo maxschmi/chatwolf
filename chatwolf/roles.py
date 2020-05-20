@@ -31,7 +31,7 @@
 from .skypecommands import SkypeCommands
 
 #other libraries
-import time
+from time import sleep
 import random as rd
 
 # class definitions
@@ -126,7 +126,7 @@ class Role(object):
             sleeptime = rd.gauss(15, 5)
             while sleeptime <7:
                 sleeptime = rd.gauss(15, 5)
-            time.sleep(sleeptime * self.game.wait_mult)
+            sleep(sleeptime * self.game.wait_mult)
 
 
 class Werewolf(Role):
@@ -244,7 +244,7 @@ class Prostitute(Villager):
         """
 
         self.msg_group_night()
-        self.chat.sendMsg(self.game.msg("night_"+ self.name.lower()))
+        self.chat.sendMsg(self.game.msg("night_prostitute"))
         self.chat.sendMsg(nightactions.alive_string)
         id = self.skc.ask("visit", nightactions.alive)
         if not id == 0:
@@ -301,7 +301,7 @@ class Witch(Villager):
             self.chat.sendMsg(self.game.msg("night_witch_noone"))
         else:
             killed_name = nightactions.alive[killed_id].name
-            time.sleep(1*self.game.wait_mult)
+            sleep(1*self.game.wait_mult)
             if self.elixier:
                 self.chat.sendMsg(self.game.msg("night_witch_save", 0) % 
                                   {"killed": killed_name} + 
@@ -316,10 +316,10 @@ class Witch(Villager):
                                       {"killed": killed_name} + 
                                       self.game.msg("night_witch_save", 2))
 
-        time.sleep(1*self.game.wait_mult)
+        sleep(1*self.game.wait_mult)
         if self.poison:
             self.chat.sendMsg(self.game.msg("night_witch_kill"))
-            time.sleep(1*self.game.wait_mult)
+            sleep(1*self.game.wait_mult)
             if self.skc.ask("bool"):
                 self.chat.sendMsg(self.game.msg("night_witch_kill_list"))
                 self.chat.sendMsg(nightactions.alive_string)
@@ -329,7 +329,7 @@ class Witch(Villager):
                     self.poison = False
                     self.game.log.info("The witch uses her poison to kill " + 
                                        nightactions.alive[id-1].name)
-        time.sleep(2*self.game.wait_mult)
+        sleep(2*self.game.wait_mult)
         self.chat.sendMsg(self.game.msg("night_sleep"))
         
 class Visionary(Villager):

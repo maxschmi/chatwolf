@@ -33,7 +33,7 @@ from ._conf import _conf
 # other libraries
 from skpy import SkypeEventLoop, SkypeNewMessageEvent
 import re
-import time
+from time import sleep
 
 # Skype message waiting class
 # --------------------------
@@ -104,7 +104,7 @@ class SkypeCommands(SkypeEventLoop):
             for event in events:
                 if type(event) == SkypeNewMessageEvent:
                     if ((event.msg.chat.id == self.chatid) and 
-                        (not event.msg.user.id == self.game.sk.user.id)):
+                        (not event.msg.user.id == self.game.sk.userId)):
                         msg = event.msg.content
                         self.game.log.debug("the message the SkypeCommands methode ask() received was: " + msg)
                         self.game.log.debug("from event: " + repr(event))
@@ -119,7 +119,7 @@ class SkypeCommands(SkypeEventLoop):
                             return answer
                 if self.autoAck:
                     event.ack()
-            time.sleep(3)
+            sleep(3)
 
     def get_id(self, msg, command, alive = [None], num_ids=1, min_id = 0):
         """Check the message for an id and return it if the message was right.

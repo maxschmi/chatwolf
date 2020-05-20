@@ -65,6 +65,15 @@ def check_conf():
         conf_json = open(res_file("chatwolf", "data") + "/conf.json", "w")
         json.dump(conf, conf_json)
         conf_json.close()
+    else:
+        if not os.path.isdir(conf["main_dir"]):
+            os.mkdir(conf["main_dir"])
+        if not os.path.isdir(conf["log_dir"]):
+            os.mkdir(conf["log_dir"])
+        if not os.path.isdir(conf["bkp_dir"]):
+            os.mkdir(conf["bkp_dir"])
+        if not os.path.isdir(conf["temp_dir"]):
+            os.mkdir(conf["temp_dir"])
 
     # delete old log, backup and token files
     limit_time = time() - (86400 * conf["days_keep_log"])
