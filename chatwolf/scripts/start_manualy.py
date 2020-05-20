@@ -42,8 +42,8 @@ chatid = ###enter your chatid, get a list of actual chats with sk.chats.recent()
 
 game = Game(sk, 
             chatid, 
-            numwerewolfs = 1, amor = False, witch = False, prostitute = False, 
-            visionary = True, lang = "en", wait_mult = 1)
+            num_werewolfs = 1, num_amor = 0, num_witch = 0, num_prostitute = 0, 
+            num_visionary = 0, lang = "en", wait_mult = 1)
 
 game.start()
 
