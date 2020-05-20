@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Chatwolf 0.1.3 documentation</title>
+  <title>Index &mdash; Chatwolf 0.1.4 documentation</title>
   
 
   
@@ -166,7 +166,6 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
- | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
@@ -182,8 +181,6 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="chatwolf.html#chatwolf.nightactions.Nightactions.alive_string">alive_string (chatwolf.nightactions.Nightactions attribute)</a>
-</li>
-      <li><a href="chatwolf.html#chatwolf.game.Game.amor">amor (chatwolf.game.Game attribute)</a>
 </li>
       <li><a href="chatwolf.html#chatwolf.skypecommands.SkypeCommands.ask">ask() (chatwolf.skypecommands.SkypeCommands method)</a>
 </li>
@@ -262,11 +259,13 @@
 </li>
       <li><a href="chatwolf.html#chatwolf.gui.TlBkp.check_e_bkp_file">check_e_bkp_file() (chatwolf.gui.TlBkp method)</a>
 </li>
+      <li><a href="chatwolf.html#chatwolf.gui.GUI.check_e_int">check_e_int() (chatwolf.gui.GUI method)</a>
+</li>
       <li><a href="chatwolf.html#chatwolf.gui.GUI.check_e_log_dir">check_e_log_dir() (chatwolf.gui.GUI method)</a>
 </li>
-      <li><a href="chatwolf.html#chatwolf.gui.GUI.check_e_numwerewolfs">check_e_numwerewolfs() (chatwolf.gui.GUI method)</a>
-</li>
       <li><a href="chatwolf.html#chatwolf.gui.GUI.check_e_wait_mult">check_e_wait_mult() (chatwolf.gui.GUI method)</a>
+</li>
+      <li><a href="chatwolf.html#chatwolf.gui.GUI.check_e_werewolfs">check_e_werewolfs() (chatwolf.gui.GUI method)</a>
 </li>
       <li><a href="chatwolf.html#chatwolf.gui.GUI.check_lb_chats">check_lb_chats() (chatwolf.gui.GUI method)</a>
 </li>
@@ -298,13 +297,15 @@
 </li>
       <li><a href="chatwolf.html#chatwolf.gui.GUI.dict_chats">dict_chats() (chatwolf.gui.GUI method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="chatwolf.html#chatwolf.player.Player.die">die() (chatwolf.player.Player method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="chatwolf.html#chatwolf.game.Game.dist_roles">dist_roles() (chatwolf.game.Game method)</a>
 </li>
       <li><a href="chatwolf.html#chatwolf.game.Game.do_debug">do_debug (chatwolf.game.Game attribute)</a>
+</li>
+      <li><a href="chatwolf.html#chatwolf.game.Game.do_save_conf">do_save_conf (chatwolf.game.Game attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -366,9 +367,9 @@
 </li>
       <li><a href="chatwolf.html#chatwolf.player.Player.get_name_role">get_name_role() (chatwolf.player.Player method)</a>
 </li>
-      <li><a href="chatwolf.html#chatwolf.game.Game.get_players_role">get_players_role() (chatwolf.game.Game method)</a>
+      <li><a href="chatwolf.html#chatwolf.game.Game.get_num_roles">get_num_roles() (chatwolf.game.Game method)</a>
 </li>
-      <li><a href="chatwolf.html#chatwolf.game.Game.get_roles">get_roles() (chatwolf.game.Game method)</a>
+      <li><a href="chatwolf.html#chatwolf.game.Game.get_players_role">get_players_role() (chatwolf.game.Game method)</a>
 </li>
       <li><a href="chatwolf.html#chatwolf.gui.GUI">GUI (class in chatwolf.gui)</a>
 </li>
@@ -469,13 +470,21 @@
 </li>
       <li><a href="chatwolf.html#chatwolf.game.Game.night">night() (chatwolf.game.Game method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="chatwolf.html#chatwolf.nightactions.Nightactions">Nightactions (class in chatwolf.nightactions)</a>
 </li>
       <li><a href="chatwolf.html#chatwolf.game.Game.nn">nn (chatwolf.game.Game attribute)</a>
 </li>
-      <li><a href="chatwolf.html#chatwolf.game.Game.numwerewolfs">numwerewolfs (chatwolf.game.Game attribute)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="chatwolf.html#chatwolf.game.Game.num_amor">num_amor (chatwolf.game.Game attribute)</a>
+</li>
+      <li><a href="chatwolf.html#chatwolf.game.Game.num_prostitute">num_prostitute (chatwolf.game.Game attribute)</a>
+</li>
+      <li><a href="chatwolf.html#chatwolf.game.Game.num_visionary">num_visionary (chatwolf.game.Game attribute)</a>
+</li>
+      <li><a href="chatwolf.html#chatwolf.game.Game.num_werewolfs">num_werewolfs (chatwolf.game.Game attribute)</a>
+</li>
+      <li><a href="chatwolf.html#chatwolf.game.Game.num_witch">num_witch (chatwolf.game.Game attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -488,8 +497,6 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="chatwolf.html#chatwolf.game.Game.players">players (chatwolf.game.Game attribute)</a>
-</li>
-      <li><a href="chatwolf.html#chatwolf.game.Game.prostitute">prostitute (chatwolf.game.Game attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -554,14 +561,6 @@
   </ul></td>
 </tr></table>
 
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="chatwolf.html#chatwolf.game.Game.visionary">visionary (chatwolf.game.Game attribute)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -570,8 +569,6 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="chatwolf.html#chatwolf.game.Game.wait_mult">wait_mult (chatwolf.game.Game attribute)</a>
-</li>
-      <li><a href="chatwolf.html#chatwolf.game.Game.witch">witch (chatwolf.game.Game attribute)</a>
 </li>
   </ul></td>
 </tr></table>

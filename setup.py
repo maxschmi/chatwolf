@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name="Chatwolf",
-      version = "0.1.3",
+      version = "0.1.4",
       description="An unofficial game, to play Werewolf on Skype",
-      long_description=open("README.md", "r").read(),
+      long_description=open("doc/Sphinx/data/README.md", "r").read(),
       long_description_content_type="text/markdown",
       packages=["chatwolf"],
       package_data={'chatwolf': ['data/messages/en/*.txt',

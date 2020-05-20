@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>chatwolf package &mdash; Chatwolf 0.1.3 documentation</title>
+  <title>chatwolf package &mdash; Chatwolf 0.1.4 documentation</title>
   
 
   
@@ -163,7 +163,7 @@
 <span id="chatwolf-game-module"></span><h2>chatwolf.game module<a class="headerlink" href="#module-chatwolf.game" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="chatwolf.game.Game">
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">numwerewolfs</span></em>, <em class="sig-param"><span class="n">amor</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">witch</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">prostitute</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">visionary</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">num_werewolfs</span></em>, <em class="sig-param"><span class="n">num_amor</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_witch</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_prostitute</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_visionary</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">do_save_conf</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is the main game class, that starts all the other necessary classes to play!</p>
 <dl class="py attribute">
@@ -211,8 +211,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chatwolf.game.Game.numwerewolfs">
-<code class="sig-name descname">numwerewolfs</code><a class="headerlink" href="#chatwolf.game.Game.numwerewolfs" title="Permalink to this definition">¶</a></dt>
+<dt id="chatwolf.game.Game.num_werewolfs">
+<code class="sig-name descname">num_werewolfs</code><a class="headerlink" href="#chatwolf.game.Game.num_werewolfs" title="Permalink to this definition">¶</a></dt>
 <dd><p>number of werewolfs for the game</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -222,45 +222,45 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chatwolf.game.Game.amor">
-<code class="sig-name descname">amor</code><a class="headerlink" href="#chatwolf.game.Game.amor" title="Permalink to this definition">¶</a></dt>
-<dd><p>should the amor role be in the game</p>
+<dt id="chatwolf.game.Game.num_amor">
+<code class="sig-name descname">num_amor</code><a class="headerlink" href="#chatwolf.game.Game.num_amor" title="Permalink to this definition">¶</a></dt>
+<dd><p>how many times the amor role should be in the game</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chatwolf.game.Game.witch">
-<code class="sig-name descname">witch</code><a class="headerlink" href="#chatwolf.game.Game.witch" title="Permalink to this definition">¶</a></dt>
-<dd><p>should the witch role be in the game</p>
+<dt id="chatwolf.game.Game.num_witch">
+<code class="sig-name descname">num_witch</code><a class="headerlink" href="#chatwolf.game.Game.num_witch" title="Permalink to this definition">¶</a></dt>
+<dd><p>how many times the witch role should be in the game</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chatwolf.game.Game.prostitute">
-<code class="sig-name descname">prostitute</code><a class="headerlink" href="#chatwolf.game.Game.prostitute" title="Permalink to this definition">¶</a></dt>
-<dd><p>should the prostitute role be in the game</p>
+<dt id="chatwolf.game.Game.num_prostitute">
+<code class="sig-name descname">num_prostitute</code><a class="headerlink" href="#chatwolf.game.Game.num_prostitute" title="Permalink to this definition">¶</a></dt>
+<dd><p>how many times the prostitute role should be in the game</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chatwolf.game.Game.visionary">
-<code class="sig-name descname">visionary</code><a class="headerlink" href="#chatwolf.game.Game.visionary" title="Permalink to this definition">¶</a></dt>
-<dd><p>should the visionary role be in the game</p>
+<dt id="chatwolf.game.Game.num_visionary">
+<code class="sig-name descname">num_visionary</code><a class="headerlink" href="#chatwolf.game.Game.num_visionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>how many times the visionary role should be in the game</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -324,6 +324,17 @@
 <dt id="chatwolf.game.Game.do_debug">
 <code class="sig-name descname">do_debug</code><a class="headerlink" href="#chatwolf.game.Game.do_debug" title="Permalink to this definition">¶</a></dt>
 <dd><p>should a debug logging file be created</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.do_save_conf">
+<code class="sig-name descname">do_save_conf</code><a class="headerlink" href="#chatwolf.game.Game.do_save_conf" title="Permalink to this definition">¶</a></dt>
+<dd><p>should the actual settings get saved as standards</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -464,6 +475,20 @@ if game not over, start a night phase by calling Game.night()</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="chatwolf.game.Game.get_num_roles">
+<code class="sig-name descname">get_num_roles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_num_roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of the activated roles of the game.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of the activated roles of the game</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="chatwolf.game.Game.get_players_role">
 <code class="sig-name descname">get_players_role</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">all</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_players_role" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all players with their roles!</p>
@@ -476,20 +501,6 @@ if game not over, start a night phase by calling Game.night()</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list of str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="chatwolf.game.Game.get_roles">
-<code class="sig-name descname">get_roles</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game.get_roles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a list of the activated roles of the game.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>list of the activated roles of the game</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list of str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -607,18 +618,23 @@ start first day</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt id="chatwolf.gui.GUI.check_e_int">
+<code class="sig-name descname">check_e_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entrywidget</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="chatwolf.gui.GUI.check_e_log_dir">
 <code class="sig-name descname">check_e_log_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_log_dir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chatwolf.gui.GUI.check_e_numwerewolfs">
-<code class="sig-name descname">check_e_numwerewolfs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_numwerewolfs" title="Permalink to this definition">¶</a></dt>
+<dt id="chatwolf.gui.GUI.check_e_wait_mult">
+<code class="sig-name descname">check_e_wait_mult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_wait_mult" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="chatwolf.gui.GUI.check_e_wait_mult">
-<code class="sig-name descname">check_e_wait_mult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_wait_mult" title="Permalink to this definition">¶</a></dt>
+<dt id="chatwolf.gui.GUI.check_e_werewolfs">
+<code class="sig-name descname">check_e_werewolfs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.gui.GUI.check_e_werewolfs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

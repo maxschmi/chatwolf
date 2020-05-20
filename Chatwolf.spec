@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['..\\run.pyw'],
-             pathex=['install/'],
+a = Analysis(['run.pyw'],
+             pathex=['C:\\Users\\Max\\source\\repos\\maxschmi\\chatwolf'],
              binaries=[],
              datas=[('README.md', '.'), ('LICENSE.txt', '.'), ('install/UNINSTALL.txt', '.'), ('doc/pdf/chatwolf.pdf', 'doc/'), ('chatwolf/data/messages', 'chatwolf/data/messages'), ('chatwolf/data/conf_root.json', 'chatwolf/data/'), ('chatwolf/data/icon.png', 'chatwolf/data/')],
              hiddenimports=['pkg_resources.py2_warn'],

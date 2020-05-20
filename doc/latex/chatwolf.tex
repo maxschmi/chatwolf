@@ -73,8 +73,8 @@
 
 
 \title{Chatwolf}
-\date{May 14, 2020}
-\release{0.1.3}
+\date{May 20, 2020}
+\release{0.1.4}
 \author{Max Schmit}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -194,7 +194,7 @@ Just use Skype to talk to the Game\sphinxhyphen{}master\sphinxhyphen{}Account.
 \label{\detokenize{chatwolf:module-chatwolf.game}}\label{\detokenize{chatwolf:chatwolf-game-module}}\index{module@\spxentry{module}!chatwolf.game@\spxentry{chatwolf.game}}\index{chatwolf.game@\spxentry{chatwolf.game}!module@\spxentry{module}}\index{Game (class in chatwolf.game)@\spxentry{Game}\spxextra{class in chatwolf.game}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.game.}}\sphinxbfcode{\sphinxupquote{Game}}}{\emph{\DUrole{n}{sk}}, \emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{numwerewolfs}}, \emph{\DUrole{n}{amor}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{witch}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{prostitute}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{visionary}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{lang}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}en\textquotesingle{}}}, \emph{\DUrole{n}{wait\_mult}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{log\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/logs\textquotesingle{}}}, \emph{\DUrole{n}{bkp\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/bkp\textquotesingle{}}}, \emph{\DUrole{n}{do\_debug}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.game.}}\sphinxbfcode{\sphinxupquote{Game}}}{\emph{\DUrole{n}{sk}}, \emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{num\_werewolfs}}, \emph{\DUrole{n}{num\_amor}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_witch}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_prostitute}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_visionary}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{lang}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}en\textquotesingle{}}}, \emph{\DUrole{n}{wait\_mult}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{log\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/logs\textquotesingle{}}}, \emph{\DUrole{n}{bkp\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/bkp\textquotesingle{}}}, \emph{\DUrole{n}{do\_debug}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{do\_save\_conf}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
 Bases: \sphinxcode{\sphinxupquote{object}}
 
 This is the main game class, that starts all the other necessary classes to play!
@@ -250,10 +250,10 @@ object of the SkypeCommands class for the group chat
 
 \end{fulllineitems}
 
-\index{numwerewolfs (chatwolf.game.Game attribute)@\spxentry{numwerewolfs}\spxextra{chatwolf.game.Game attribute}}
+\index{num\_werewolfs (chatwolf.game.Game attribute)@\spxentry{num\_werewolfs}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.numwerewolfs}}\pysigline{\sphinxbfcode{\sphinxupquote{numwerewolfs}}}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_werewolfs}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_werewolfs}}}
 number of werewolfs for the game
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
@@ -263,53 +263,53 @@ int
 
 \end{fulllineitems}
 
-\index{amor (chatwolf.game.Game attribute)@\spxentry{amor}\spxextra{chatwolf.game.Game attribute}}
+\index{num\_amor (chatwolf.game.Game attribute)@\spxentry{num\_amor}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.amor}}\pysigline{\sphinxbfcode{\sphinxupquote{amor}}}
-should the amor role be in the game
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_amor}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_amor}}}
+how many times the amor role should be in the game
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-bool
+int
 
 \end{description}\end{quote}
 
 \end{fulllineitems}
 
-\index{witch (chatwolf.game.Game attribute)@\spxentry{witch}\spxextra{chatwolf.game.Game attribute}}
+\index{num\_witch (chatwolf.game.Game attribute)@\spxentry{num\_witch}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.witch}}\pysigline{\sphinxbfcode{\sphinxupquote{witch}}}
-should the witch role be in the game
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_witch}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_witch}}}
+how many times the witch role should be in the game
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-bool
+int
 
 \end{description}\end{quote}
 
 \end{fulllineitems}
 
-\index{prostitute (chatwolf.game.Game attribute)@\spxentry{prostitute}\spxextra{chatwolf.game.Game attribute}}
+\index{num\_prostitute (chatwolf.game.Game attribute)@\spxentry{num\_prostitute}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.prostitute}}\pysigline{\sphinxbfcode{\sphinxupquote{prostitute}}}
-should the prostitute role be in the game
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_prostitute}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_prostitute}}}
+how many times the prostitute role should be in the game
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-bool
+int
 
 \end{description}\end{quote}
 
 \end{fulllineitems}
 
-\index{visionary (chatwolf.game.Game attribute)@\spxentry{visionary}\spxextra{chatwolf.game.Game attribute}}
+\index{num\_visionary (chatwolf.game.Game attribute)@\spxentry{num\_visionary}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.visionary}}\pysigline{\sphinxbfcode{\sphinxupquote{visionary}}}
-should the visionary role be in the game
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_visionary}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_visionary}}}
+how many times the visionary role should be in the game
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-bool
+int
 
 \end{description}\end{quote}
 
@@ -385,6 +385,19 @@ str
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.do_debug}}\pysigline{\sphinxbfcode{\sphinxupquote{do\_debug}}}
 should a debug logging file be created
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+bool
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{do\_save\_conf (chatwolf.game.Game attribute)@\spxentry{do\_save\_conf}\spxextra{chatwolf.game.Game attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.do_save_conf}}\pysigline{\sphinxbfcode{\sphinxupquote{do\_save\_conf}}}
+should the actual settings get saved as standards
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 bool
@@ -552,6 +565,22 @@ list of str
 
 \end{fulllineitems}
 
+\index{get\_num\_roles() (chatwolf.game.Game method)@\spxentry{get\_num\_roles()}\spxextra{chatwolf.game.Game method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.get_num_roles}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_num\_roles}}}{}{}
+Get a list of the activated roles of the game.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+list of the activated roles of the game
+
+\item[{Return type}] \leavevmode
+list of str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{get\_players\_role() (chatwolf.game.Game method)@\spxentry{get\_players\_role()}\spxextra{chatwolf.game.Game method}}
 
 \begin{fulllineitems}
@@ -563,22 +592,6 @@ Get a list of all players with their roles!
 
 \item[{Returns}] \leavevmode
 a list with one entry per player with: “name (role)”
-
-\item[{Return type}] \leavevmode
-list of str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{get\_roles() (chatwolf.game.Game method)@\spxentry{get\_roles()}\spxextra{chatwolf.game.Game method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.get_roles}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_roles}}}{}{}
-Get a list of the activated roles of the game.
-\begin{quote}\begin{description}
-\item[{Returns}] \leavevmode
-list of the activated roles of the game
 
 \item[{Return type}] \leavevmode
 list of str
@@ -720,22 +733,28 @@ use GUI().mainloop() to start the GUI and play the game
 \phantomsection\label{\detokenize{chatwolf:chatwolf.gui.GUI.check_e_bkp_dir}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_e\_bkp\_dir}}}{}{}
 \end{fulllineitems}
 
+\index{check\_e\_int() (chatwolf.gui.GUI method)@\spxentry{check\_e\_int()}\spxextra{chatwolf.gui.GUI method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.gui.GUI.check_e_int}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_e\_int}}}{\emph{\DUrole{n}{entrywidget}}}{}
+\end{fulllineitems}
+
 \index{check\_e\_log\_dir() (chatwolf.gui.GUI method)@\spxentry{check\_e\_log\_dir()}\spxextra{chatwolf.gui.GUI method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{chatwolf:chatwolf.gui.GUI.check_e_log_dir}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_e\_log\_dir}}}{}{}
 \end{fulllineitems}
 
-\index{check\_e\_numwerewolfs() (chatwolf.gui.GUI method)@\spxentry{check\_e\_numwerewolfs()}\spxextra{chatwolf.gui.GUI method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.gui.GUI.check_e_numwerewolfs}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_e\_numwerewolfs}}}{}{}
-\end{fulllineitems}
-
 \index{check\_e\_wait\_mult() (chatwolf.gui.GUI method)@\spxentry{check\_e\_wait\_mult()}\spxextra{chatwolf.gui.GUI method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{chatwolf:chatwolf.gui.GUI.check_e_wait_mult}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_e\_wait\_mult}}}{}{}
+\end{fulllineitems}
+
+\index{check\_e\_werewolfs() (chatwolf.gui.GUI method)@\spxentry{check\_e\_werewolfs()}\spxextra{chatwolf.gui.GUI method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.gui.GUI.check_e_werewolfs}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{check\_e\_werewolfs}}}{}{}
 \end{fulllineitems}
 
 \index{check\_lb\_chats() (chatwolf.gui.GUI method)@\spxentry{check\_lb\_chats()}\spxextra{chatwolf.gui.GUI method}}

@@ -34,7 +34,7 @@ from pathlib import Path
 import shutil
 
 # inputs
-new_version = "0.1.3"
+new_version = "0.1.4"
 
 #setup
 os.chdir(Path(os.path.abspath(__file__)).parent.parent)
@@ -90,6 +90,11 @@ with open("install/file_version_info.txt", "w") as f:
 
 # create docs
 #-------------
+
+# uninstall and install actual chatwolf version
+os.system("pip uninstall chatwolf")
+os.system("pip install .")
+
 #empty latex folder
 for f in os.listdir("doc/latex"):
     if os.path.isfile(f):
@@ -114,8 +119,8 @@ os.system('pyinstaller --add-data="README.md;." --add-data="LICENSE.txt;." '+
     '--add-data="chatwolf/data/conf_root.json;chatwolf/data/" '+
     '--add-data="chatwolf/data/icon.png;chatwolf/data/" '+
     '--name="Chatwolf" '+
-    '--specpath="install/" ' +
-    '--icon=install/icon.ico --version-file="install/file_version_info.txt" ' +
+    #'--specpath="install/" ' +
+    '--icon="install/icon.ico" --version-file="install/file_version_info.txt" ' +
     '--onedir --noconfirm --hidden-import="pkg_resources.py2_warn" ' +
     '--windowed --clean run.pyw')
 
