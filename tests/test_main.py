@@ -42,8 +42,8 @@ from tests.skpy_mocks import (Skype, SkypeEventLoop, SkypeUser, SkypeContacts,
 import chatwolf
 
 # logger
-log_dir="./test_logs/" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "/"
-if not isdir("./test_logs/"): mkdir("./test_logs/")
+log_dir="./unittest_logs/" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "/"
+if not isdir("./unittest_logs/"): mkdir("./unittest_logs/")
 mkdir(log_dir)
 log_filepath = log_dir + "testlog.txt"
 log = logging.getLogger("Test")
