@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name="Chatwolf",
+setup(name="chatwolf",
       version = "0.1.4",
       description="An unofficial game, to play Werewolf on Skype",
       long_description=open("README.md", "r").read(),
@@ -10,7 +10,7 @@ setup(name="Chatwolf",
                                  "data/icon.png",
                                  "data/conf_root.json",
                                  "scripts/*.py"]},
-      install_requires=["skpy"],
+      install_requires=["skpy", "tkinter"],
       python_requires='>=3',
       author = "Max Schmit",
       author_email = "maxschm@hotmail.com",
