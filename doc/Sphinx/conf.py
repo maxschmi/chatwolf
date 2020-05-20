@@ -14,7 +14,6 @@ import os
 import sys
 from pathlib import Path
 import sphinx_rtd_theme
-import chatwolf
 
 base_path = Path(os.path.abspath(__file__)).parent.parent.parent
 sys.path.insert(0, base_path)
