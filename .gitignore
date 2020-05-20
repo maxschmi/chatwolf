@@ -353,3 +353,4 @@ conf.json
 /dist
 /test/test_log
 /tests/test_log
+/chatwolf/tests/test_log
