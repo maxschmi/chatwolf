@@ -33,12 +33,12 @@ from pkg_resources import resource_filename as res_file
 
 #import config
 try:
-    conf_json = open(res_file("chatwolf", "data") + "\\conf.json", "r")
+    conf_json = open(res_file("chatwolf", "data") + "/conf.json", "r")
     _conf = json.load(conf_json)
     conf_json.close()
 except:
     from .check_conf import check_conf
     check_conf()
-    conf_json = open(res_file("chatwolf", "data") + "\\conf.json", "r")
+    conf_json = open(res_file("chatwolf", "data") + "/conf.json", "r")
     _conf = json.load(conf_json)
     conf_json.close()
