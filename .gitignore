@@ -351,6 +351,4 @@ conf.json
 /build
 /Chatwolf.egg-info
 /dist
-/test/test_log
-/tests/test_log
-/chatwolf/tests/test_log
+/test_logs

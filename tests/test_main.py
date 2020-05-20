@@ -37,13 +37,13 @@ from shutil import rmtree
 from os.path import isdir
 
 #chatwolf libraries
-from test.skpy_mocks import (Skype, SkypeEventLoop, SkypeUser, SkypeContacts, 
+from tests.skpy_mocks import (Skype, SkypeEventLoop, SkypeUser, SkypeContacts, 
                              SkypeNewMessageEvent, Data, sleep, super_skypeeventloop)
 import chatwolf
 
 # logger
-log_dir="./test/test_log/" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "/"
-if not isdir("./test/test_log/"): mkdir("./test/test_log/")
+log_dir="./test_logs/" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "/"
+if not isdir("./test_logs/"): mkdir("./test_logs/")
 mkdir(log_dir)
 log_filepath = log_dir + "testlog.txt"
 log = logging.getLogger("Test")
