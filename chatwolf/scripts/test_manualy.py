@@ -38,8 +38,8 @@ except SkypeAuthException:
     sk = Skype(input("username"), getpass())
 
 # get properties and start the game
-chatid = #enter here your chatid. to get your latest chats: sk.chats.recent()
-player_user_id = #enter here your id of the player who tests the game
+chatid = None ######enter here your chatid. to get your latest chats: sk.chats.recent() #####
+player_user_id = None ########enter here your id of the player who tests the game##############
 
 game = Game(sk, 
             chatid, 

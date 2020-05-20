@@ -3,7 +3,6 @@
 - errors fixed
 - language german(de) added
 - possibility to add roles several times
-- 
 
 # v0.1.3
 - errors fixed

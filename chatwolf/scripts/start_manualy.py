@@ -38,7 +38,7 @@ except SkypeAuthException:
     sk = Skype(input("username"), getpass())
 
 # get properties and start the game
-chatid = ###enter your chatid, get a list of actual chats with sk.chats.recent()
+chatid = None ###enter your chatid, get a list of actual chats with sk.chats.recent()#####
 
 game = Game(sk, 
             chatid, 
