@@ -43,7 +43,8 @@ class Role(object):
     Attributes:
         name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
-        player (list of Player): all the players that belong to this role
+        players (list of Player): all the players that belong to this role
+        player (Player): ´the player if only one player inherits the role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
         chat (SkypeChat): group/single SkypeChat of the player(s)
@@ -53,11 +54,11 @@ class Role(object):
     name ="not set"
     group = "not set"
 
-    def __init__(self, player, game):
+    def __init__(self, players, game):
         """Initilaize the Role object.
 
         Args:
-            player (list of Player): all the players that belong to this role
+            players (list of Player): all the players that belong to this role
             game (Game): the main Game object
             chatid (str): SkypeChat id of the player(s) chat
             game (Game): the main Game object
@@ -66,10 +67,11 @@ class Role(object):
         """        
         self.game = game
         # add Player(s)
-        if type(player)==list:
-            self.players = player
+        if type(players)==list:
+            self.players = players
         else:
-            self.players = [player]
+            self.players = [players]
+            self.player = players
 
         #add Skype Chat variables
         if len(self.players) > 1:
@@ -139,7 +141,8 @@ class Werewolf(Role):
     Attributes:
         name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
-        player (list of Player): all the players that belong to this role
+        players (list of Player): all the players that belong to this role
+        player (Player): ´the player if only one player inherits the role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
         game (Game): the main Game object
@@ -179,7 +182,8 @@ class Villager(Role):
     Attributes:
         name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
-        player (list of Player): all the players that belong to this role
+        players (list of Player): all the players that belong to this role
+        player (Player): ´the player if only one player inherits the role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
         game (Game): the main Game object
@@ -196,7 +200,8 @@ class Amor(Villager):
     Attributes:
         name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
-        player (list of Player): all the players that belong to this role
+        players (list of Player): all the players that belong to this role
+        player (Player): ´the player if only one player inherits the role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
         game (Game): the main Game object
@@ -262,7 +267,8 @@ class Witch(Villager):
     Attributes:
         name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
-        player (list of Player): all the players that belong to this role
+        players (list of Player): all the players that belong to this role
+        player (Player): ´the player if only one player inherits the role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
         chat (SkypeChat): group/single SkypeChat of the player(s)
@@ -340,7 +346,8 @@ class Visionary(Villager):
     Attributes:
         name (str): the name of the role
         group (str): the name of the group "Werewolf"/"Villager"
-        player (list of Player): all the players that belong to this role
+        players (list of Player): all the players that belong to this role
+        player (Player): the player if only one player inherits the role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
         chat (SkypeChat): group/single SkypeChat of the player(s)
@@ -370,24 +377,38 @@ class Visionary(Villager):
                                nightactions.alive[id].get_name_group())
 
 class Hunter(Villager):
+    """
+    Class for the Hunter role.
+
+    Attributes:
+        name (str): the name of the role
+        group (str): the name of the group "Werewolf"/"Villager"
+        players (list of Player): all the players that belong to this role
+        player (Player): the player if only one player inherits the role
+        game (Game): the main Game object
+        chatid (str): SkypeChat id of the player(s) chat
+        chat (SkypeChat): group/single SkypeChat of the player(s)
+        skc (SkypeCommands): object of the SkypeCommands class for this role
+    """
+
     def die(self):
         """Let the hunter kill someone else if (s)he dies"""
         self.game.chat.sendMsg(
-            self.game.msg("die_hunter", 0).format(self.players[0].name))
+            self.game.msg("die_hunter", 0).format(self.player.name))
         self.chat.sendMsg(self.game.msg("die_hunter", 1))
         self.chat.sendMsg(self.game.get_alive_string())
         id = self.skc.ask("kill", self.game.get_alive())
         if id == 0:
             self.game.chat.sendMsg(
-                self.game.msg("die_hunter", 2).format(
-                    self.players[0].name))
+                self.game.msg("die_hunter", 3).format(
+                    self.player.name))
             self.game.log.info("{0} got killed and as a hunter (s)he shoots at noone".format(
-                self.players[0].name))
+                self.player.name))
         else:
             id -= 1
             kill_msg = "&".join(self.game.players[id].die())
             self.game.chat.sendMsg(
-                self.game.msg("die_hunter", 3).format(
-                    self.players[0].name, kill_msg))
+                self.game.msg("die_hunter", 2).format(
+                    self.player.name, kill_msg))
             self.game.log.info("{0} got killed and as a hunter (s)he shoots at {1}\n {2} dies".format(
-                self.players[0].name, self.game.players[id].name, kill_msg))
+                self.player.name, self.game.players[id].name, kill_msg))

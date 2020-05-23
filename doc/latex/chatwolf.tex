@@ -74,7 +74,7 @@
 
 \title{Chatwolf}
 \date{May 23, 2020}
-\release{0.1.5}
+\release{0.1.6}
 \author{Max Schmit}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -1154,7 +1154,7 @@ Throw an arrow at this player, so (s)he fells in love.
 \label{\detokenize{chatwolf:chatwolf-roles-module}}
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Amor}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Amor}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
 
 Class for the Amor role.
@@ -1187,11 +1187,24 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
 all the players that belong to this role
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+´the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
 
 \end{description}\end{quote}
 
@@ -1282,8 +1295,114 @@ inform player about their role and give amor the oportunity to throw his arrow
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Hunter}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Hunter}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
+
+Class for the Hunter role.
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{name}}}
+the name of the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{group}}}
+the name of the group “Werewolf”/”Villager”
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
+all the players that belong to this role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{game}}}
+the main Game object
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.game.Game}]{\sphinxcrossref{Game}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{chatid}}}
+SkypeChat id of the player(s) chat
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{chat}}}
+group/single SkypeChat of the player(s)
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+SkypeChat
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{skc}}}
+object of the SkypeCommands class for this role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.skypecommands.SkypeCommands}]{\sphinxcrossref{SkypeCommands}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 
 \begin{fulllineitems}
@@ -1298,7 +1417,7 @@ Let the hunter kill someone else if (s)he dies
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Prostitute}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Prostitute}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
 
 Class for the Prostitute role.
@@ -1420,7 +1539,7 @@ ask where (s)he wants to stay
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Role}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Role}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{object}}
 
 Main class for the roles.
@@ -1453,11 +1572,24 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
 all the players that belong to this role
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+´the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
 
 \end{description}\end{quote}
 
@@ -1586,7 +1718,7 @@ Do the corresponding night phase.
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Villager}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Villager}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Role}}
 
 Class for the Villager role.
@@ -1619,11 +1751,24 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
 all the players that belong to this role
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+´the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
 
 \end{description}\end{quote}
 
@@ -1712,7 +1857,7 @@ object of the SkypeCommands class for this role
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Visionary}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Visionary}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
 
 Class for the Visionary role.
@@ -1745,11 +1890,24 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
 all the players that belong to this role
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
 
 \end{description}\end{quote}
 
@@ -1835,7 +1993,7 @@ tell him/her the group of this player
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Werewolf}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Werewolf}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Role}}
 
 Class of the werewolf role.
@@ -1868,11 +2026,24 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
 all the players that belong to this role
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+´the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
 
 \end{description}\end{quote}
 
@@ -1976,7 +2147,7 @@ ask whome to kill this night
 
 
 \begin{fulllineitems}
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Witch}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Witch}}}{\emph{\DUrole{n}{players}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
 
 Class for the Witch role.
@@ -2009,11 +2180,24 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+\pysigline{\sphinxbfcode{\sphinxupquote{players}}}
 all the players that belong to this role
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 list of Player
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
+\pysigline{\sphinxbfcode{\sphinxupquote{player}}}
+´the player if only one player inherits the role
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+{\hyperref[\detokenize{chatwolf:chatwolf.player.Player}]{\sphinxcrossref{Player}}}
 
 \end{description}\end{quote}
 

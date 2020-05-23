@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name="chatwolf",
-      version = "0.1.5",
+      version = "0.1.6",
       description="An unofficial game, to play Werewolf on Skype",
       long_description=open("README.md", "r").read(),
       long_description_content_type="text/markdown",

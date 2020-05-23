@@ -42,8 +42,9 @@ from tests.skpy_mocks import (Skype, SkypeEventLoop, SkypeUser, SkypeContacts,
 import chatwolf
 
 # logger
-log_dir="./unittest_logs/" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "/"
-if not isdir("./unittest_logs/"): mkdir("./unittest_logs/")
+log_dir="./TestResults/logs/" + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + "/"
+if not isdir("./TestResults/"): mkdir("./TestResults/")
+if not isdir("./TestResults/logs/"): mkdir("./TestResults/logs/")
 mkdir(log_dir)
 log_filepath = log_dir + "testlog.txt"
 log = logging.getLogger("Test")
@@ -80,7 +81,7 @@ class ChatwolfTest(unittest.TestCase):
         game = chatwolf.Game(sk = self.sk, chatid = Data.chatid,
                              num_werewolfs= 1, num_amor = 1,
                              num_witch = 1, num_prostitute = 1,
-                             num_visionary = 1, 
+                             num_visionary = 1, num_hunter = 1,
                              lang = "en", wait_mult = 0, 
                              log_dir = log_dir, do_debug = True,
                              bkp_dir = log_dir,
@@ -98,7 +99,7 @@ class ChatwolfTest(unittest.TestCase):
         game = chatwolf.Game(sk = self.sk, chatid = Data.chatid,
                         num_werewolfs= 2, num_amor = 2,
                         num_witch = 2, num_prostitute = 2,
-                        num_visionary = 2, 
+                        num_visionary = 2, num_hunter = 2,
                         lang = "en", wait_mult = 0, 
                         log_dir = log_dir, do_debug = True,
                         bkp_dir = log_dir,
@@ -116,7 +117,7 @@ class ChatwolfTest(unittest.TestCase):
         game = chatwolf.Game(sk = self.sk, chatid = Data.chatid,
                              num_werewolfs= 1, num_amor = 1,
                              num_witch = 1, num_prostitute = 1,
-                             num_visionary = 1, 
+                             num_visionary = 1, num_hunter = 1,
                              lang = "en", wait_mult = 0, 
                              log_dir = log_dir, do_debug = True,
                              bkp_dir = log_dir,
@@ -142,6 +143,12 @@ class ChatwolfTest(unittest.TestCase):
         visionary = chatwolf.Visionary(game.players[0], game)
         visionary.greeting()
         visionary.night(na)
+
+        log.info("#"*20 + " test hunter" + "#"*20)
+        hunter = chatwolf.Hunter(game.players[0], game)
+        hunter.greeting()
+        hunter.night(na)
+        hunter.die()
 
 
 if __name__ == '__main__':

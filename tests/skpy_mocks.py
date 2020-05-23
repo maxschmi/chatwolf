@@ -43,11 +43,13 @@ class Data(object):
     username = ("Game", "Master")
     contactuserIds = ['live:maxmul_13', 'live:joe.4', 'live:anna.b', 
            'live:Pedro.ola', 'live:Herta.immer', 'live:Mark.polo97',
-           'live:34526664738819gfet', 'live:markkling', 'live:Kängu.Viet', 'live:Karl.Otto']
+           'live:34526664738819gfet', 'live:markkling', 'live:Kängu.Viet', 
+           'live:Karl.Otto', 'live: Wer_Wo', 'live: Gottv2']
 
     names = [("Max", "Muller"), ("Joe", ""), ("Anna","Bella"), 
             ("Pedro", "Olander"), ("Herta", "Immer"), ("Marko", "Polo"),
-            (None, None), ("Mark","Kling"), ("Käng","Guru"), ("Karlchens", "Otto")]
+            (None, None), ("Mark","Kling"), ("Käng","Guru"), ("Karlchens", "Otto"),
+            ("Wer", "Wolf"), ("Muss", "Mal")]
     random_msgs = ["you are so cool", "I want to kill 3", "let's kill Max",
                 "I am so in love", "Where shall we go", "Throw your arrow at yourself", 
                 "to kill is easy (2)"]

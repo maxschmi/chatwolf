@@ -353,3 +353,5 @@ conf.json
 /dist
 /unittest_logs
 /chatwolf/user_data
+/.pytest_cache/v/cache
+/TestResults/

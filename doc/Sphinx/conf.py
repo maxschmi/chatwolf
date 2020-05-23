@@ -27,7 +27,7 @@ author = 'Max Schmit'
 author_email = 'maxschm@hotmail.com'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.5'
+release = '0.1.6'
 
 
 # -- General configuration ---------------------------------------------------

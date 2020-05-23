@@ -272,9 +272,14 @@ class Game(object):
     
     def restart(self):
         """Start a new game with the same settings."""
-        self.__init__(self.sk, self.chatid, self.num_werewolfs, 
-                      self.num_amor, self.num_witch, self.num_prostitute, self.num_visionary, 
-                      self.lang, self.wait_mult, self.log_dir, self.bkp_dir, 
+        self.__init__(sk = self.sk, chatid = self.chatid, 
+                      num_werewolfs = self.num_werewolfs, 
+                      num_amor = self.num_amor, num_witch = self.num_witch, 
+                      num_prostitute = self.num_prostitute, 
+                      num_visionary = self.num_visionary, 
+                      num_hunter = self.num_hunter,
+                      lang = self.lang, wait_mult = self.wait_mult, 
+                      log_dir = self.log_dir, bkp_dir = self.bkp_dir, 
                       do_debug = self.do_debug)
 
         self.log.info("Game got restarted")

@@ -34,7 +34,7 @@ from pathlib import Path
 import shutil
 
 # inputs
-new_version = "0.1.5"
+new_version = "0.1.6"
 
 #setup
 os.chdir(Path(os.path.abspath(__file__)).parent.parent)
@@ -92,7 +92,7 @@ with open("install/file_version_info.txt", "w") as f:
 #-------------
 
 # uninstall and install actual chatwolf version
-os.system("pip uninstall chatwolf")
+os.system("pip uninstall chatwolf -y")
 os.system("pip install .")
 
 #empty latex folder
@@ -130,3 +130,7 @@ shutil.make_archive(base_name="chatwolf_win_" + re.sub(r"\.", "-", new_version),
                     format='zip', 
                     base_dir="chatwolf")
 shutil.rmtree("chatwolf")
+
+#do pytest
+os.chdir("..")
+os.system("pytest ./tests/")

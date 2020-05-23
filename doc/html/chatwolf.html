@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>chatwolf package &mdash; Chatwolf 0.1.5 documentation</title>
+  <title>chatwolf package &mdash; Chatwolf 0.1.6 documentation</title>
   
 
   
@@ -970,7 +970,7 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 <h2>chatwolf.roles module<a class="headerlink" href="#chatwolf-roles-module" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Amor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Amor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
 <p>Class for the Amor role.</p>
 <dl class="py attribute">
@@ -997,11 +997,22 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">player</code></dt>
+<code class="sig-name descname">players</code></dt>
 <dd><p>all the players that belong to this role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>´the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1076,8 +1087,97 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Hunter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Hunter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
+<p>Class for the Hunter role.</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">name</code></dt>
+<dd><p>the name of the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">group</code></dt>
+<dd><p>the name of the group “Werewolf”/”Villager”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">players</code></dt>
+<dd><p>all the players that belong to this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">game</code></dt>
+<dd><p>the main Game object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chatid</code></dt>
+<dd><p>SkypeChat id of the player(s) chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">chat</code></dt>
+<dd><p>group/single SkypeChat of the player(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>SkypeChat</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">skc</code></dt>
+<dd><p>object of the SkypeCommands class for this role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.skypecommands.SkypeCommands" title="chatwolf.skypecommands.SkypeCommands">SkypeCommands</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt>
 <code class="sig-name descname">die</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
@@ -1088,7 +1188,7 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Prostitute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Prostitute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
 <p>Class for the Prostitute role.</p>
 <dl class="py attribute">
@@ -1189,7 +1289,7 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Role</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Role</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Main class for the roles.</p>
 <dl class="py attribute">
@@ -1216,11 +1316,22 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">player</code></dt>
+<code class="sig-name descname">players</code></dt>
 <dd><p>all the players that belong to this role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>´the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1326,7 +1437,7 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Villager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Villager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Role</span></code></p>
 <p>Class for the Villager role.</p>
 <dl class="py attribute">
@@ -1353,11 +1464,22 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">player</code></dt>
+<code class="sig-name descname">players</code></dt>
 <dd><p>all the players that belong to this role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>´the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1431,7 +1553,7 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Visionary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Visionary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
 <p>Class for the Visionary role.</p>
 <dl class="py attribute">
@@ -1458,11 +1580,22 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">player</code></dt>
+<code class="sig-name descname">players</code></dt>
 <dd><p>all the players that belong to this role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1533,7 +1666,7 @@ tell him/her the group of this player</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Werewolf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Werewolf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Role</span></code></p>
 <p>Class of the werewolf role.</p>
 <dl class="py attribute">
@@ -1560,11 +1693,22 @@ tell him/her the group of this player</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">player</code></dt>
+<code class="sig-name descname">players</code></dt>
 <dd><p>all the players that belong to this role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>´the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1650,7 +1794,7 @@ tell him/her the group of this player</p>
 
 <dl class="py class">
 <dt>
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Witch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Witch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">players</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
 <p>Class for the Witch role.</p>
 <dl class="py attribute">
@@ -1677,11 +1821,22 @@ tell him/her the group of this player</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">player</code></dt>
+<code class="sig-name descname">players</code></dt>
 <dd><p>all the players that belong to this role</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>list of Player</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">player</code></dt>
+<dd><p>´the player if only one player inherits the role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.player.Player" title="chatwolf.player.Player">Player</a></p>
 </dd>
 </dl>
 </dd></dl>
