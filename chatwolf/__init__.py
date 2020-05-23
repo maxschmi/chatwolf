@@ -38,7 +38,7 @@ from chatwolf.check_conf import check_conf
 check_conf() # create directories and create configuration file, if not already done
 from chatwolf.game import Game
 from chatwolf.player import Player
-from chatwolf.roles import Role, Werewolf, Villager, Witch, Visionary, Amor, Prostitute
+from chatwolf.roles import Role, Werewolf, Villager, Witch, Visionary, Amor, Prostitute, Hunter
 from chatwolf.skypecommands import SkypeCommands
 from chatwolf.nightactions import Nightactions
 from chatwolf.gui import GUI

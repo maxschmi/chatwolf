@@ -107,6 +107,9 @@ class Player(object):
 
         self.alive = False
         self.game.log.info(self.name + " dies")
+        if not self.role == None: 
+            self.role.die()
+
         if self.love:
             self.lover.alive = False
             self.game.log.info(self.name + " was in love with " + 

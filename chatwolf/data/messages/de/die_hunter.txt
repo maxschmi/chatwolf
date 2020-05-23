@@ -1,0 +1,4 @@
+{0} war der/die Jäger*in, daher wird sie/er jetzt auswählen, wenn der letzte Schuss treffen wird.
+Du wurdest umgebracht. Wenn willst du mit deinem letzten Schuss mit in den Tod reißen willst? Hier ist eine Liste der möglichen Spieler*innen:
+{0} hat {1} umgebracht!
+{0} hat niemanden umgebracht!

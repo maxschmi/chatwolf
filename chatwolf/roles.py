@@ -46,7 +46,6 @@ class Role(object):
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
-        game (Game): the main Game object
         chat (SkypeChat): group/single SkypeChat of the player(s)
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
@@ -89,7 +88,7 @@ class Role(object):
             player.role = self
         
     def greeting(self):
-        """Inform players about their role."""
+        """Inform players about their role and maybe do first actions"""
         self.chat.sendMsg(self.game.msg("greeting_"+ self.name.lower()))
 
     def night(self, nightactions):
@@ -99,6 +98,10 @@ class Role(object):
             nightactions (Nightactions): log of all the actions that happen(d) in the night
         """
 
+        pass
+
+    def die(self):
+        """Do possible actions when the role dies!"""
         pass
 
     def get_names(self):
@@ -227,7 +230,6 @@ class Prostitute(Villager):
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
-        game (Game): the main Game object
         chat (SkypeChat): group/single SkypeChat of the player(s)
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
@@ -263,7 +265,6 @@ class Witch(Villager):
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
-        game (Game): the main Game object
         chat (SkypeChat): group/single SkypeChat of the player(s)
         skc (SkypeCommands): object of the SkypeCommands class for this role
         elixier (bool): True: the witchs elixier is still available
@@ -342,7 +343,6 @@ class Visionary(Villager):
         player (list of Player): all the players that belong to this role
         game (Game): the main Game object
         chatid (str): SkypeChat id of the player(s) chat
-        game (Game): the main Game object
         chat (SkypeChat): group/single SkypeChat of the player(s)
         skc (SkypeCommands): object of the SkypeCommands class for this role
     """ 
@@ -368,3 +368,26 @@ class Visionary(Villager):
             self.chat.sendMsg(nightactions.alive[id].get_name_group())
             self.game.log.info("The visionary sees "+ 
                                nightactions.alive[id].get_name_group())
+
+class Hunter(Villager):
+    def die(self):
+        """Let the hunter kill someone else if (s)he dies"""
+        self.game.chat.sendMsg(
+            self.game.msg("die_hunter", 0).format(self.players[0].name))
+        self.chat.sendMsg(self.game.msg("die_hunter", 1))
+        self.chat.sendMsg(self.game.get_alive_string())
+        id = self.skc.ask("kill", self.game.get_alive())
+        if id == 0:
+            self.game.chat.sendMsg(
+                self.game.msg("die_hunter", 2).format(
+                    self.players[0].name))
+            self.game.log.info("{0} got killed and as a hunter (s)he shoots at noone".format(
+                self.players[0].name))
+        else:
+            id -= 1
+            kill_msg = "&".join(self.game.players[id].die())
+            self.game.chat.sendMsg(
+                self.game.msg("die_hunter", 3).format(
+                    self.players[0].name, kill_msg))
+            self.game.log.info("{0} got killed and as a hunter (s)he shoots at {1}\n {2} dies".format(
+                self.players[0].name, self.game.players[id].name, kill_msg))

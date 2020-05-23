@@ -1,0 +1,4 @@
+{0} was the hunter, so (s)he can now choose who (s)he wants to kill.
+You got killed. Who do you want to shoot your last shot at? Here is a list of every possible player:
+{0} killed {1}!
+{0} killed no one!

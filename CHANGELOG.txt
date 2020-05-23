@@ -1,3 +1,8 @@
+# v0.1.5
+- GUI bug fix
+- hunter role added
+- german messages corrected
+
 # v0.1.4
 - test framework created and package tested
 - errors fixed

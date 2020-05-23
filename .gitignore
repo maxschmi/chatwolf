@@ -352,3 +352,4 @@ conf.json
 /Chatwolf.egg-info
 /dist
 /unittest_logs
+/chatwolf/user_data

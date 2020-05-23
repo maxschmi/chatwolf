@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>chatwolf package &mdash; Chatwolf 0.1.4 documentation</title>
+  <title>chatwolf package &mdash; Chatwolf 0.1.5 documentation</title>
   
 
   
@@ -163,7 +163,7 @@
 <span id="chatwolf-game-module"></span><h2>chatwolf.game module<a class="headerlink" href="#module-chatwolf.game" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="chatwolf.game.Game">
-<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">num_werewolfs</span></em>, <em class="sig-param"><span class="n">num_amor</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_witch</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_prostitute</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_visionary</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">do_save_conf</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.game.</code><code class="sig-name descname">Game</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sk</span></em>, <em class="sig-param"><span class="n">chatid</span></em>, <em class="sig-param"><span class="n">num_werewolfs</span></em>, <em class="sig-param"><span class="n">num_amor</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_witch</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_prostitute</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_visionary</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">num_hunter</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">lang</span><span class="o">=</span><span class="default_value">'en'</span></em>, <em class="sig-param"><span class="n">wait_mult</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">log_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/logs'</span></em>, <em class="sig-param"><span class="n">bkp_dir</span><span class="o">=</span><span class="default_value">'c:\\users\\max\\anaconda3\\lib\\site-packages\\chatwolf/user_data/bkp'</span></em>, <em class="sig-param"><span class="n">do_debug</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">do_save_conf</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chatwolf.game.Game" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is the main game class, that starts all the other necessary classes to play!</p>
 <dl class="py attribute">
@@ -266,6 +266,17 @@
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="chatwolf.game.Game.num_hunter">
+<code class="sig-name descname">num_hunter</code><a class="headerlink" href="#chatwolf.game.Game.num_hunter" title="Permalink to this definition">¶</a></dt>
+<dd><p>how many times the hunter role should be in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="chatwolf.game.Game.lang">
 <code class="sig-name descname">lang</code><a class="headerlink" href="#chatwolf.game.Game.lang" title="Permalink to this definition">¶</a></dt>
 <dd><p>language to use for the messages of the Game-master</p>
@@ -299,28 +310,6 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="chatwolf.game.Game.logfilename">
-<code class="sig-name descname">logfilename</code><a class="headerlink" href="#chatwolf.game.Game.logfilename" title="Permalink to this definition">¶</a></dt>
-<dd><p>filepath of the logger file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chatwolf.game.Game.bkp_dir">
-<code class="sig-name descname">bkp_dir</code><a class="headerlink" href="#chatwolf.game.Game.bkp_dir" title="Permalink to this definition">¶</a></dt>
-<dd><p>directory path as str for the backup file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
 <dt id="chatwolf.game.Game.do_debug">
 <code class="sig-name descname">do_debug</code><a class="headerlink" href="#chatwolf.game.Game.do_debug" title="Permalink to this definition">¶</a></dt>
 <dd><p>should a debug logging file be created</p>
@@ -343,12 +332,45 @@
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="chatwolf.game.Game.logfilename">
+<code class="sig-name descname">logfilename</code><a class="headerlink" href="#chatwolf.game.Game.logfilename" title="Permalink to this definition">¶</a></dt>
+<dd><p>filepath of the logger file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.bkp_dir">
+<code class="sig-name descname">bkp_dir</code><a class="headerlink" href="#chatwolf.game.Game.bkp_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory path as str for the backup file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="chatwolf.game.Game.starttime">
 <code class="sig-name descname">starttime</code><a class="headerlink" href="#chatwolf.game.Game.starttime" title="Permalink to this definition">¶</a></dt>
 <dd><p>starttime of the game (time when the Game object was created)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chatwolf.game.Game.num_roles">
+<code class="sig-name descname">num_roles</code><a class="headerlink" href="#chatwolf.game.Game.num_roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of roles in the game</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -463,7 +485,7 @@ if game not over, start a night phase by calling Game.night()</p>
 <dd><p>Get a list of players that are still alive as string entries with their number!</p>
 <dl class="field-list simple">
 <dt class="field-odd">Keyword Arguments</dt>
-<dd class="field-odd"><p><strong>noone</strong> (<em>bool</em><em>, </em><em>optional</em>) – True: add “0: noone” to the list; False: only players without “0: noone”  . Defaults to True.</p>
+<dd class="field-odd"><p><strong>noone</strong> (<em>bool</em><em>, </em><em>optional</em>) – True: add “0: No one” to the list; False: only players. Defaults to True.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list with one entry per player, each entry is the number in the alive list + 1 and the name of the player</p>
@@ -512,7 +534,7 @@ if game not over, start a night phase by calling Game.night()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><dl class="simple">
-<dt>True: game is over, on party won;</dt><dd><p>False: Noone won yet, the game is still on</p>
+<dt>True: game is over, on party won;</dt><dd><p>False: No one won yet, the game is still on</p>
 </dd>
 </dl>
 </p>
@@ -1054,6 +1076,18 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py class">
 <dt>
+<em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Hunter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">die</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Let the hunter kill someone else if (s)he dies</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt>
 <em class="property">class </em><code class="sig-prename descclassname">chatwolf.roles.</code><code class="sig-name descname">Prostitute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">player</span></em>, <em class="sig-param"><span class="n">game</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">chatwolf.roles.Villager</span></code></p>
 <p>Class for the Prostitute role.</p>
@@ -1108,17 +1142,6 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt>
-<code class="sig-name descname">game</code></dt>
-<dd><p>the main Game object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1226,17 +1249,6 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py attribute">
 <dt>
-<code class="sig-name descname">game</code></dt>
-<dd><p>the main Game object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt>
 <code class="sig-name descname">chat</code></dt>
 <dd><p>group/single SkypeChat of the player(s)</p>
 <dl class="field-list simple">
@@ -1259,6 +1271,12 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 
 <dl class="py method">
 <dt>
+<code class="sig-name descname">die</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Do possible actions when the role dies!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt>
 <code class="sig-name descname">get_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Get the names of the players of this role.</p>
 <dl class="field-list simple">
@@ -1274,7 +1292,7 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 <dl class="py method">
 <dt>
 <code class="sig-name descname">greeting</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
-<dd><p>Inform players about their role.</p>
+<dd><p>Inform players about their role and maybe do first actions</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1467,17 +1485,6 @@ e.g. True: the methode returns “name (group)”  . Defaults to True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt>
-<code class="sig-name descname">game</code></dt>
-<dd><p>the main Game object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1697,17 +1704,6 @@ tell him/her the group of this player</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt>
-<code class="sig-name descname">game</code></dt>
-<dd><p>the main Game object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chatwolf.game.Game" title="chatwolf.game.Game">Game</a></p>
 </dd>
 </dl>
 </dd></dl>

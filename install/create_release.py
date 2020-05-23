@@ -34,7 +34,7 @@ from pathlib import Path
 import shutil
 
 # inputs
-new_version = "0.1.4"
+new_version = "0.1.5"
 
 #setup
 os.chdir(Path(os.path.abspath(__file__)).parent.parent)

@@ -73,8 +73,8 @@
 
 
 \title{Chatwolf}
-\date{May 21, 2020}
-\release{0.1.4}
+\date{May 23, 2020}
+\release{0.1.5}
 \author{Max Schmit}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -194,7 +194,7 @@ Just use Skype to talk to the Game\sphinxhyphen{}master\sphinxhyphen{}Account.
 \label{\detokenize{chatwolf:module-chatwolf.game}}\label{\detokenize{chatwolf:chatwolf-game-module}}\index{module@\spxentry{module}!chatwolf.game@\spxentry{chatwolf.game}}\index{chatwolf.game@\spxentry{chatwolf.game}!module@\spxentry{module}}\index{Game (class in chatwolf.game)@\spxentry{Game}\spxextra{class in chatwolf.game}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.game.}}\sphinxbfcode{\sphinxupquote{Game}}}{\emph{\DUrole{n}{sk}}, \emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{num\_werewolfs}}, \emph{\DUrole{n}{num\_amor}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_witch}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_prostitute}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_visionary}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{lang}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}en\textquotesingle{}}}, \emph{\DUrole{n}{wait\_mult}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{log\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/logs\textquotesingle{}}}, \emph{\DUrole{n}{bkp\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/bkp\textquotesingle{}}}, \emph{\DUrole{n}{do\_debug}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{do\_save\_conf}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.game.}}\sphinxbfcode{\sphinxupquote{Game}}}{\emph{\DUrole{n}{sk}}, \emph{\DUrole{n}{chatid}}, \emph{\DUrole{n}{num\_werewolfs}}, \emph{\DUrole{n}{num\_amor}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_witch}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_prostitute}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_visionary}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{num\_hunter}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{lang}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}en\textquotesingle{}}}, \emph{\DUrole{n}{wait\_mult}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{log\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/logs\textquotesingle{}}}, \emph{\DUrole{n}{bkp\_dir}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}c:\textbackslash{}\textbackslash{}users\textbackslash{}\textbackslash{}max\textbackslash{}\textbackslash{}anaconda3\textbackslash{}\textbackslash{}lib\textbackslash{}\textbackslash{}site\sphinxhyphen{}packages\textbackslash{}\textbackslash{}chatwolf/user\_data/bkp\textquotesingle{}}}, \emph{\DUrole{n}{do\_debug}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{do\_save\_conf}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
 Bases: \sphinxcode{\sphinxupquote{object}}
 
 This is the main game class, that starts all the other necessary classes to play!
@@ -315,6 +315,19 @@ int
 
 \end{fulllineitems}
 
+\index{num\_hunter (chatwolf.game.Game attribute)@\spxentry{num\_hunter}\spxextra{chatwolf.game.Game attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_hunter}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_hunter}}}
+how many times the hunter role should be in the game
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+int
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{lang (chatwolf.game.Game attribute)@\spxentry{lang}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
@@ -354,32 +367,6 @@ str
 
 \end{fulllineitems}
 
-\index{logfilename (chatwolf.game.Game attribute)@\spxentry{logfilename}\spxextra{chatwolf.game.Game attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.logfilename}}\pysigline{\sphinxbfcode{\sphinxupquote{logfilename}}}
-filepath of the logger file
-\begin{quote}\begin{description}
-\item[{Type}] \leavevmode
-str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{bkp\_dir (chatwolf.game.Game attribute)@\spxentry{bkp\_dir}\spxextra{chatwolf.game.Game attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.bkp_dir}}\pysigline{\sphinxbfcode{\sphinxupquote{bkp\_dir}}}
-directory path as str for the backup file
-\begin{quote}\begin{description}
-\item[{Type}] \leavevmode
-str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
 \index{do\_debug (chatwolf.game.Game attribute)@\spxentry{do\_debug}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
@@ -406,6 +393,32 @@ bool
 
 \end{fulllineitems}
 
+\index{logfilename (chatwolf.game.Game attribute)@\spxentry{logfilename}\spxextra{chatwolf.game.Game attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.logfilename}}\pysigline{\sphinxbfcode{\sphinxupquote{logfilename}}}
+filepath of the logger file
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{bkp\_dir (chatwolf.game.Game attribute)@\spxentry{bkp\_dir}\spxextra{chatwolf.game.Game attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.bkp_dir}}\pysigline{\sphinxbfcode{\sphinxupquote{bkp\_dir}}}
+directory path as str for the backup file
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{starttime (chatwolf.game.Game attribute)@\spxentry{starttime}\spxextra{chatwolf.game.Game attribute}}
 
 \begin{fulllineitems}
@@ -414,6 +427,19 @@ starttime of the game (time when the Game object was created)
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 datetime
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{num\_roles (chatwolf.game.Game attribute)@\spxentry{num\_roles}\spxextra{chatwolf.game.Game attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{chatwolf:chatwolf.game.Game.num_roles}}\pysigline{\sphinxbfcode{\sphinxupquote{num\_roles}}}
+number of roles in the game
+\begin{quote}\begin{description}
+\item[{Type}] \leavevmode
+int
 
 \end{description}\end{quote}
 
@@ -553,7 +579,7 @@ list of Player
 Get a list of players that are still alive as string entries with their number!
 \begin{quote}\begin{description}
 \item[{Keyword Arguments}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{noone}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} True: add “0: noone” to the list; False: only players without “0: noone”  . Defaults to True.
+\sphinxstyleliteralstrong{\sphinxupquote{noone}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} True: add “0: No one” to the list; False: only players. Defaults to True.
 
 \item[{Returns}] \leavevmode
 list with one entry per player, each entry is the number in the alive list + 1 and the name of the player
@@ -609,7 +635,7 @@ Check if game is over!
 \item[{Returns}] \leavevmode
 \begin{description}
 \item[{True: game is over, on party won;}] \leavevmode
-False: Noone won yet, the game is still on
+False: No one won yet, the game is still on
 
 \end{description}
 
@@ -1256,6 +1282,22 @@ inform player about their role and give amor the oportunity to throw his arrow
 
 
 \begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Hunter}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
+Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
+
+
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{die}}}{}{}
+Let the hunter kill someone else if (s)he dies
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{chatwolf.roles.}}\sphinxbfcode{\sphinxupquote{Prostitute}}}{\emph{\DUrole{n}{player}}, \emph{\DUrole{n}{game}}}{}
 Bases: \sphinxcode{\sphinxupquote{chatwolf.roles.Villager}}
 
@@ -1320,19 +1362,6 @@ SkypeChat id of the player(s) chat
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
-
-\begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{game}}}
-the main Game object
-\begin{quote}\begin{description}
-\item[{Type}] \leavevmode
-{\hyperref[\detokenize{chatwolf:chatwolf.game.Game}]{\sphinxcrossref{Game}}}
 
 \end{description}\end{quote}
 
@@ -1463,19 +1492,6 @@ str
 
 
 \begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{game}}}
-the main Game object
-\begin{quote}\begin{description}
-\item[{Type}] \leavevmode
-{\hyperref[\detokenize{chatwolf:chatwolf.game.Game}]{\sphinxcrossref{Game}}}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
-
-\begin{fulllineitems}
 \pysigline{\sphinxbfcode{\sphinxupquote{chat}}}
 group/single SkypeChat of the player(s)
 \begin{quote}\begin{description}
@@ -1502,6 +1518,14 @@ object of the SkypeCommands class for this role
 
 
 \begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{die}}}{}{}
+Do possible actions when the role dies!
+
+\end{fulllineitems}
+
+
+
+\begin{fulllineitems}
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_names}}}{}{}
 Get the names of the players of this role.
 \begin{quote}\begin{description}
@@ -1519,7 +1543,7 @@ list of str
 
 \begin{fulllineitems}
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{greeting}}}{}{}
-Inform players about their role.
+Inform players about their role and maybe do first actions
 
 \end{fulllineitems}
 
@@ -1752,19 +1776,6 @@ SkypeChat id of the player(s) chat
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
-
-\begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{game}}}
-the main Game object
-\begin{quote}\begin{description}
-\item[{Type}] \leavevmode
-{\hyperref[\detokenize{chatwolf:chatwolf.game.Game}]{\sphinxcrossref{Game}}}
 
 \end{description}\end{quote}
 
@@ -2029,19 +2040,6 @@ SkypeChat id of the player(s) chat
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
 str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
-
-\begin{fulllineitems}
-\pysigline{\sphinxbfcode{\sphinxupquote{game}}}
-the main Game object
-\begin{quote}\begin{description}
-\item[{Type}] \leavevmode
-{\hyperref[\detokenize{chatwolf:chatwolf.game.Game}]{\sphinxcrossref{Game}}}
 
 \end{description}\end{quote}
 

@@ -30,7 +30,7 @@
 
 # own libraries
 from .player import Player
-from .roles import Role, Werewolf, Villager, Witch, Visionary, Amor, Prostitute
+from .roles import Werewolf, Villager, Witch, Visionary, Amor, Prostitute, Hunter
 from .skypecommands import SkypeCommands
 from .nightactions import Nightactions
 from ._conf import _conf
@@ -62,14 +62,16 @@ class Game(object):
         num_witch (int): how many times the witch role should be in the game
         num_prostitute (int): how many times the prostitute role should be in the game
         num_visionary (int): how many times the visionary role should be in the game
+        num_hunter (int): how many times the hunter role should be in the game
         lang (str): language to use for the messages of the Game-master
         wait_mult (int): multiplier for the waiting seequences
         log_dir (str): directory path as str for the logging file
-        logfilename (str): filepath of the logger file
-        bkp_dir (str): directory path as str for the backup file 
         do_debug (bool): should a debug logging file be created
         do_save_conf (bool): should the actual settings get saved as standards
+        logfilename (str): filepath of the logger file
+        bkp_dir (str): directory path as str for the backup file
         starttime (datetime): starttime of the game (time when the Game object was created)
+        num_roles (int): number of roles in the game
         nn (int): number of nights played
         nd (int): number of days played 
         log (Logger): the Logger of the game
@@ -79,7 +81,7 @@ class Game(object):
 
     def __init__(self, sk, chatid, num_werewolfs, 
                  num_amor = 0, num_witch = 0, num_prostitute = 0,
-                 num_visionary = 0, lang = _conf["lang"], wait_mult = 1, 
+                 num_visionary = 0, num_hunter = 0, lang = _conf["lang"], wait_mult = 1, 
                  log_dir = _conf["log_dir"], bkp_dir = _conf["bkp_dir"], 
                  do_debug = _conf["do_debug"], do_save_conf = True):
         """Initialize the game.
@@ -102,6 +104,7 @@ class Game(object):
             num_witch (int, optional): how many times the witch role should be in the game . Defaults to 0.
             num_prostitute (int, optional): how many times the prostitute role should be in the game . Defaults to 0.
             num_visionary (int, optional): how many times the visionary role should be in the game . Defaults to 0.
+            num_hunter (int, optional): how many times the hunter role should be in the game . Defaults to 0.
             lang (str, optional): language to use for the messages of the Game-master . Defaults to "en".
             wait_mult (int, optional): multiplier for the waiting seequences . Defaults to 1.
             log_dir (str, optional): directory path as str for the logging file . Defaults to "logs".
@@ -155,14 +158,15 @@ class Game(object):
             self.players.append(Player(player_ids[i], self))
 
         #Roles
-        self.numroles = num_werewolfs + num_amor + num_witch + num_prostitute + num_visionary
-        if self.numroles > len(player_ids):
+        self.num_roles = num_werewolfs + num_amor + num_witch + num_prostitute + num_visionary
+        if self.num_roles > len(player_ids):
             raise ValueError('You entered too many roles for the amount of players')
         self.num_werewolfs = num_werewolfs
         self.num_amor = num_amor
         self.num_witch = num_witch
         self.num_prostitute = num_prostitute
         self.num_visionary = num_visionary
+        self.num_hunter = num_hunter
 
         # counters for days and night
         self.nd = 0 # number of days played
@@ -251,7 +255,11 @@ class Game(object):
         for n in range(self.num_visionary): 
             self.roles.append(Visionary(self.players[i], self))
             i += 1
-        
+
+        for n in range(self.num_hunter): 
+            self.roles.append(Hunter(self.players[i], self))
+            i += 1
+
         for n in range(i, len(self.players) - self.num_amor):
             self.roles.append(Villager(self.players[i], self))
             i += 1
@@ -352,13 +360,13 @@ class Game(object):
 
         Returns:
             bool: True: game is over, on party won; 
-                    False: Noone won yet, the game is still on
+                    False: No one won yet, the game is still on
         """
 
         #test if one Party won
         alive = self.get_alive()
         
-        # test if all are dead -> noone wins
+        # test if all are dead -> no one wins
         if len(alive) == 0:
             self.chat.sendMsg(self.msg("end_noone"))
             self.log.info("The Game ends, because all players are dead!" +
@@ -453,7 +461,7 @@ class Game(object):
         """Get a list of players that are still alive as string entries with their number!
 
         Keyword Args:
-            noone (bool, optional): True: add "0: noone" to the list; False: only players without "0: noone"  . Defaults to True.
+            noone (bool, optional): True: add "0: No one" to the list; False: only players. Defaults to True.
 
         Returns:
             list of str: list with one entry per player, each entry is the number in the alive list + 1 and the name of the player

@@ -90,39 +90,49 @@ class GUI(Tk):
         self.fr_chats.grid(row = 1, column = 1, columnspan = 5, sticky = "nwse")
 
         #roles
-        Label(self.tab_game, text="number of werewolfs").grid(row=2)
-        self.e_werewolfs = Entry(self.tab_game, validate= "focusout", 
-                                    validatecommand= self.check_e_werewolfs)
-        self.e_werewolfs.grid(row=2, column=1, sticky = "w")
-
-        Label(self.tab_game, 
+        self.f_roles = Frame(self.tab_game)
+        Label(self.f_roles, 
               text = "select your roles:", 
               font = ("Arial", 11, "bold")
-              ).grid(row = 3, column = 0, columnspan = 2, sticky = "w")
+              ).grid(row = 0, column = 0, columnspan = 2, sticky = "w")
 
-        Label(self.tab_game, text="number of amors").grid(row=4)
-        self.e_amor = Entry(self.tab_game, validate= "focusout", 
+        Label(self.f_roles, text="number of werewolfs").grid(row=1)
+        self.e_werewolfs = Entry(self.f_roles, validate= "focusout", 
+                                    validatecommand= self.check_e_werewolfs)
+        self.e_werewolfs.grid(row=1, column=1, sticky = "w")
+
+
+        Label(self.f_roles, text="number of amors").grid(row=2)
+        self.e_amor = Entry(self.f_roles, validate= "focusout", 
                             validatecommand= lambda: self.check_e_int(self.e_amor))
         self.e_amor.insert(0, "0")
-        self.e_amor.grid(row=4, column = 1, sticky = "w")
+        self.e_amor.grid(row=2, column = 1, sticky = "w")
 
-        Label(self.tab_game, text="number of witches").grid(row=5)
-        self.e_witch = Entry(self.tab_game, validate= "focusout", 
+        Label(self.f_roles, text="number of witches").grid(row=3)
+        self.e_witch = Entry(self.f_roles, validate= "focusout", 
                              validatecommand= lambda: self.check_e_int(self.e_witch))
         self.e_witch.insert(0, "0")
-        self.e_witch.grid(row=5, column = 1, sticky = "w")
+        self.e_witch.grid(row=3, column = 1, sticky = "w")
 
-        Label(self.tab_game, text="number of visionaries").grid(row=6)
-        self.e_visionary = Entry(self.tab_game, validate= "focusout", 
+        Label(self.f_roles, text="number of visionaries").grid(row=4)
+        self.e_visionary = Entry(self.f_roles, validate= "focusout", 
                                  validatecommand= lambda: self.check_e_int(self.e_visionary))
         self.e_visionary.insert(0, "0")
-        self.e_visionary.grid(row=6, column = 1, sticky = "w")
+        self.e_visionary.grid(row=4, column = 1, sticky = "w")
 
-        Label(self.tab_game, text="number of prostitutes").grid(row=7)
-        self.e_prostitute = Entry(self.tab_game, validate= "focusout", 
+        Label(self.f_roles, text="number of prostitutes").grid(row=5)
+        self.e_prostitute = Entry(self.f_roles, validate= "focusout", 
                                   validatecommand= lambda: self.check_e_int(self.e_prostitute))
         self.e_prostitute.insert(0, "0")
-        self.e_prostitute.grid(row=7, column = 1, sticky = "w")
+        self.e_prostitute.grid(row=5, column = 1, sticky = "w")
+
+        Label(self.f_roles, text="number of hunters").grid(row=6)
+        self.e_hunter = Entry(self.f_roles, validate= "focusout", 
+                                  validatecommand= lambda: self.check_e_int(self.e_hunter))
+        self.e_hunter.insert(0, "0")
+        self.e_hunter.grid(row=6, column = 1, sticky = "w")
+
+        self.f_roles.grid(row = 5, column = 0, columnspan = 2)
     
         #start button
         self.b_start = Button(self.tab_game, text = "start the game", 
@@ -214,6 +224,7 @@ class GUI(Tk):
                             num_witch = int(self.e_witch.get()), 
                             num_prostitute = int(self.e_prostitute.get()), 
                             num_visionary = int(self.e_visionary.get()), 
+                            num_hunter= int(self.e_hunter.get()),
                             lang = self.lang_dic[self.sb_lang.get()], 
                             wait_mult = int(self.e_wait_mult.get()),
                             log_dir = self.e_log_dir.get(), 
@@ -310,14 +321,15 @@ class GUI(Tk):
             self.check_e_log_dir() + self.check_e_bkp_dir() + 
             sum(map(self.check_e_int, 
                 list((self.e_amor, self.e_prostitute, 
-                     self.e_visionary, self.e_witch))))
-            ) < 6:
+                     self.e_visionary, self.e_witch, self.e_hunter))))
+            ) < 11:
             return False
         
         #check if there are not to many roles selected for the selected chat
         chatid = self.get_chatid()
-        numroles = (self.amor.get() + self.visionary.get() + self.witch.get() + 
-                    self.prostitute.get() + int(self.e_werewolfs.get()))
+        numroles = (int(self.e_amor.get()) + int(self.e_visionary.get()) + 
+                    int(self.e_witch.get()) + int(self.e_prostitute.get()) + 
+                    int(self.e_hunter.get()) + int(self.e_werewolfs.get()))
 
         if numroles > (len(self.sk.chats[chatid].userIds)-1):
             self.w_error("You have choosen too many roles for the amount of players")
