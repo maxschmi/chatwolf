@@ -1,3 +1,16 @@
+#################
+#make_release.py#
+#################
+
+- change Version in install/make_realease.py
+- run script make_realease.py
+
+
+This does all the following:
+#########
+#manualy#
+#########
+
 # change Version
 - in setup.py
 - in doc/Sphinx/conf.py
