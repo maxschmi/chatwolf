@@ -4,7 +4,7 @@
 Chatwolf is a small bot to play the popular Werewolf game in a group over a videochat.
 Until now it only works on Skype, but maybe I will add other chat services.
 
-!!! This is my first Python programm I produced, while learning Python !!!
+**!!! This is my first Python programm. I produced it while learning Python! !!!**
 
 # Rules of the game
 Here you can find the basic rules of the werewolf game in german language:
