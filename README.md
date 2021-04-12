@@ -1,7 +1,10 @@
 ## Chatwolf
 [![Documentation Status](https://readthedocs.org/projects/chatwolf/badge/?version=latest)](https://chatwolf.readthedocs.io/en/latest/?badge=latest) ![Pytest](https://github.com/maxschmi/chatwolf/workflows/Pytest/badge.svg) ![Upload Python Package](https://github.com/maxschmi/chatwolf/workflows/Upload%20Python%20Package/badge.svg)
+
 Chatwolf is a small bot to play the popular Werewolf game in a group over a videochat.
 Until now it only works on Skype, but maybe I will add other chat services.
+
+!!! This is my first Python programm I produced, while learning Python !!!
 
 # Rules of the game
 Here you can find the basic rules of the werewolf game in german language:
