@@ -37,7 +37,7 @@ import re
 sphinx_path = Path(os.path.abspath(__file__)).parent
 chatwolf_path = sphinx_path.parent.parent
 # get copies of docs from top
-top_files = ["README.md", "LICENSE.txt", "CHANGELOG.txt", "Dependecies_Licenses.txt"]
+top_files = ["README.md", "LICENSE", "CHANGELOG.txt", "Dependecies_Licenses.txt"]
 for file_name in top_files:
     cont = open(str(chatwolf_path) + "/" + file_name, "r").read()
     file_build = open(str(sphinx_path) + "/data/" + file_name, "w")
