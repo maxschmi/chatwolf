@@ -1,4 +1,4 @@
 own
 ===
 
-.. literalinclude:: data/LICENSE.txt
+.. literalinclude:: data/LICENSE
